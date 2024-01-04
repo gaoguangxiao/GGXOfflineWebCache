@@ -1,13 +1,15 @@
 use_frameworks!
 
-platform :ios, '10.0'
+platform :ios, '13.0'
 
 target 'GGXOfflineWebCache_Example' do
   pod 'GGXOfflineWebCache', :path => '../'
 
+#  pod 'GGXSwiftExtension', :path => '/Users/gaoguangxiao/Documents/GitHub/ggxswiftexten'
+#  pod 'ZKBaseSwiftProject',:path => '/Users/gaoguangxiao/Documents/GitHub/ZKBaseSwiftProject'
+  
   target 'GGXOfflineWebCache_Tests' do
     inherit! :search_paths
-
-    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+#    pod 'FBSnapshotTestCase' , '~> 2.1.4'
   end
 end

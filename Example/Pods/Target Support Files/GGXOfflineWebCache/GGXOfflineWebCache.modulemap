@@ -1,0 +1,6 @@
+framework module GGXOfflineWebCache {
+  umbrella header "GGXOfflineWebCache-umbrella.h"
+
+  export *
+  module * { export * }
+}

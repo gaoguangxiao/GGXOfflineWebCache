@@ -1,0 +1,6 @@
+framework module GXTaskDownload {
+  umbrella header "GXTaskDownload-umbrella.h"
+
+  export *
+  module * { export * }
+}

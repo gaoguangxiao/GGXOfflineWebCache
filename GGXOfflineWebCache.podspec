@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of GGXOfflineWebCache.'
+  s.summary          = 'Web离线资源包'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { '小修' => 'gaoguangxiao125@sina.com' }
-  s.source           = { :git => 'https://github.com/小修/GGXOfflineWebCache.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/gaoguangxiao/GGXOfflineWebCache.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
@@ -39,4 +39,7 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
+    s.dependency 'GGXSwiftExtension'
+    s.dependency 'GXTaskDownload'
+    s.dependency 'SSZipArchive'
 end

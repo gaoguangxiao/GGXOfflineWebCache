@@ -1,0 +1,31 @@
+PODS:
+  - GGXOfflineWebCache (0.1.0):
+    - GGXSwiftExtension
+    - GXTaskDownload
+    - SSZipArchive
+  - GGXSwiftExtension (0.3.3)
+  - GXTaskDownload (0.1.3)
+  - SSZipArchive (2.4.3)
+
+DEPENDENCIES:
+  - GGXOfflineWebCache (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - GGXSwiftExtension
+    - GXTaskDownload
+    - SSZipArchive
+
+EXTERNAL SOURCES:
+  GGXOfflineWebCache:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GGXOfflineWebCache: 1842bc77769fbbf57f68e3b12ea175ddb71e60ad
+  GGXSwiftExtension: fb0eb52ed0c6e76ceb65a9d69d3810c16cacdbbe
+  GXTaskDownload: 319652ff6b3d07d60046571d9ce345a1895191d0
+  SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
+
+PODFILE CHECKSUM: 1dffbe6812135d8c04d133c649d2dfeada9585d3
+
+COCOAPODS: 1.14.3
