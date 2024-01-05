@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E6B6C882B4798490022B2FB /* mainfest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E6B6C872B4798490022B2FB /* mainfest.json */; };
+		1E6B6C8A2B4798550022B2FB /* WebPreset.zip in Resources */ = {isa = PBXBuildFile; fileRef = 1E6B6C892B4798550022B2FB /* WebPreset.zip */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E6B6C872B4798490022B2FB /* mainfest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mainfest.json; sourceTree = "<group>"; };
+		1E6B6C892B4798550022B2FB /* WebPreset.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = WebPreset.zip; sourceTree = "<group>"; };
 		2DDEC734D4CDA90356CDDFE6 /* Pods_GGXOfflineWebCache_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GGXOfflineWebCache_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		425D2FDC80BF20AE29D28306 /* Pods-GGXOfflineWebCache_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GGXOfflineWebCache_Tests.debug.xcconfig"; path = "Target Support Files/Pods-GGXOfflineWebCache_Tests/Pods-GGXOfflineWebCache_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		57E996CDFFDCD9F5868226E0 /* Pods_GGXOfflineWebCache_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GGXOfflineWebCache_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +106,8 @@
 		607FACD21AFB9204008FA782 /* Example for GGXOfflineWebCache */ = {
 			isa = PBXGroup;
 			children = (
+				1E6B6C872B4798490022B2FB /* mainfest.json */,
+				1E6B6C892B4798550022B2FB /* WebPreset.zip */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -246,6 +252,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E6B6C8A2B4798550022B2FB /* WebPreset.zip in Resources */,
+				1E6B6C882B4798490022B2FB /* mainfest.json in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,

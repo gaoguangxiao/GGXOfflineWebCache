@@ -3,20 +3,25 @@
 //  RSBridgeNetCache
 //
 //  Created by 高广校 on 2024/1/2.
-//
+//  负责
 //GXWebCache
 import Foundation
 import Combine
 //import GGXSwiftExtension
 //import ZKBaseSwiftProject
 import SSZipArchive
+//import ZKBaseSwiftProject
 
 public class GXHybridCache: NSObject {
     public static let share = GXHybridCache()
     
-    lazy var presetPath: String? = {
+    public var resourceCachePath: String = "/WebResource/Preset"
+    
+    public lazy var presetPath: String? = {
         guard let cache = FileManager.cachesPath else { return nil }
-        return cache + "/WebResource/Preset"
+        let _path = cache + "/\(resourceCachePath)"
+        FileManager.createFolder(atPath: _path)
+        return _path
     }()
     
     /// 预置资源包名字
@@ -47,7 +52,7 @@ public class GXHybridCache: NSObject {
         
     }
     
-    public func initLocalWebResource(name: String?, type: String?, version: String?, block: @escaping ((_ isSuccess: Bool) -> Void)) {
+    public func initLocalWebResource(name: String?, type: String = "zip", version: String?, block: @escaping ((_ isSuccess: Bool) -> Void)) {
         //判断预置版本和传入是否一致
         let presetVersion = UserDefaults.presetDataVersionKey
         if presetVersion != version {
@@ -60,6 +65,7 @@ public class GXHybridCache: NSObject {
                         //解压
                         SSZipArchive.unzipFile(atPath: toPath, toDestination: folderPath)
                         //保存版本
+                        
                         UserDefaults.presetDataVersionKey = version
                         //获取预置资源包名字
                         self.presetName = path.lastPathComponent.stringByDeletingPathExtension
@@ -74,24 +80,80 @@ public class GXHybridCache: NSObject {
         } else {
             //相等
             print("预置版本和当前版本一致")
-            
-            //读取path路径
-            
-            
-            //            self.presetName = UserDefaults.presetDataNameKey
             block(true)
         }
     }
     
-    public func loadPresetConfig() {
-        // 获取到确切资源包路径
-        guard let presetHostName = self.presetHostName else {
-            print("未获取到确切资源包路径")
+    /// 加载预置离线包
+    public func loadPresetOfflineWeb(path: String,
+                                     configPath: String,
+                                     type: String = "zip",
+                                     version: String?, block: @escaping ((_ isSuccess: Bool) -> Void)) {
+        
+        
+        guard let folderPath = presetPath else {
+            print("预置路径不存在")
+            block(false)
             return
         }
         
-        // 获取JSON数据
+        let toPath = folderPath + "/\(path.lastPathComponent)"
         
+        //获取预置资源包名字
+        self.presetName = path.lastPathComponent.stringByDeletingPathExtension
+        
+        FileManager.moveFile(fromFilePath: path, toFilePath: toPath, fileType: .directory , moveType: .copy) { isSuccess in
+            
+            if isSuccess {
+                //解压之前要移除
+                guard let presetHostName = self.presetHostName else {
+                    print("未获取到确切资源包路径")
+                    block(false)
+                    return
+                }
+                //移除解压的文件
+                let isFileExists = FileManager.isFileExists(atPath: presetHostName)
+                if isFileExists {
+                    FileManager.removefile(atPath: presetHostName)
+                }
+                
+                //解压
+                SSZipArchive.unzipFile(atPath: toPath, toDestination: folderPath)
+                //解压状态
+//                print("解压状态:\(zipStatus)")
+                self.savePresetConfig(presetConfigPath: configPath) { isSuccess in
+                    block(isSuccess)
+                }
+            } else {
+                block(false)
+            }
+        }
+        //
+    }
+    
+    
+    /// 将离线包对应配置和离线包存储
+    /// - Parameter presetConfigName: <#presetConfigName description#>
+    /// - Returns: <#description#>
+    public func savePresetConfig(presetConfigPath: String, block: @escaping ((_ isSuccess: Bool) -> Void)) {
+        guard let presetPath = presetPath else {
+            print("预置路径不存在")
+            block(false)
+            return
+        }
+        let toFilePath = presetPath + "/\(presetConfigPath.lastPathComponent)"
+        FileManager.moveFile(fromFilePath: presetConfigPath,
+                             toFilePath: toFilePath,
+                             moveType: .copy) { isSuccess in
+            block(isSuccess)
+        }
+//        do {
+//            try FileManager.default.copyItem(atPath: presetConfigPath, toPath: toFilePath)
+//            block(true)
+//        } catch let e {
+//            print("复制配置文件出错\(e)")
+//            block(false)
+//        }
     }
     
     //根据URL 从本地获取缓存
@@ -129,7 +191,7 @@ public class GXHybridCache: NSObject {
     
     public func loadOfflineCache(_ url: String) -> Data?{
         // 查找资源缓存策略 默认可查本地
-//        return nil
+        //        return nil
         // 获取到确切资源包路径
         guard let presetHostName = self.presetHostName else {
             print("未获取到确切资源包路径")
@@ -155,7 +217,7 @@ public class GXHybridCache: NSObject {
         }
         
         if let anyData = try? Data(contentsOf: fileUrl) {
-            print("找到磁盘缓存:\(fileUrl)")
+//            print("找到磁盘缓存:\(fileUrl)")
             return anyData
         } else {
             return nil

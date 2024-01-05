@@ -1,0 +1,21 @@
+{
+    "version": "0.1.1",
+    "assets":
+    [
+        {
+            "src": "https://qa.risekid.cn/1041.async.js",
+            "md5": "ea13ed12",
+            "policy": 3
+        },
+        {
+            "src": "https://qa.risekid.cn/1046.async.js",
+            "md5": "73efbbfa",
+            "policy": 3
+        },
+        {
+            "src": "https://qa.risekid.cn/1144.async.js",
+            "md5": "74b3816f",
+            "policy": 3
+        }
+    ]
+}
