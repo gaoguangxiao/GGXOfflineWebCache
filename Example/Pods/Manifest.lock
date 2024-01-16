@@ -3,9 +3,19 @@ PODS:
     - GGXSwiftExtension
     - GXTaskDownload
     - SSZipArchive
-  - GGXSwiftExtension (0.3.3)
-  - GXTaskDownload (0.1.3)
+    - ZKBaseSwiftProject
+  - GGXSwiftExtension (0.3.8)
+  - GXTaskDownload (0.1.4):
+    - GGXSwiftExtension
+  - HandyJSON (5.0.2)
+  - ReachabilitySwift (5.0.0)
+  - SnapKit (5.6.0)
   - SSZipArchive (2.4.3)
+  - ZKBaseSwiftProject (0.2.7):
+    - GGXSwiftExtension
+    - HandyJSON
+    - ReachabilitySwift
+    - SnapKit
 
 DEPENDENCIES:
   - GGXOfflineWebCache (from `../`)
@@ -14,18 +24,26 @@ SPEC REPOS:
   trunk:
     - GGXSwiftExtension
     - GXTaskDownload
+    - HandyJSON
+    - ReachabilitySwift
+    - SnapKit
     - SSZipArchive
+    - ZKBaseSwiftProject
 
 EXTERNAL SOURCES:
   GGXOfflineWebCache:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GGXOfflineWebCache: 1842bc77769fbbf57f68e3b12ea175ddb71e60ad
-  GGXSwiftExtension: fb0eb52ed0c6e76ceb65a9d69d3810c16cacdbbe
-  GXTaskDownload: 319652ff6b3d07d60046571d9ce345a1895191d0
+  GGXOfflineWebCache: f1e4656bb7b2123347fadb3edf21929c544ae58a
+  GGXSwiftExtension: 0773d7981d081d153426b44fe149122f679733d0
+  GXTaskDownload: 02728d67a86424ea22fabd9fa01d271ebc99a7e7
+  HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
+  ZKBaseSwiftProject: a336f386c9957db6f7f5088d29bf7e5159b367f4
 
-PODFILE CHECKSUM: 1dffbe6812135d8c04d133c649d2dfeada9585d3
+PODFILE CHECKSUM: dad854dba21b10757ee380f308e5cf7061a60f9d
 
 COCOAPODS: 1.14.3

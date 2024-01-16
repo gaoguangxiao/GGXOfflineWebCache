@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import os.log
+//import os.log
 
 extension GXDownloader: URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        os_log("%@ - %d", log: GXDownloader.logger, type: .debug, #function, #line)
-        state = .downloading
+//        os_log("%@ - %d", log: GXDownloader.logger, type: .debug, #function, #line)
         totalBytesCount = response.expectedContentLength
+        state = .downloading
         completionHandler(.allow)
     }
 
@@ -24,14 +24,14 @@ extension GXDownloader: URLSessionDataDelegate {
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        os_log("%@ - %d", log: GXDownloader.logger, type: .debug, #function, #line)
+//        os_log("%@ - %d", log: GXDownloader.logger, type: .debug, #function, #line)
         if error == nil {
             state = .completed
         } else {
             //有异常
+//            state = .error
             print("处理完毕异常\(String(describing: error))")
+            delegate?.download(self, completedWithError: error)
         }
-        
-        delegate?.download(self, completedWithError: error)
     }
 }

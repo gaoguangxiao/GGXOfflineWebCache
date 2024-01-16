@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import os.log
+//import os.log
 
 public class GXDownloader: NSObject, GXDownloading {
     
-    static let logger = OSLog(subsystem: "com.ggx.downloader", category: "GXTaskDownload")
+//    static let logger = OSLog(subsystem: "com.ggx.downloader", category: "GXTaskDownload")
     
     // MARK: - Singleton
     
@@ -48,6 +48,7 @@ public class GXDownloader: NSObject, GXDownloading {
             delegate?.download(self, changedState: state)
         }
     }
+    
     public var url: URL? {
         didSet {
             if state == .started {
@@ -66,8 +67,27 @@ public class GXDownloader: NSObject, GXDownloading {
         }
     }
     
+    public var request: URLRequest? {
+        didSet {
+            if state == .started {
+                stop()
+            }
+            
+            if let request {
+                progress = 0.0
+                state = .notStarted
+                totalBytesCount = 0
+                totalBytesReceived = 0
+                ///建立任务
+                task = session.dataTask(with: request)
+            } else {
+                task = nil
+            }
+        }
+    }
+    
     public func start() {
-        os_log("测试%@ - %d [%@]", log: GXDownloader.logger, type: .debug, #function, #line, String(describing: url))
+//        os_log("测试%@ - %d [%@]", log: GXDownloader.logger, type: .debug, #function, #line, String(describing: url))
         
         guard let task = task else {
             delegate?.download(self, startError: .taskFail)
@@ -87,7 +107,7 @@ public class GXDownloader: NSObject, GXDownloading {
         guard let task = task else {
             return
         }
-//        state = 
+        state = .paused
         task.suspend()
     }
     
@@ -95,6 +115,7 @@ public class GXDownloader: NSObject, GXDownloading {
         guard let task = task else {
             return
         }
+//        state = .started
         task.resume()
     }
     

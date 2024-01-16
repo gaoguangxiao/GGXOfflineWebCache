@@ -7,6 +7,7 @@
 
 import Foundation
 import WebKit
+import GGXSwiftExtension
 
 open class GXURLSchemeHander: NSObject {
     private var dataTask: URLSessionDataTask?
@@ -29,7 +30,9 @@ open class GXURLSchemeHander: NSObject {
 extension GXURLSchemeHander: WKURLSchemeHandler{
     open func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
 //        print("ZK拦截请求")
+        LogInfo("开始请求")
         dataTask = Self.session?.dataTask(with: urlSchemeTask.request) { [weak urlSchemeTask] data, response, error in
+            LogInfo("结束请求")
             guard let urlSchemeTask = urlSchemeTask else { return }
             if let error = error, error._code != NSURLErrorCancelled {
                 urlSchemeTask.didFailWithError(error)

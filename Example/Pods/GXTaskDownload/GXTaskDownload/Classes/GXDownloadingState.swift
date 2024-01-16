@@ -24,4 +24,5 @@ public enum GXDownloadingState: String {
     case paused
     case notStarted
     case stopped
+    case error
 }

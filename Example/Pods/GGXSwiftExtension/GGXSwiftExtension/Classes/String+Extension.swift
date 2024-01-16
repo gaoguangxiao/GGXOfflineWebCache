@@ -173,6 +173,16 @@ public extension String {
         
         return "\(headerStrig)\(encodeString)"
     }
+    
+    var toPath: String {
+        guard let url = self.toUrl else { return "" }
+        if #available(iOS 16.0, *) {
+            return url.path()
+        } else {
+            // Fallback on earlier versions
+            return url.path
+        }
+    }
 }
 
 // MARK: Function of NSString

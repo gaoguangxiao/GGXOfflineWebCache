@@ -20,6 +20,9 @@
   },
   "source_files": "GGXOfflineWebCache/Classes/**/*",
   "dependencies": {
+    "ZKBaseSwiftProject": [
+
+    ],
     "GGXSwiftExtension": [
 
     ],

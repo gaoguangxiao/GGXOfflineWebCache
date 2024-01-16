@@ -181,9 +181,8 @@ extension  FileManager {
                     // 如果被移动的件夹或者文件，如果已存在，先删除，否则拷贝不了
                     do {
                         try fileManagerDefault.removeItem(atPath: toFilePath)
-                        block?(true)
                     } catch _ {
-                        block?(false)
+
                     }
                 }
                 
@@ -227,7 +226,7 @@ extension  FileManager {
      }
     
     /// 获取所有文件名（性能要比getAllFiles差一些）
-    static func getAllFileNames(atPath folderPath: String) -> [String]? {
+    public static func getAllFileNames(atPath folderPath: String) -> [String]? {
         // 查看文件夹是否存在，如果存在就直接读取，不存在就直接反空
         if (isFileExists(atPath: folderPath)) {
             return fileManagerDefault.subpaths(atPath: folderPath)

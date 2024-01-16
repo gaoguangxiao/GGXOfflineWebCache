@@ -17,7 +17,7 @@ public protocol GXDownloadingDelegate {
     /// - Parameters:
     ///   - download: The current `Downloading` instance
     ///   - state: The new `DownloadingState` the `Downloading` has transitioned to
-    func download(_ download: GXDownloading, changedState state: GXDownloadingState)
+    func download(_ download: GXDownloader, changedState state: GXDownloadingState)
     
     /// Triggered when a `Downloading` instance has fully completed its request.
     ///
