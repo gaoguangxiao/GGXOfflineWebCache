@@ -8,9 +8,7 @@
 import Foundation
 import Combine
 import GGXSwiftExtension
-//import ZKBaseSwiftProject
 import SSZipArchive
-//import ZKBaseSwiftProject
 
 public class GXHybridCacheManager: NSObject {
     
@@ -23,6 +21,13 @@ public class GXHybridCacheManager: NSObject {
         let _path = cache + "\(resourceCachePath)"
         FileManager.createFolder(atPath: _path)
         return _path
+    }()
+    
+    /// 离线下载
+    public lazy var oflineDownload: GXHybridDownload = {
+        let download = GXHybridDownload()
+        download.hyDownPath = resourceCachePath
+        return download
     }()
     
     /// 预置资源包名字
@@ -38,69 +43,8 @@ public class GXHybridCacheManager: NSObject {
         return _path
     }()
     
-    /// 预置资源包指定目录
-    var presetHostName: String? {
-        guard let presetPath = presetPath else {
-            print("未获取预置资源路径")
-            return nil
-        }
-        
-        // 获取预置资源名
-        //        guard let presetName = presetName else {
-        //            print("未获取到资源包名")
-        //            return nil
-        //        }
-        return presetPath
-    }
-    
     public override init() {
         
-    }
-    
-    /// 将预置离线包转移至目标目录
-    /// - Parameters:
-    ///   - path: 压缩包原路径
-    ///   - configPath: 压缩包配置目录
-    ///   - version: 版本
-    ///   - block: <#block description#>
-    public func moveOfflineWebResource(path: String,
-                                       configPath: String, block: @escaping ((_ isSuccess: Bool) -> Void)) {
-        
-        guard let folderPath = presetPath else {
-            print("预置路径不存在")
-            block(false)
-            return
-        }
-        
-        let toPath = folderPath + "/\(path.lastPathComponent)"
-        
-        FileManager.moveFile(fromFilePath: path, toFilePath: toPath, fileType: .directory , moveType: .copy) { isSuccess in
-            
-            if isSuccess {
-                //解压
-                SSZipArchive.unzipFile(atPath: toPath, toDestination: folderPath, progressHandler: nil) { str, b, err in
-                    //解压状态
-                    if b == true {
-                        //移除解压的文件
-                        let isFileExists = FileManager.isFileExists(atPath: str)
-                        if isFileExists {
-                            FileManager.removefile(atPath: str)
-                        }
-                        
-                        //保存版本json
-                        self.savePresetConfig(presetConfigPath: configPath) { isSuccess in
-                            block(isSuccess)
-                        }
-                    }
-                }
-                //解压状态
-                //                print("解压状态:\(zipStatus)")
-                
-            } else {
-                block(false)
-            }
-        }
-        //
     }
     
     public func moveOfflineWebFile(urls: Array<GXWebOfflineAssetsModel?>,block: @escaping (_ isSuccess: Bool) -> Void)  {
@@ -111,7 +55,7 @@ public class GXHybridCacheManager: NSObject {
         }
         
         var index = 0
-
+        
         for offlineAssets in urls {
             let url = offlineAssets?.src ?? ""
             let uurl = url.replace("/web/adventure", new: "")
@@ -205,54 +149,30 @@ public class GXHybridCacheManager: NSObject {
         }
         //
     }
+    
     /// 将离线包对应配置和离线包存储
     /// - Parameter presetConfigName: <#presetConfigName description#>
     /// - Returns: <#description#>
-    public func savePresetConfig(presetConfigPath: String, block: @escaping ((_ isSuccess: Bool) -> Void)) {
-        let toFilePath = "\(self.manifestPath)/\(presetConfigPath.lastPathComponent)"
-        FileManager.moveFile(fromFilePath: presetConfigPath,
-                             toFilePath: toFilePath,
+    func saveManifestConfig(manifestPath: String,
+                                   block: @escaping ((_ isSuccess: Bool) -> Void)) {
+        
+        guard let presetPath = presetPath else {
+            print("未获取预置资源路径")
+            block(false)
+            return
+        }
+        
+        let manifestFolder = self.getOfflineManifestFolder(url: manifestPath)
+        //拼接要创建的路径
+        let toFileManifestPath = presetPath + "/\(manifestFolder)" + "/" + manifestPath.lastPathComponent
+        
+        FileManager.moveFile(fromFilePath: manifestPath,
+                             toFilePath: toFileManifestPath,
+                             fileType: .directory,
                              moveType: .copy) { isSuccess in
             block(isSuccess)
         }
     }
-    
-    //根据URL 从本地获取缓存
-    //    @available(iOS 13.0, *)
-    //    public func loadCache(_ url: String) -> Future<Data?,Error>{
-    //
-    //        return Future <Data?, Error> { promise in
-    //            // 获取到确切资源包路径
-    //            guard let presetHostName = self.presetHostName else {
-    //                promise(.failure(GXHybridCacheError.hostNameError))
-    //                print("未获取到确切资源包路径")
-    //                return
-    //            }
-    //            // 资源ID
-    //            guard let resourceID = self.resourceID(url) else {
-    //                promise(.failure(GXHybridCacheError.pathExtError))
-    //                print("未获取到资源ID")
-    //                //                block(nil)
-    //                return
-    //            }
-    //
-    //            let filePath = presetHostName + resourceID
-    //            guard let fileUrl = filePath.toFileUrl else {
-    //                promise(.failure(GXHybridCacheError.hostNameError))
-    //                print("URL错误")
-    //                //                block(nil)
-    //                return
-    //            }
-    //            if let anyData = try? Data(contentsOf: fileUrl) {
-    //                promise(.success(anyData))
-    //            }
-    //        }
-    //
-    //    }
-    
-    
-    
-    
     
     /// 根目录/扩展目录/URL的path
     /// - Parameters:
@@ -282,7 +202,39 @@ public class GXHybridCacheManager: NSObject {
         return filePath
     }
     
-    public func loadOfflineData(_ url: String) -> Data?{
+    /// 从URL获取资源ID 减去前面域名
+    /// - Parameter url: nawei/nawei.json
+    /// - Returns: <#description#>
+    func resourceID(_ url: String) -> String? {
+        guard let url = url.toUrl else { return nil }
+        if #available(iOS 16.0, *) {
+            return url.path()
+        } else {
+            // Fallback on earlier versions
+            return url.path
+        }
+    }
+    
+    /// 从URL获取资源名字，
+    /// - Parameter url: 一段网络URL
+    /// - Returns: URL最后一段 减去扩展
+    public func resourceName(_ url: String) -> String? {
+        guard let url = url.toUrl else { return nil }
+        if #available(iOS 16.0, *) {
+            return url.path().stringByDeletingPathExtension
+        } else {
+            // Fallback on earlier versions
+            return url.path.stringByDeletingPathExtension
+        }
+    }
+    
+    
+}
+
+//MARK: 通过URL获取离线资源
+public extension GXHybridCacheManager {
+    
+    func loadOfflineData(_ url: String) -> Data?{
         // 资源全路径
         if let fileUrl = self.loadOfflinePath(url)?.toFileUrl , let anyData = try? Data(contentsOf: fileUrl) {
             LogInfo("\(fileUrl)找到磁盘缓存")
@@ -292,43 +244,17 @@ public class GXHybridCacheManager: NSObject {
         }
     }
     
-    public func loadOfflinePath(_ url: String) -> String?{
+    func loadOfflinePath(_ url: String) -> String?{
         guard let presetPath = presetPath else {
             print("未获取预置资源路径")
             return nil
         }
         
-
         // 资源ID
         guard let resourceID = self.resourceID(url) else {
             print("未获取到资源ID")
             return nil
         }
-        
-        //获取离线文件夹下的所有文件
-//        let filePaths = FileManager.getAllFileNames(atPath: presetPath)
-        
-//        guard let _filePath = filePaths?.first(where: { $0.lastPathComponent == resourceID.lastPathComponent
-//        }) else {
-//            print("没有此资源")
-//            return nil
-//        }
-        
-        //改为通过遍历文件夹的形式获取资源
-        //获取到确切资源包路径
-        //        guard let presetHostName = self.presetHostName else {
-        //            print("未获取到确切资源包路径")
-        //            return nil
-        //        }
-        
-        
-        
-//        //将资源ID 转变为本地
-//        let filePath = presetPath + "/\(_filePath)"
-//        guard let fileUrl = filePath.toFileUrl else {
-//            print("URL错误")
-//            return nil
-//        }
         
         let _filePath_3 = presetPath + resourceID.stringByDeletingLastPathComponent + "/3" + "/\(resourceID.lastPathComponent)"
         if FileManager.isFileExists(atPath: _filePath_3) == true {
@@ -354,111 +280,15 @@ public class GXHybridCacheManager: NSObject {
         }
         return filePath
     }
-    
-    ///请求资源并缓存
-    public func loadRemoteResource(_ path: String) {
-        let request = GXHybridRequest()
-        guard let url = path.toUrl else { return }
-        //        request.sendHyUrl(url: url) { data in
-        //
-        //        }
-    }
-    
-    func loadResource(_ manifest: String) {
-        print("manifest:\(manifest)")
-    }
-    
-    /// 从URL获取资源ID 减去前面域名
-    /// - Parameter url: nawei/nawei.json
-    /// - Returns: <#description#>
-    public func resourceID(_ url: String) -> String? {
-        guard let url = url.toUrl else { return nil }
-        if #available(iOS 16.0, *) {
-            return url.path()
-        } else {
-            // Fallback on earlier versions
-            return url.path
-        }
-    }
-    
-    /// 从URL获取资源名字，
-    /// - Parameter url: 一段网络URL
-    /// - Returns: URL最后一段 减去扩展
-    public func resourceName(_ url: String) -> String? {
-        guard let url = url.toUrl else { return nil }
-        if #available(iOS 16.0, *) {
-            return url.path().stringByDeletingPathExtension
-        } else {
-            // Fallback on earlier versions
-            return url.path.stringByDeletingPathExtension
-        }
-    }
-    
-    @discardableResult
-    public func removeFile(path: String)-> Bool {
-        guard let folderPath = presetPath else {
-            print("路径不存在")
-            return false
-        }
-        let allPath = folderPath + "/\(path)"
-        return FileManager.removefile(atPath: allPath)
-    }
-    
-    @discardableResult
-    
-    /// 根据网络URL 移除离线包文件
-    /// - Parameter URL: <#URL description#>
-    /// - Returns: <#description#>
-    public func removeFileWith(url: String)-> Bool {
-                
-        guard let folderPath = loadOfflinePath(url) else {
-            print("路径不存在")
-            return false
-        }
-        return FileManager.removefile(atPath: folderPath)
-    }
-    
-    public func removeAll()-> Bool {
-        guard let folderPath = presetPath else {
-            print("路径不存在")
-            return false
-        }
-        return FileManager.removefile(atPath: folderPath)
-    }
-    
-    func containResource(_ url: String) -> Bool {
-        
-        var result = false
-        
-        result = true
-        
-        return result
-    }
-    
-    func readResourceData(_ url: String) -> Data? {
-        
-        var data: Data?
-        
-        return data
-    }
-    
-    func readResourceResponseHeaders(_ url: String) -> Dictionary<String, Any>? {
-        return [:]
-    }
-}
-
-//MARK: 通过URL操作本地离线资源
-public extension GXHybridCacheManager {
-    
     /// 获取本地配置manifest
     /// - Parameter url: <#url description#>
     /// - Returns: <#description#>
     func getOfflineManifestPath(url: String) -> String? {
-        
-        return getOfflineLastPathComponent(url, extendPath: self.manifestPathName)
+        let folderName = self.manifestPathName + "/" + url.lastPathComponent.removeMD5.stringByDeletingPathExtension
+        return getOfflineLastPathComponent(url, extendPath: folderName)
     }
     
-    /// 根目录/扩展目录/URL文件名
+    /// 预置目录/扩展目录/URL文件名
     /// - Parameters:
     ///   - url: url description
     ///   - extendPath: <#extendPath description#>
@@ -483,26 +313,9 @@ public extension GXHybridCacheManager {
     /// 通过URL的json获取离线包 ManifestModel-本地资源目录
     /// - Parameter url: <#url description#>
     /// - Returns: description
-     func getSandboxManifestModel(url: String) -> Dictionary<String, Any>? {
+    func getOldManifestData(url: String) -> Dictionary<String, Any>? {
         
-        //匹配目录
-        //获取离线文件夹下的所有文件
-        guard let presetPath else {
-            print("预置路径不存在")
-            return nil
-        }
-        
-        let filePaths = FileManager.getAllFileNames(atPath: presetPath + "/manifest")
-        
-        guard let _filePath = filePaths?.first(where: { $0.removeMD5 == url.lastPathComponent
-        }) else {
-            print("没有此资源")
-            return nil
-        }
-        let manifestPath = presetPath + "/manifest/" + _filePath
-        
-        let isFileExist = FileManager.isFileExists(atPath: manifestPath)
-        if isFileExist == false {
+        guard let manifestPath = self.getOldManifestPath(url: url) else {
             print("文件不存在")
             return nil
         }
@@ -516,37 +329,140 @@ public extension GXHybridCacheManager {
         }
         return nil
     }
+}
+
+
+//MARK: 路径匹配
+extension GXHybridCacheManager {
+    ///
+    func getOfflineManifestFolder(url: String) -> String {
+        let folderName = self.manifestPathName + "/" + url.lastPathComponent.removeMD5.stringByDeletingPathExtension
+        return folderName
+    }
     
-    func removeAr(Arr: Array<String>) {
+    /// 根据URL匹配原有文件
+    /// - Parameter url: url description
+    /// - Returns: <#description#>
+    func getOldManifestPath(url: String) -> String? {
         
-        //保留
-        let assets = ["A","B","C"]
+        guard let presetPath else {
+            print("预置路径不存在")
+            return nil
+        }
         
-        //待删除的元素
-        let oldManifestAssets = ["A","C","D",]
+        let manifestFolderPath = presetPath + "/\(self.getOfflineManifestFolder(url: url))"
         
-        //旧元素json不包含在assest中元素
-        let deletes = oldManifestAssets.filter { !assets.contains($0)}
-        print(deletes)
- 
-//        print(nre)
+        let filePaths = FileManager.getAllFileNames(atPath:manifestFolderPath)
+        
+        guard let _filePath = filePaths?.first(where: { $0 != url.lastPathComponent
+        }) else {
+            print("没有此资源")
+            return nil
+        }
+        let manifestPath = manifestFolderPath + "/" + _filePath
+        
+        let isFileExist = FileManager.isFileExists(atPath: manifestPath)
+        if isFileExist == false {
+            print("文件不存在")
+            return nil
+        }
+        return manifestPath
     }
 }
 
 //MARK: 删除离线资源
 public extension GXHybridCacheManager {
     
+    /// 移除web离线资源
+    /// - Returns: <#description#>
+    func removeAll()-> Bool {
+        guard let folderPath = presetPath else {
+            print("路径不存在")
+            return false
+        }
+        return FileManager.removefile(atPath: folderPath)
+    }
+    
     @discardableResult
+    /// 根据assets集合删除URL中在本地的离线资源
+    /// - Parameter assets: <#assets description#>
+    /// - Returns: <#description#>
     func removeOffline(assets: Array<GXWebOfflineAssetsModel>) -> Bool {
         for asset in assets {
             let _ = self.removeOffline(asset: asset)
         }
-        
         return true
     }
     
     func removeOffline(asset: GXWebOfflineAssetsModel) -> Bool {
-        
         self.removeFileWith(url:asset.src ?? "")
+    }
+    
+    
+    @discardableResult
+    /// 删除指定path下的文件
+    /// - Parameter path: <#path description#>
+    /// - Returns: <#description#>
+    func removeFile(path: String)-> Bool {
+        guard let folderPath = presetPath else {
+            print("路径不存在")
+            return false
+        }
+        let allPath = folderPath + "/\(path)"
+        return FileManager.removefile(atPath: allPath)
+    }
+    
+    /// 根据网络URL 移除离线包文件
+    /// - Parameter URL: <#URL description#>
+    /// - Returns: <#description#>
+    @discardableResult
+    func removeFileWith(url: String)-> Bool {
+        guard let folderPath = loadOfflinePath(url) else {
+            print("路径不存在")
+            return false
+        }
+        return FileManager.removefile(atPath: folderPath)
+    }
+}
+
+//MARK: 更新离线资源
+public extension GXHybridCacheManager {
+    
+    /// 使用本地预置更新离线包manifest配置
+    /// - Parameters:
+    ///   - manifestJSON: <#manifestJSON description#>
+    ///   - block: <#block description#>
+    func updateCurrentManifestUserPreset(manifestJSON: String, block: @escaping (Bool) -> Void) {
+        
+        self.saveManifestConfig(manifestPath: manifestJSON) { isSuccess in
+            
+            if let currentManifestPath = self.getOldManifestPath(url: manifestJSON) {
+                FileManager.removefile(atPath: currentManifestPath)
+            }
+            
+            block(true)
+        }
+    }
+    
+    /// 更新当前离线包manifest配置
+    /// - Parameters:
+    ///   - manifestJSON: <#manifestJSON description#>
+    ///   - block: <#block description#>
+    func updateCurrentManifest(manifestJSON: String, block: @escaping (Bool) -> Void) {
+        //下载新配置
+        let manifestPath = self.getOfflineManifestFolder(url: manifestJSON)
+        self.oflineDownload.download(url: manifestJSON,
+                                     path: manifestPath) { progress, state in
+            if state == .completed || state == .error {
+                print("配置文件下载完毕")
+                
+                //获取当前预置目录下位置
+                if let currentManifestPath = self.getOldManifestPath(url: manifestJSON) {
+                    FileManager.removefile(atPath: currentManifestPath)
+                }
+                //移除旧配置
+                block(true)
+            }
+        }
     }
 }

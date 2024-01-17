@@ -1,5 +1,5 @@
 PODS:
-  - GGXOfflineWebCache (0.1.0):
+  - GGXOfflineWebCache (0.1.1):
     - GGXSwiftExtension
     - GXTaskDownload
     - SSZipArchive
@@ -35,7 +35,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GGXOfflineWebCache: f1e4656bb7b2123347fadb3edf21929c544ae58a
+  GGXOfflineWebCache: 4ad7d6db44e87755ffbbafc0feb5c6015f89fa6d
   GGXSwiftExtension: 0773d7981d081d153426b44fe149122f679733d0
   GXTaskDownload: 02728d67a86424ea22fabd9fa01d271ebc99a7e7
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03

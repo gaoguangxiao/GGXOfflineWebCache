@@ -99,6 +99,13 @@ public extension GXHybridDownload {
         taskDownload.start(forURL: urls, path: downloadToPath, block: block)
     }
     
+    func download(urls: Array<Dictionary<String,Any>>,
+                         block: @escaping GXTaskDownloadBlock) {
+        let taskDownload = GXDownloadManager()
+        let downloadToPath = hyDownPath
+        taskDownload.start(forURL: urls, path: downloadToPath, block: block)
+    }
+    
     /// 下载指定的URLS
     /// - Parameters:
     ///   - urls: URL路径
