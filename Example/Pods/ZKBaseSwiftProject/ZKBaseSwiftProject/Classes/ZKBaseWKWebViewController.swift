@@ -46,6 +46,29 @@ open class ZKBaseWKWebViewController: ZKBaseViewController {
         self.webView.customUserAgent = customUserAgent
     }
     
+    /// 重置reload、为了解决WKWebView拦截问题
+    public func resetWKWebView()  {
+        let conf = WKWebViewConfiguration()
+        let webView = WKWebView(frame: .zero, configuration: conf)
+        webView.navigationDelegate = self
+        if #available(iOS 16.4, *) {
+            webView.isInspectable = true
+        } else {
+            // Fallback on earlier versions
+        }
+        //        webView.scrollView.delegate = self
+        webView.scrollView.bounces = false
+        webView.allowsLinkPreview = false
+        webView.isOpaque = false
+        webView.backgroundColor = UIColor.clear
+        if #available(iOS 11.0, *) {
+            webView.scrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
+        }
+        self.webView = webView
+    }
+    
     deinit {
         print("\(self)dealloc")
     }

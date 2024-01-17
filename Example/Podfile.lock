@@ -5,13 +5,13 @@ PODS:
     - SSZipArchive
     - ZKBaseSwiftProject
   - GGXSwiftExtension (0.3.8)
-  - GXTaskDownload (0.1.4):
+  - GXTaskDownload (0.1.5):
     - GGXSwiftExtension
   - HandyJSON (5.0.2)
   - ReachabilitySwift (5.0.0)
   - SnapKit (5.6.0)
   - SSZipArchive (2.4.3)
-  - ZKBaseSwiftProject (0.2.7):
+  - ZKBaseSwiftProject (0.2.8):
     - GGXSwiftExtension
     - HandyJSON
     - ReachabilitySwift
@@ -37,12 +37,12 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   GGXOfflineWebCache: 4ad7d6db44e87755ffbbafc0feb5c6015f89fa6d
   GGXSwiftExtension: 0773d7981d081d153426b44fe149122f679733d0
-  GXTaskDownload: 02728d67a86424ea22fabd9fa01d271ebc99a7e7
+  GXTaskDownload: 17db73059664b766365df849a34bc91aafb9970d
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
-  ZKBaseSwiftProject: a336f386c9957db6f7f5088d29bf7e5159b367f4
+  ZKBaseSwiftProject: 22c5a654e2c4ddaa31282094f0013096ba848dcf
 
 PODFILE CHECKSUM: dad854dba21b10757ee380f308e5cf7061a60f9d
 

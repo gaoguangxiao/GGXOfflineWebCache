@@ -12,6 +12,8 @@ import GGXSwiftExtension
 public enum PTDebugViewButtonEvent {
     case ChangeUrl(PTDebugView)
     case ReloadWeb(String)
+    case pkgAction(Int) //离线包操作
+    case otherAction(Int) //其他按钮操作
 }
 
 public typealias DebugButtonEvent = (_ event: PTDebugViewButtonEvent) -> Void
@@ -74,6 +76,8 @@ public class PTDebugView: UIView {
         }
     }
     
+    var actionBtnTag = 0
+    
     private func setUI() {
         self.backgroundColor = UIColor.white
         self.addSubview(debugTextView)
@@ -86,15 +90,14 @@ public class PTDebugView: UIView {
         }
         
         self.addButton(title: "隐藏", right: 10, action: #selector(closeDebugView))
-        self.addButton(title: "刷新", right: 100, action: #selector(reload))
-        self.addButton(title: "切换地址", right: 190, action: #selector(changeUrl))
-        self.addButton(title: "清除log", right: 190+90, action: #selector(clearLog))
-        self.addButton(title: "打开bridge", right: 190+90+90, action: #selector(openBridgeCall))
-        self.addButton(title: "打开原生调试器", right: 10,top: 60, action: #selector(openAppTestVc))
-        self.addButton(title: "清WebStore", right: 100, top: 60,action: #selector(clearWebCache))
-        //        self.addButton(title: "启用离线包", right: 10, top: 60,action: #selector(openOfflineCache))
-        //        self.addButton(title: "禁用离线包", right: 100, top:60,action: #selector(closeOfflineCache))
-        //        self.addButton(title: "清除离线包", right: 190, top: 60, action: #selector(clearOfflineCache))
+        self.addButton(title: "刷新", right: 10+90, action: #selector(reload))
+        self.addButton(title: "切换地址", right: 10+90+90, action: #selector(changeUrl))
+        self.addButton(title: "清除log", right: 10+90+90+90, action: #selector(clearLog))
+        self.addButton(title: "打开bridge", right: 10+90+90+90+90, action: #selector(openBridgeCall))
+//        self.addButton(title: "清WebStore", right: 10+90, top: 60,action: #selector(clearWebCache))
+        self.addButton(title: "启用离线包", right: 10+90+90, top: 60,action: #selector(didOfflineBtnCache(sender:)))
+        self.addButton(title: "禁用离线包", right: 10+90+90+90, top:60,action: #selector(didOfflineBtnCache(sender:)))
+        self.addButton(title: "清除离线包", right: 10+90+90+90+90, top: 60, action: #selector(didOfflineBtnCache(sender:)))
     }
     
     
@@ -108,6 +111,8 @@ public class PTDebugView: UIView {
         button.layer.borderColor = UIColor.gray.cgColor
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 10
+        button.tag = actionBtnTag
+        actionBtnTag+=1
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         self.addSubview(button)
         button.snp.makeConstraints { (make) in
@@ -145,20 +150,10 @@ public class PTDebugView: UIView {
         }
     }
     
-    @objc func openBridgeCall(){
-        
+    @objc func openBridgeCall(_ sender: UIButton){
         //关闭调试
         closeDebugView()
-        
-        //        UIApplication.rootWindow?.addSubview(testBridgeView)
-        //        testBridgeView.snp.makeConstraints { make in
-        //            make.left.equalTo(10)
-        //            make.width.equalTo(200)
-        //            make.height.equalTo(400)
-        //            make.centerY.equalToSuperview()
-        //        }
-        //        let jsTestVc = RSBridgeTestWKViewController()
-        //        homepageVc.navigationController?.pushViewController(jsTestVc, animated: true)
+        self.clickButtonEvent?(.otherAction(sender.tag))
     }
     
     @objc func clearWebCache() {
@@ -176,22 +171,12 @@ public class PTDebugView: UIView {
         //        ZKWLog.clear()
     }
     
-    @objc func openOfflineCache (){
-        //        URLProtocol.registerClass(PTURLProtocol.self)
-        //        URLProtocol.wk_registerScheme("http")
-        //        URLProtocol.wk_registerScheme("https")
-        //        HUD.flash("启用成功")
-    }
-    
-    @objc func closeOfflineCache (){
-        //        URLProtocol.unregisterClass(PTURLProtocol.self)
-        //        URLProtocol.wk_unregisterScheme("http")
-        //        URLProtocol.wk_unregisterScheme("https")
-        //        HUD.flash("禁用成功")
-    }
-    
-    @objc func clearOfflineCache (){
-        //PTHybridCache.share.removeAll()
-        //        HUD.flash("清除缓存完成")
+    @objc func didOfflineBtnCache(sender: UIButton) {
+        self.clickButtonEvent?(.pkgAction(sender.tag))
+//        RSWebOfflineManager.sha
+//            URLProtocol.unregisterClass(PTURLProtocol.self)
+//            URLProtocol.wk_unregisterScheme("http")
+//            URLProtocol.wk_unregisterScheme("https")
+//            HUD.flash("禁用成功")
     }
 }

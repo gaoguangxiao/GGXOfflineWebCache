@@ -39,7 +39,6 @@ class ViewController: UIViewController {
         let hyDownload = GXHybridCacheManager()
         
 //        hyDownload.getSandboxManifestModel(url: "http://localhost:8081/manifest/manifest-initial.json")
-        hyDownload.removeAr(Arr: ["A"])
         
 //        "https://test.audio.risekid.cn/web/adventure/7.2ae2f613.async.js".removeMD5
 //        hyDownload.removeFileWith(URL: "https://test.audio.risekid.cn/web/adventure/7.2ae2f613.async.js")

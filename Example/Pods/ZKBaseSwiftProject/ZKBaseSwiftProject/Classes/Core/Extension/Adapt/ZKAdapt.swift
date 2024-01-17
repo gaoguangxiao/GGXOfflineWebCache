@@ -40,7 +40,7 @@ public struct ZKAdapt {
         return deviceHeight/designedHeight
     }()
 
-    static let rate: CGFloat = {
+    public static let rate: CGFloat = {
         let deviceHeight = UIScreen.main.bounds.height
         let designedHeight = CGFloat(UIDevice.isIPad ? 768.0 : 414.0)
         return deviceHeight/designedHeight

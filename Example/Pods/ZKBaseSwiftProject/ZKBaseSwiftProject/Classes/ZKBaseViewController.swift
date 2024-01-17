@@ -31,3 +31,8 @@ extension ZKBaseViewController: ZKNavigationViewProtocol {
     
 }
 
+extension ZKBaseViewController {
+    open override var prefersStatusBarHidden: Bool {
+        return true
+    }
+}

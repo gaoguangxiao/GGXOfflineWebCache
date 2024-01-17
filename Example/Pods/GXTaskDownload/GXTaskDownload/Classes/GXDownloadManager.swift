@@ -82,10 +82,10 @@ extension GXDownloadManager {
         waitingTasks.append(downloader)
     }
     
-    func enqueue(url: String, path: String) {
+    func enqueue(url: String, policy:Int, path: String) {
         /// 创建一个任务
         let downloader = GXTaskDownloadDisk()
-        downloader.diskFile.taskDownloadPath = path + url.toPath.stringByDeletingLastPathComponent
+        downloader.diskFile.taskDownloadPath = path + url.toPath.stringByDeletingLastPathComponent + "/\(policy)"
         downloader.prepare(forURL: url)
         waitingTasks.append(downloader)
     }
@@ -137,6 +137,37 @@ extension GXDownloadManager {
 
 //MARK: 下载一组URL
 extension GXDownloadManager {
+    
+    /// 下载一组URLS
+    /// - Parameters:
+    ///   - urls: urls description
+    ///   - path: <#path description#>
+    ///   - block: <#block description#>
+    public func start(forURL urls: Array<Dictionary<String,Any>>, path: String, block: @escaping GXTaskDownloadBlock) {
+        
+        //        self.testDiskDataQueue(urls: urls, path: path)
+        //        return
+        
+        self.downloadBlock = block
+        LogInfo("开始下载")
+        //入队
+        for url in urls {
+            let urlDict = url
+            if let policy = urlDict["policy"] as? Int ,let _url = urlDict["url"] as? String{
+                self.enqueue(url: _url, policy: policy, path: path)
+            }
+        }
+        
+        tasksCount = Float(urls.count)
+        
+        //执行
+        self.executeQueue.async {
+            for _ in 0 ..< self.maxConcurrentCount {
+                //                print("下载次数：\(1)")
+                self.execute()
+            }
+        }
+    }
     /// 下载一组URLS
     /// - Parameters:
     ///   - urls: <#urls description#>
@@ -151,7 +182,9 @@ extension GXDownloadManager {
         LogInfo("开始下载")
         //入队
         for url in urls {
-            self.enqueue(url: url,path: path)
+            let urlDict = url
+//            self.enqueue(url: urlDict["url"] as? String ?? "", policy: 0, path: path)
+//            self.enqueue(url: url,path: path)
         }
         
         tasksCount = Float(urls.count)
