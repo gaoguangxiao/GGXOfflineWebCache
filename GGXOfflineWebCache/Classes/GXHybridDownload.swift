@@ -76,10 +76,12 @@ public extension GXHybridDownload {
     ///   - path: <#path description#>
     ///   - block: <#block description#>
     func download(url: String,
-                         path: String,
+                  path: String,
+                priority: Int = 3,
                          block: @escaping GXTaskDownloadBlock) {
         let taskDownload = GXTaskDownloadDisk()
         taskDownload.diskFile.taskDownloadPath = hyDownPath + "/\(path)"
+        taskDownload.taskPriority = priority
         let isExist = taskDownload.diskFile.checkUrlTask(url: url)
         if isExist == true {
             taskDownload.diskFile.clearFile(forUrl: url)
@@ -90,32 +92,60 @@ public extension GXHybridDownload {
     
     /// 下载指定的URLS
     /// - Parameters:
-    ///   - urls: URL路径
+    ///   - urls: <#urls description#>
+    ///   - path: <#path description#>
     ///   - block: <#block description#>
-    func download(urls: Array<String>,
-                         block: @escaping GXTaskDownloadBlock) {
+    func download(urls: Array<GXWebOfflineAssetsModel>,
+                  path: String?,
+                  priority: Int = 3,
+                         block: @escaping GXTaskDownloadTotalBlock) {
         let taskDownload = GXDownloadManager()
-        let downloadToPath = hyDownPath
-        taskDownload.start(forURL: urls, path: downloadToPath, block: block)
+        
+        var downloadToPath = hyDownPath
+        if let path {
+            downloadToPath = hyDownPath + "/\(path)"
+        }
+        var downloadUrls: Array<GXDownloadURLModel> = []
+        for url in urls {
+            let downloadModel = GXDownloadURLModel()
+            downloadModel.src    = url.src
+            downloadModel.policy = url.policy
+            downloadModel.md5    = url.md5
+            downloadModel.match  = url.match
+            downloadModel.priority = priority
+            downloadUrls.append(downloadModel)
+        }
+        taskDownload.start(forURL: downloadUrls, path: downloadToPath, block: block)
     }
     
-    func download(urls: Array<Dictionary<String,Any>>,
-                         block: @escaping GXTaskDownloadBlock) {
-        let taskDownload = GXDownloadManager()
-        let downloadToPath = hyDownPath
-        taskDownload.start(forURL: urls, path: downloadToPath, block: block)
-    }
-    
-    /// 下载指定的URLS
+    /// 下载URL-
     /// - Parameters:
-    ///   - urls: URL路径
-    ///   - path: 沙盒本地存储路径
+    ///   - url: url description
+    ///   - path: <#path description#>
     ///   - block: <#block description#>
-    func download(urls: Array<String>,
+    func downloadAndUpdate(urlModel: GXWebOfflineAssetsModel,
                          path: String,
                          block: @escaping GXTaskDownloadBlock) {
-        let taskDownload = GXDownloadManager()
-        let downloadToPath = hyDownPath + "/\(path)"
-        taskDownload.start(forURL: urls, path: downloadToPath, block: block)
+        DispatchQueue.global().async {
+            let taskDownload = GXTaskDownloadDisk()
+            taskDownload.diskFile.taskDownloadPath = self.hyDownPath + "/\(path)"
+            
+            let downloadModel = GXDownloadURLModel()
+            downloadModel.src    = urlModel.src
+            downloadModel.policy = urlModel.policy
+            downloadModel.md5    = urlModel.md5
+            downloadModel.match  = urlModel.match
+            
+            if let url = downloadModel.src {
+                let isExist = taskDownload.diskFile.checkUrlTask(url: urlModel.src ?? "")
+                if isExist == true {
+                    taskDownload.diskFile.clearFile(forUrl: url)
+                }
+                taskDownload.prepare(urlModel: downloadModel)
+                taskDownload.start(block: block)
+            } else {
+                block(0,.error)
+            }
+        }
     }
 }

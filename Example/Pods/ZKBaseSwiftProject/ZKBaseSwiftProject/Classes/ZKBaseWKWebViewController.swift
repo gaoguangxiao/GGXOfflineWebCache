@@ -9,6 +9,7 @@ import UIKit
 import WebKit
 //import RxCocoa
 import GGXSwiftExtension
+import PKHUD
 
 let kWebviewEstimatedProgressValue = "kWebviewEstimatedProgressValue"
 
@@ -138,7 +139,7 @@ open class ZKBaseWKWebViewController: ZKBaseViewController {
             
             if let url = URL.init(string: urlString) {
                 ZKLog("web url is: \(urlString)")
-                let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30)
+                let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 8)
                 webView.load(request)
             }
         }
@@ -146,7 +147,7 @@ open class ZKBaseWKWebViewController: ZKBaseViewController {
 }
 
 extension ZKBaseWKWebViewController: WKNavigationDelegate, UIScrollViewDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    open func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let _urlString = navigationAction.request.url?.absoluteString.removingPercentEncoding ?? ""
         guard _urlString.count > 0 else {
             decisionHandler(.cancel)
@@ -155,29 +156,31 @@ extension ZKBaseWKWebViewController: WKNavigationDelegate, UIScrollViewDelegate 
         decisionHandler(.allow)
     }
     
-    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    open func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         ZKLog("web view begin loading main fram ...")
         
     }
     
-    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         ZKLog("web view did finish navigation ...\(Date.milliStamp)")
     }
     
-    public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+    open func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         let code = (error as NSError).code
         if  code == NSURLErrorCancelled {
             return
         }
+        HUD.flash("加载失败，请检查网络")
         ZKLog("加载失败~error = \(error)")
     }
     
-    public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+    open func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         
         let code = (error as NSError).code
         if  code == NSURLErrorCancelled {
             return
         }
+        HUD.flash("加载失败，请检查网络")
         ZKLog("加载失败 error = \(error)")
     }
     

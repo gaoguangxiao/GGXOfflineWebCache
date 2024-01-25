@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 open class ZKBaseViewController: UIViewController  {
+    
+    public var disposeBag = DisposeBag()
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         makeNavigationBar()

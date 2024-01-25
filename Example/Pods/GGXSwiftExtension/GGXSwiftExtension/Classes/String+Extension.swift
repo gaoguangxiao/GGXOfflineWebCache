@@ -8,6 +8,11 @@
 
 import Foundation
 import UIKit
+import CryptoKit
+
+import var CommonCrypto.CC_MD5_DIGEST_LENGTH
+import func CommonCrypto.CC_MD5
+import typealias CommonCrypto.CC_LONG
 
 public extension String {
     var length: Int {
@@ -99,6 +104,30 @@ public extension String {
     func toDouble() -> Double {
         return (Double(self) ?? 0)
     }
+    
+    var md5Value: String {
+//        let data = self.data(using: .utf8)
+//        Insecure.MD5.hash(data: data)
+        if #available(iOS 13.0, *) {
+            return Insecure.MD5.hash(data: self.data(using: .utf8)!).map { String(format: "%02hhx", $0) }.joined()
+        } else {
+            // Fallback on earlier versions
+            let length = Int(CC_MD5_DIGEST_LENGTH)
+            var digest = [UInt8](repeating: 0, count: length)
+
+                    if let d = self.data(using: .utf8) {
+                        _ = d.withUnsafeBytes { body -> String in
+                            CC_MD5(body.baseAddress, CC_LONG(d.count), &digest)
+
+                            return ""
+                        }
+                    }
+
+                    return (0 ..< length).reduce("") {
+                        $0 + String(format: "%02x", digest[$1])
+                    }
+        }
+    }
 }
 
 // MARK: - URL Encode & Decode
@@ -182,6 +211,51 @@ public extension String {
             // Fallback on earlier versions
             return url.path
         }
+    }
+    
+    func getMIMETypeFromPathExtension() -> String {
+        var MIMEType = "text/html"
+        let pathExtension = self.pathExtension
+        if pathExtension == "html" {
+            MIMEType = "text/html"
+        } else if pathExtension == "js"{
+            MIMEType = "application/javascript";
+        } else if pathExtension == "css"{
+            MIMEType = "text/css";
+        } else if pathExtension == "png"{
+            MIMEType = "image/png"
+        } else if pathExtension == "jpg"{
+            MIMEType = "image/jpg"
+        } else if pathExtension == "jpeg"{
+            MIMEType = "image/jpeg"
+        } else if pathExtension == "json"{
+            MIMEType = "application/json"
+        } else if pathExtension == "xml"{
+            MIMEType = "application/xml"
+        } else if pathExtension == "pdf"{
+            MIMEType = "application/pdf"
+        } else if pathExtension == "webp"{
+            MIMEType = "image/webp"
+        } else if pathExtension == "gif"{
+            MIMEType = "application/gif"
+        } else if pathExtension == "mp3"{
+            MIMEType = "audio/mpeg"
+        } else if pathExtension == "mp4"{
+            MIMEType = "video/mp4"
+        } else if pathExtension == "wav"{
+            MIMEType = "audio/wav"
+        } else if pathExtension == "ico"{
+            MIMEType = "image/x-icon"
+        } else if pathExtension == "svg"{
+            MIMEType = "image/svg+xml"
+        } else if pathExtension == "ttf"{
+            MIMEType = "font/ttf"
+        } else if pathExtension == "woff"{
+            MIMEType = "font/woff"
+        } else if pathExtension == "woff2"{
+            MIMEType = "font/woff2"
+        }
+        return MIMEType;
     }
 }
 

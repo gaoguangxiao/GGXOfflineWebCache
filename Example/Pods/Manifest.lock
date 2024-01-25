@@ -1,20 +1,41 @@
 PODS:
+  - Alamofire (5.8.1)
   - GGXOfflineWebCache (0.1.1):
     - GGXSwiftExtension
+    - GXSwiftNetwork
     - GXTaskDownload
     - SSZipArchive
     - ZKBaseSwiftProject
-  - GGXSwiftExtension (0.3.8)
+  - GGXSwiftExtension (0.4.0)
+  - GXSwiftNetwork (0.2.0):
+    - Alamofire
+    - HandyJSON
+    - Moya
+    - PKHUD
   - GXTaskDownload (0.1.5):
     - GGXSwiftExtension
   - HandyJSON (5.0.2)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
+  - PKHUD (5.3.0)
   - ReachabilitySwift (5.0.0)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
   - SnapKit (5.6.0)
   - SSZipArchive (2.4.3)
-  - ZKBaseSwiftProject (0.2.8):
+  - ZKBaseSwiftProject (0.3.0):
     - GGXSwiftExtension
     - HandyJSON
+    - PKHUD
     - ReachabilitySwift
+    - RxCocoa
+    - RxSwift
     - SnapKit
 
 DEPENDENCIES:
@@ -22,10 +43,17 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - GGXSwiftExtension
+    - GXSwiftNetwork
     - GXTaskDownload
     - HandyJSON
+    - Moya
+    - PKHUD
     - ReachabilitySwift
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SnapKit
     - SSZipArchive
     - ZKBaseSwiftProject
@@ -35,14 +63,21 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GGXOfflineWebCache: 4ad7d6db44e87755ffbbafc0feb5c6015f89fa6d
-  GGXSwiftExtension: 0773d7981d081d153426b44fe149122f679733d0
+  Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
+  GGXOfflineWebCache: 0d80b474808350c551fb36fcabb173631b227ab1
+  GGXSwiftExtension: cc74d75914eda0e94365d3cb9240dc5d9f0dc097
+  GXSwiftNetwork: a6b3f12448ffc57a93cc5b593679d1c467a82104
   GXTaskDownload: 17db73059664b766365df849a34bc91aafb9970d
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
-  ZKBaseSwiftProject: 22c5a654e2c4ddaa31282094f0013096ba848dcf
+  ZKBaseSwiftProject: 68e11b80dc259e875e73c9cf845a28bd2fc5f0bb
 
 PODFILE CHECKSUM: dad854dba21b10757ee380f308e5cf7061a60f9d
 

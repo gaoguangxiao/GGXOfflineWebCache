@@ -13,7 +13,7 @@ extension Keys {
     static let presetDataNameKey: String = "presetDataNameKey"
 }
 
-extension UserDefaults {
+public extension UserDefaults {
     @UserDefaultWrapper(key: Keys.presetDataVersionKey, defaultValue: "0.0.0")
     static var presetDataVersionKey: String?
     
