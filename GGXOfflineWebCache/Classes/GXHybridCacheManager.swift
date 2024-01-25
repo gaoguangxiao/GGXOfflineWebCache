@@ -388,7 +388,7 @@ public extension GXHybridCacheManager {
         // 资源全路径
         if let fileUrl = self.loadOfflinePath(url,extensionFolder: extensionFolder)?.toFileUrl , let anyData = try? Data(contentsOf: fileUrl) {
             LogInfo("\(fileUrl)找到磁盘缓存")
-            return anyData
+            return anyData.count != 0 ? anyData : nil
         }  else {
             return nil
         }
@@ -438,8 +438,13 @@ public extension GXHybridCacheManager {
     /// - Returns: <#description#>
     func loadOfflinePath(_ url: String, extensionFolder: String) -> String? {
 
+//        let b = url.has("1011.d9bf9816.async.js")
+//        if b == true {
+//            print(b)
+//        }
+        
         //获取此URL的策略
-        if let assetModel = self.getOfflineAssetModel(url: url,extensionFolder: extensionFolder) {
+        if let assetModel = self.getBoxOfflineAssetModel(url: url,extensionFolder: extensionFolder) {
             
             guard let presetPath = presetPath else {
                 print("未获取预置资源路径")
@@ -536,10 +541,28 @@ public extension GXHybridCacheManager {
         return nil
     }
     
+    /// 整合下面两个
+    func getBoxOfflineAssetModel(url: String,extensionFolder: String?) -> GXWebOfflineAssetsModel?{
+        guard let assetModel = self.getOfflineAssetModel(url: url,extensionFolder: extensionFolder) else {
+            return getOfflineAssetModel(url: url, extensionFolder: nil)
+        }
+        return assetModel
+        
+    }
+    
     /// 获取URL的离线配置信息
     /// - Parameter url: <#url description#>
     /// - Returns: <#description#>
-    func getOfflineAssetModel(url: String, extensionFolder: String) -> GXWebOfflineAssetsModel?{
+    func getOfflineAssetModel(url: String) -> GXWebOfflineAssetsModel?{
+    
+        return getOfflineAssetModel(url: url, extensionFolder: nil)
+        
+    }
+    
+    /// 获取URL的离线配置信息
+    /// - Parameter url: <#url description#>
+    /// - Returns: <#description#>
+    func getOfflineAssetModel(url: String, extensionFolder: String?) -> GXWebOfflineAssetsModel?{
         guard let presetPath = presetPath else {
             print("未获取预置资源路径")
             return nil
@@ -556,7 +579,10 @@ public extension GXHybridCacheManager {
             return nil
         }
         
-        let folderPath = presetPath + "/\(extensionFolder)"
+        var folderPath = presetPath
+        if let extensionFolder {
+            folderPath = presetPath + "/\(extensionFolder)"
+        }
         
         let infofilePath = folderPath + resourceID.stringByDeletingLastPathComponent + "/\(resourceInfo)"
         
@@ -756,12 +782,12 @@ public extension GXHybridCacheManager {
         //下载新配置
         let manifestPath = self.getOfflineManifestFolder(url: manifestJSON)
         self.oflineDownload.download(url: manifestJSON,
-                                     path: manifestPath) { progress, state in
+                                     path: manifestPath) { [weak self] progress, state in
             if state == .completed || state == .error {
                 print("配置文件下载完毕")
                 
                 //获取当前预置目录下位置
-                if let currentManifestPath = self.getOldManifestPath(url: manifestJSON) {
+                if let currentManifestPath = self?.getOldManifestPath(url: manifestJSON) {
                     FileManager.removefile(atPath: currentManifestPath)
                 }
                 //移除旧配置

@@ -17,45 +17,48 @@ public class GXHybridDownload: NSObject {
     /// 获取全部路径 cache/downloac/
     public var webDownloadPath: String?
     
-//    var webOfflinePath: String? {
-//        if let _cache = GXTaskDiskFile.share.cachesPath {
-//            return _cache + hyDownPath
-//        }
-//        return hyDownPath
-//    }
+    /// 增加全局下载管理
+    let taskDownload = GXDownloadManager()
     
-    public func downloadUrl(url: String, unzip: Bool, deleteZip: Bool,block: @escaping GXTaskDownloadBlock) {
-        //一个URL对应一个任务
-        let taskDownload = GXTaskDownloadDisk()
-        taskDownload.diskFile.taskDownloadPath = hyDownPath
-        //配置下载路径
-        self.webDownloadPath = taskDownload.diskFile.downloadPath
-        //开始下载
-        taskDownload.start(forURL: url) { progress, state in
-            if state == .completed {
-                self.unzipFile(url: url,deleteZip: deleteZip)
-            }
-            block(progress,state)
-        }
-    }
+    /// 单文件下载
+    let oneTaskDownload = GXTaskDownloadDisk()
     
-    func unzipFile(url: String, deleteZip: Bool) {
-        //获取上级
-        let zipPath = self.webDownloadPath ?? ""
-        let zipAllPath = zipPath + "/\(url.lastPathComponent)"
-        //解压
-        SSZipArchive.unzipFile(atPath: zipAllPath,
-                               toDestination: zipPath) { str, fileInfo, i, j in
-            print("str:\(str)、fileinfo:\(fileInfo),,,i=\(i),,,,j=\(j))")
-        } completionHandler: { str, b, error in
-            
-            let isFileExists = FileManager.isFileExists(atPath: str)
-            if isFileExists {
-                FileManager.removefile(atPath: str)
-            }
-            //            print("str:\(str)、b:\(b),,,error=\(error)")
-        }
-        
+    //    public func downloadUrl(url: String, unzip: Bool, deleteZip: Bool,block: @escaping GXTaskDownloadBlock) {
+    //        //一个URL对应一个任务
+    //        let taskDownload = GXTaskDownloadDisk()
+    //        taskDownload.diskFile.taskDownloadPath = hyDownPath
+    //        //配置下载路径
+    //        self.webDownloadPath = taskDownload.diskFile.downloadPath
+    //        //开始下载
+    //        taskDownload.start(forURL: url) { progress, state in
+    //            if state == .completed {
+    //                self.unzipFile(url: url,deleteZip: deleteZip)
+    //            }
+    //            block(progress,state)
+    //        }
+    //    }
+    
+    //    func unzipFile(url: String, deleteZip: Bool) {
+    //        //获取上级
+    //        let zipPath = self.webDownloadPath ?? ""
+    //        let zipAllPath = zipPath + "/\(url.lastPathComponent)"
+    //        //解压
+    //        SSZipArchive.unzipFile(atPath: zipAllPath,
+    //                               toDestination: zipPath) { str, fileInfo, i, j in
+    //            print("str:\(str)、fileinfo:\(fileInfo),,,i=\(i),,,,j=\(j))")
+    //        } completionHandler: { str, b, error in
+    //
+    //            let isFileExists = FileManager.isFileExists(atPath: str)
+    //            if isFileExists {
+    //                FileManager.removefile(atPath: str)
+    //            }
+    //            //            print("str:\(str)、b:\(b),,,error=\(error)")
+    //        }
+    //
+    //    }
+    
+    deinit {
+//        print("\(self)-deinit")
     }
     //
 }
@@ -77,17 +80,16 @@ public extension GXHybridDownload {
     ///   - block: <#block description#>
     func download(url: String,
                   path: String,
-                priority: Int = 3,
-                         block: @escaping GXTaskDownloadBlock) {
-        let taskDownload = GXTaskDownloadDisk()
-        taskDownload.diskFile.taskDownloadPath = hyDownPath + "/\(path)"
-        taskDownload.taskPriority = priority
-        let isExist = taskDownload.diskFile.checkUrlTask(url: url)
+                  priority: Int = 3,
+                  block: @escaping GXTaskDownloadBlock) {
+        oneTaskDownload.diskFile.taskDownloadPath = hyDownPath + "/\(path)"
+        oneTaskDownload.taskPriority = priority
+        let isExist = oneTaskDownload.diskFile.checkUrlTask(url: url)
         if isExist == true {
-            taskDownload.diskFile.clearFile(forUrl: url)
+            oneTaskDownload.diskFile.clearFile(forUrl: url)
         }
         //开始下载
-        taskDownload.start(forURL: url, block: block)
+        oneTaskDownload.start(forURL: url, block: block)
     }
     
     /// 下载指定的URLS
@@ -97,10 +99,9 @@ public extension GXHybridDownload {
     ///   - block: <#block description#>
     func download(urls: Array<GXWebOfflineAssetsModel>,
                   path: String?,
+                  maxDownloadCount: Int = 9,
                   priority: Int = 3,
-                         block: @escaping GXTaskDownloadTotalBlock) {
-        let taskDownload = GXDownloadManager()
-        
+                  block: @escaping GXTaskDownloadTotalBlock) {
         var downloadToPath = hyDownPath
         if let path {
             downloadToPath = hyDownPath + "/\(path)"
@@ -115,7 +116,7 @@ public extension GXHybridDownload {
             downloadModel.priority = priority
             downloadUrls.append(downloadModel)
         }
-        taskDownload.start(forURL: downloadUrls, path: downloadToPath, block: block)
+        taskDownload.start(forURL: downloadUrls,maxDownloadCount: maxDownloadCount, path: downloadToPath, block: block)
     }
     
     /// 下载URL-
@@ -124,28 +125,26 @@ public extension GXHybridDownload {
     ///   - path: <#path description#>
     ///   - block: <#block description#>
     func downloadAndUpdate(urlModel: GXWebOfflineAssetsModel,
-                         path: String,
-                         block: @escaping GXTaskDownloadBlock) {
-        DispatchQueue.global().async {
-            let taskDownload = GXTaskDownloadDisk()
-            taskDownload.diskFile.taskDownloadPath = self.hyDownPath + "/\(path)"
-            
-            let downloadModel = GXDownloadURLModel()
-            downloadModel.src    = urlModel.src
-            downloadModel.policy = urlModel.policy
-            downloadModel.md5    = urlModel.md5
-            downloadModel.match  = urlModel.match
-            
-            if let url = downloadModel.src {
-                let isExist = taskDownload.diskFile.checkUrlTask(url: urlModel.src ?? "")
-                if isExist == true {
-                    taskDownload.diskFile.clearFile(forUrl: url)
-                }
-                taskDownload.prepare(urlModel: downloadModel)
-                taskDownload.start(block: block)
-            } else {
-                block(0,.error)
+                           path: String,
+                           block: @escaping GXTaskDownloadBlock) {
+        
+        oneTaskDownload.diskFile.taskDownloadPath = self.hyDownPath + "/\(path)"
+        
+        let downloadModel = GXDownloadURLModel()
+        downloadModel.src    = urlModel.src
+        downloadModel.policy = urlModel.policy
+        downloadModel.md5    = urlModel.md5
+        downloadModel.match  = urlModel.match
+        
+        if let url = downloadModel.src {
+            let isExist = oneTaskDownload.diskFile.checkUrlTask(url: urlModel.src ?? "")
+            if isExist == true {
+                oneTaskDownload.diskFile.clearFile(forUrl: url)
             }
+            oneTaskDownload.prepare(urlModel: downloadModel)
+            oneTaskDownload.start(block: block)
+        } else {
+            block(0,.error)
         }
     }
 }
