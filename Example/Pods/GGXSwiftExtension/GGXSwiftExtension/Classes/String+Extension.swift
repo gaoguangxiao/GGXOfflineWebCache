@@ -41,6 +41,16 @@ public extension String {
         return range(of: s) != nil
     }
     
+    /// 是否包含某个字符串
+    /// - Parameters:
+    ///   - s: 字符
+    ///   - option: 匹配规则
+    /// - Returns: <#description#>
+    func has(_ s: String, option: String.CompareOptions) -> Bool {
+        return range(of: s,options: option) != nil
+//        return range(of: s) != nil
+    }
+    
     /// 分割字符
     func split(_ s: String) -> [String] {
         if s.isEmpty {

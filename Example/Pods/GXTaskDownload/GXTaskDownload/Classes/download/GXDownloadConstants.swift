@@ -11,6 +11,10 @@ public let gxdownloadService = "http://121.199.164.220:8080"
 
 public typealias GXTaskDownloadBlock = (_ progress: Float ,_ state: GXDownloadingState)->Void
 
+public typealias GXTaskDownloadTotalBlock = (_ total: Float,
+                                             _ loaded: Float,
+                                             _ state: GXDownloadingState)->Void
+
 public typealias GXTaskCheckBlock = (Int64) -> Void
 
 /// 校验文件

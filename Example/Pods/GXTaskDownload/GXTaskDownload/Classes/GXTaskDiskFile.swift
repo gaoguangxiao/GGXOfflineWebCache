@@ -13,9 +13,9 @@ public class GXTaskDiskFile {
     public static var share = GXTaskDiskFile()
     
     //写入沙盒路径
-//    public var cachesPath: String? {
-//        NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first
-//    }
+    //    public var cachesPath: String? {
+    //        NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first
+    //    }
     
     lazy var cachesPath: String? = {
         return FileManager.cachesPath
@@ -49,9 +49,16 @@ public class GXTaskDiskFile {
     var url: URL?
     
     /// 下载文件路径
-    var urlStr: String?
+    //    var urlStr: String?
     
-//MARK: 方法
+    /// URL下载信息
+    var downloadURLModel: GXDownloadURLModel?
+    
+    func getUrlInfoLaseComponent(_ url: String) -> String {
+        return url.md5Value + ".json"
+    }
+    
+    //MARK: 方法
     func getFilePath(url: String) -> String {
         //获取文件全路径
         return path + "/\(url.lastPathComponent)"
@@ -67,7 +74,7 @@ public class GXTaskDiskFile {
     }
     
     public func checkUrlTask() -> Bool {
-        guard let urlStr = self.urlStr else {
+        guard let urlStr = self.downloadURLModel?.src else {
             print("URL不可为空")
             return false
         }
@@ -85,21 +92,91 @@ public class GXTaskDiskFile {
         return fileManager.fileExists(atPath: filePath)
     }
     
-    public func clearFile(forUrl url: String) {
+    public func isExistDiskAndMD5Update(url: String) -> Bool {
+        let isExist = isExistDiskDataWith(url: url)
+        if isExist {
+            //获取其URL信息的MD5信息和磁盘的是否一致。
+            if let urlInfoModel = getURLFileInfoModel(url: url),
+               let loaclUrlMD5 = urlInfoModel.md5,
+               let urlMD5 = downloadURLModel?.md5 {
+                print("\(loaclUrlMD5)--\(urlMD5)")
+                if !loaclUrlMD5.has(urlMD5,option: .caseInsensitive) {
+                    clearFileAndInfo(forUrl: url)
+                    return false
+                }
+            }
+        }
+        return isExist
+    }
+}
+
+public extension GXTaskDiskFile {
+    
+    func getFileInfoPath(url: String) -> String? {
+        //获取文件信息
+        let filePath = path + "/\(self.getUrlInfoLaseComponent(url))"
+        if fileManager.fileExists(atPath: filePath) == true {
+            return filePath
+        }
+        return nil
+    }
+    
+    /// 获取其URL存储信息
+    /// - Parameter url: <#url description#>
+    /// - Returns: <#description#>
+    func getURLFileInfoModel(url: String) -> GXDownloadURLModel? {
+        //获取文件信息
+        if let infofilePath = self.getFileInfoPath(url: url),
+           let localPresetConfigData = infofilePath.toFileUrl?.filejsonData{
+            guard let localJsonDict = localPresetConfigData as? Dictionary<String, Any> else {
+                print("JSON格式有问题")
+                return nil
+            }
+            return GXDownloadURLModel.deserialize(from: localJsonDict)
+            
+        }
+        return nil
+    }
+    
+}
+
+//MARK: 移除文件
+public extension GXTaskDiskFile {
+    
+    func clearFile(forUrl url: String) {
         let filePath = getFilePath(url: url)
         do {
             try fileManager.removeItem(atPath: filePath)
         } catch _ {
-//            print("")
+            
         }
     }
     
-    public func clearAllFile() {
+    /// 移除URL以及对应信息
+    /// - Parameter url: <#url description#>
+    func clearFileAndInfo(forUrl url: String) {
+        let filePath = getFilePath(url: url)
+        do {
+            try fileManager.removeItem(atPath: filePath)
+        } catch _ {
+            
+        }
+        
+        if let fileInfoPath = getFileInfoPath(url: url) {
+            do {
+                try fileManager.removeItem(atPath: fileInfoPath)
+            } catch _ {
+                
+            }
+        }
+    }
+    
+    func clearAllFile() {
         let filePath = downloadPath
         do {
             try fileManager.removeItem(atPath: filePath)
         } catch _ {
-//            print("")
+            //            print("")
         }
     }
 }

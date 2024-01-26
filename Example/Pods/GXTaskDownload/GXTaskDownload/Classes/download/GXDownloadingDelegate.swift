@@ -11,7 +11,7 @@ import Foundation
 /// to a `GXDownloading` instance. These include whenever the download state
 /// changes, when the download has completed (with or without an error), and
 /// when the downloader has received data.
-public protocol GXDownloadingDelegate {
+public protocol GXDownloadingDelegate: NSObjectProtocol {
     /// Triggered when a `Downloading` instance has changed its `Downloading` state during an existing download operation.
     ///
     /// - Parameters:

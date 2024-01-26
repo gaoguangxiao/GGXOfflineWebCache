@@ -8,6 +8,7 @@
 import Foundation
 import GXTaskDownload
 import SSZipArchive
+import GGXSwiftExtension
 
 public class GXHybridDownload: NSObject {
     
@@ -58,7 +59,7 @@ public class GXHybridDownload: NSObject {
     //    }
     
     deinit {
-//        print("\(self)-deinit")
+        LogInfo("\(self)-deinit")
     }
     //
 }

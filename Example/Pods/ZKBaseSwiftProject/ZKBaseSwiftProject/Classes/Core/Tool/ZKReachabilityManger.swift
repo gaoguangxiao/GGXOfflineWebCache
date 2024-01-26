@@ -9,7 +9,7 @@
 import UIKit
 import Reachability
 
-enum GXReachabilityStatus {
+public enum GXReachabilityStatus {
     case none
     case wifi
     case cellular
@@ -18,9 +18,9 @@ enum GXReachabilityStatus {
 typealias StatusChangeCallback = (_ status : GXReachabilityStatus)->()
 typealias PendingTask = ()->Void
 
-class ZKReachabilityManger {
+public class ZKReachabilityManger {
     
-    static let share = ZKReachabilityManger.init()
+    public static let share = ZKReachabilityManger.init()
     
     private var listeners : [Int : StatusChangeCallback] = [:]
     
@@ -93,7 +93,7 @@ class ZKReachabilityManger {
         self.listeners[id] = listener
     }
     
-    func readReachabilityStatus() -> GXReachabilityStatus {
+    public func readReachabilityStatus() -> GXReachabilityStatus {
         if self.reachability == nil {
             reachability = try? Reachability.init(hostname: "www.apple.com")
             try? reachability?.startNotifier()

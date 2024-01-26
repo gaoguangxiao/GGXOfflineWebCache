@@ -52,23 +52,23 @@ public class GXHybridCacheManager: NSObject {
         
         var index = 0
         
-//        for offlineAssets in urls {
-//            let url = offlineAssets?.src ?? ""
-//            let uurl = url.replace("/web/adventure", new: "")
-//            if let filePath = self.loadOfflineRelativePath(uurl, extendPath: "/\(presetName)") {
-//                self.moveOfflineWebFile(filePath: filePath, url: url,policy: offlineAssets?.policy ?? 0) { isSuccess in
-//                    index+=1
-//                    if index == urls.count {
-//                        block(true)
-//                    }
-//                }
-//            } else {
-//                index+=1
-//                if index == urls.count {
-//                    block(true)
-//                }
-//            }
-//        }
+        //        for offlineAssets in urls {
+        //            let url = offlineAssets?.src ?? ""
+        //            let uurl = url.replace("/web/adventure", new: "")
+        //            if let filePath = self.loadOfflineRelativePath(uurl, extendPath: "/\(presetName)") {
+        //                self.moveOfflineWebFile(filePath: filePath, url: url,policy: offlineAssets?.policy ?? 0) { isSuccess in
+        //                    index+=1
+        //                    if index == urls.count {
+        //                        block(true)
+        //                    }
+        //                }
+        //            } else {
+        //                index+=1
+        //                if index == urls.count {
+        //                    block(true)
+        //                }
+        //            }
+        //        }
         
         for offlineAssets in urls {
             
@@ -77,22 +77,22 @@ public class GXHybridCacheManager: NSObject {
                     
                 }
             }
-
-//            let url = offlineAssets?.src ?? ""
-//            let uurl = url.replace("/web/adventure", new: "")
-//            if let filePath = self.loadOfflineRelativePath(uurl, extendPath: "/\(presetName)") {
-//                self.moveOfflineWebFile(filePath: filePath, url: url,policy: offlineAssets?.policy ?? 0) { isSuccess in
-//                    index+=1
-//                    if index == urls.count {
-//                        block(true)
-//                    }
-//                }
-//            } else {
-//                index+=1
-//                if index == urls.count {
-//                    block(true)
-//                }
-//            }
+            
+            //            let url = offlineAssets?.src ?? ""
+            //            let uurl = url.replace("/web/adventure", new: "")
+            //            if let filePath = self.loadOfflineRelativePath(uurl, extendPath: "/\(presetName)") {
+            //                self.moveOfflineWebFile(filePath: filePath, url: url,policy: offlineAssets?.policy ?? 0) { isSuccess in
+            //                    index+=1
+            //                    if index == urls.count {
+            //                        block(true)
+            //                    }
+            //                }
+            //            } else {
+            //                index+=1
+            //                if index == urls.count {
+            //                    block(true)
+            //                }
+            //            }
         }
         block(true)
     }
@@ -120,7 +120,7 @@ public class GXHybridCacheManager: NSObject {
         
         if let toFolderPath = self.getBoxURLFolderBy(remoteURL: url) {
             let toPath: String = toFolderPath + "/" + "\(url.lastPathComponent)"
-
+            
             FileManager.moveFile(fromFilePath: filePath, toFilePath: toPath, fileType: .directory , moveType: .copy) { isSuccess in
                 if isSuccess {
                     //保存配置信息
@@ -133,7 +133,7 @@ public class GXHybridCacheManager: NSObject {
         } else {
             print("预置文件不存在")
             block(false)
-        }        
+        }
     }
     
     func saveUrlInfo(asset: GXWebOfflineAssetsModel, folderPath: String) {
@@ -141,7 +141,7 @@ public class GXHybridCacheManager: NSObject {
         if let url = asset.src {
             //文件信息以 文件名-info.json结尾
             let urlInfoPath = folderPath + "/" + "\(url.md5Value).json"
-
+            
             let isexist = FileManager.isFileExists(atPath: urlInfoPath)
             if isexist == true {
                 FileManager.removefile(atPath: urlInfoPath)
@@ -376,9 +376,17 @@ public extension GXHybridCacheManager {
     
     func loadOfflineData(_ url: String) -> Data?{
         // 资源全路径
-        if let fileUrl = self.loadOfflinePath(url)?.toFileUrl , let anyData = try? Data(contentsOf: fileUrl) {
+        if let fileUrl = self.loadOfflinePath(url)?.toFileUrl , let data = try? Data(contentsOf: fileUrl) {
+//            let fh = try? FileHandle.init(forReadingFrom: fileUrl)
+//            var data : Data?
+//            if #available(iOS 13.4, *) {
+//                data = try? fh?.readToEnd()
+//            } else {
+//                // Fallback on earlier versions
+//                data = fh?.readDataToEndOfFile()
+//            }
             LogInfo("\(fileUrl)找到磁盘缓存")
-            return anyData
+            return data
         }  else {
             return nil
         }
@@ -437,8 +445,8 @@ public extension GXHybridCacheManager {
     ///   - extensionFolder: <#extensionFolder description#>
     /// - Returns: <#description#>
     func loadOfflinePath(_ url: String, extensionFolder: String) -> String? {
-
-//        let b = url.has("1011.d9bf9816.async.js")
+        
+//        let b = url.has("umi.574b22ed.js")
 //        if b == true {
 //            print(b)
 //        }
@@ -554,7 +562,7 @@ public extension GXHybridCacheManager {
     /// - Parameter url: <#url description#>
     /// - Returns: <#description#>
     func getOfflineAssetModel(url: String) -> GXWebOfflineAssetsModel?{
-    
+        
         return getOfflineAssetModel(url: url, extensionFolder: nil)
         
     }
@@ -685,8 +693,8 @@ public extension GXHybridCacheManager {
     func removeOffline(asset: GXWebOfflineAssetsModel, folder: String) -> Bool {
         
         if let str = asset.src,
-            let srcBoxPath = getBoxURLFilePathBy(remoteURL: str, extensionFolder: folder),
-            let srcURLInfoPath = getBoxURLFilePathBy(remoteURL: str, extensionFolder: folder)
+           let srcBoxPath = getBoxURLFilePathBy(remoteURL: str, extensionFolder: folder),
+           let srcURLInfoPath = getBoxURLFilePathBy(remoteURL: str, extensionFolder: folder)
         {
             
             FileManager.removefile(atPath: srcBoxPath)
@@ -755,7 +763,7 @@ public extension GXHybridCacheManager {
                 LogInfo("\(assets.src ?? "")异步更新成功")
             }
         }
-
+        
     }
     
     /// 使用本地预置更新离线包manifest配置

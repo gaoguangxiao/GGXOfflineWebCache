@@ -26,9 +26,26 @@ public class GXDownloader: NSObject, GXDownloading {
         }
     }
     
+    //定义优先级
+    ///1 ~ 5 优先级
+    public var priority: Int = 0
+    
     /// The `URLSession` currently being used as the HTTP/HTTPS implementation for the downloader.
     fileprivate lazy var session: URLSession = {
-        return URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+        let queue = OperationQueue()
+        if priority == 1 {
+            queue.qualityOfService = .userInteractive //最高优先级
+        } else if priority == 2 {
+            queue.qualityOfService = .userInitiated //次高
+        } else if priority == 3 {
+            queue.qualityOfService = .default
+        } else if priority == 4 {
+            queue.qualityOfService = .utility //耗时任务
+        } else  {
+            queue.qualityOfService = .background
+        }
+//        print("当前优先级:\(priority)")
+        return URLSession(configuration: .default, delegate: self, delegateQueue: queue)
     }()
     
     /// A `URLSessionDataTask` representing the data operation for the current `URL`.
@@ -41,7 +58,7 @@ public class GXDownloader: NSObject, GXDownloading {
     var totalBytesCount: Int64 = 0
     
     // MARK: - Properties (Downloading)
-    public var delegate: GXDownloadingDelegate?
+    public weak var delegate: GXDownloadingDelegate?
     public var progress: Float = 0.0
     public var state: GXDownloadingState = .notStarted {
         didSet {
