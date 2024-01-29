@@ -9,19 +9,28 @@
 import UIKit
 import GGXOfflineWebCache
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GXHybridZipManagerDelegate {
+    
+    func offlineUnZipipWebProgress(progress: Float) {
+        
+    }
+    
+    func offlineUnzip(completedWithError: Bool) {
+    
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         //1、配置本地资源包 将本地资源包 放于沙盒内部
-        
-        //1、读取最新离线包配置和离线包资源【本地或者网络获取】
-//        let version = "0.1.1"
-        //从本地获取
-//        let mainFestData = Bundle.jsonfileTojson("manifest-code")
-        
+        let zip = GXHybridZipManager()
+        zip.unzipDelegate = self
+        zip.unzipProjecToBox(zipName: "dist.zip") { b in
+            
+        }
+ 
         //2、
 //      资源包版本和资源包 下载路径
 //        GXHybridCacheManager.share.initLocalWebResource(name: "WebPreset",
@@ -33,10 +42,12 @@ class ViewController: UIViewController {
 //        }
         
         ///下载json里面所有资源，并返回进度
-//        let hyDownload = GXHybridDownload()
-//        hyDownload.downloadUrls(urls: <#T##Array<String>#>, path: <#T##String#>)
+        let hyDownload = GXHybridDownload()
+        hyDownload.download(urls: [], path: "pkg") { total, loaded, state in
+            
+        }
         
-        let hyDownload = GXHybridCacheManager()
+//        let hyDownload = GXHybridCacheManager()
         
 //        hyDownload.getSandboxManifestModel(url: "http://localhost:8081/manifest/manifest-initial.json")
         

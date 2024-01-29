@@ -33,6 +33,10 @@ public class GXHybridCacheManager: NSObject {
     /// 预置资源包名字
     public var presetName: String?
     
+    /// src配置服务器路径
+    public var webFolderName: String = "web/adventure"
+    
+    //manifest名字
     public var manifestPathName: String = "manifest"
     
     /// 配置文件存放目录
@@ -47,52 +51,37 @@ public class GXHybridCacheManager: NSObject {
         
     }
     
+    public func movePresetPkg(block: @escaping (_ isSuccess: Bool) -> Void)  {
+        if let paths = getPresetManifestPaths() {
+            for name in paths {
+                let presetManifestModel = getPresetManifestModel(manifesetName: name)
+                guard let assets = presetManifestModel?.assets else {
+                    block(false)
+                    return
+                }
+                self.moveOfflineWebFile(urls: assets) { isSuccess in
+                    print("\(name)移动成功")
+                    
+                    //保存配置
+                    if let configFilePath = self.getPresetFilePath(fileName: name) , isSuccess == true {
+                        self.updateCurrentManifestUserPreset(manifestJSON: configFilePath) { b in
+
+                        }
+                    } else {
+                    }
+                }
+            }
+        }
+        block(true)
+    }
+    
     public func moveOfflineWebFile(urls: Array<GXWebOfflineAssetsModel?>,block: @escaping (_ isSuccess: Bool) -> Void)  {
-        
-        
-        var index = 0
-        
-        //        for offlineAssets in urls {
-        //            let url = offlineAssets?.src ?? ""
-        //            let uurl = url.replace("/web/adventure", new: "")
-        //            if let filePath = self.loadOfflineRelativePath(uurl, extendPath: "/\(presetName)") {
-        //                self.moveOfflineWebFile(filePath: filePath, url: url,policy: offlineAssets?.policy ?? 0) { isSuccess in
-        //                    index+=1
-        //                    if index == urls.count {
-        //                        block(true)
-        //                    }
-        //                }
-        //            } else {
-        //                index+=1
-        //                if index == urls.count {
-        //                    block(true)
-        //                }
-        //            }
-        //        }
-        
         for offlineAssets in urls {
-            
             if let assets = offlineAssets {
                 self.moveOfflineWebFile(asset: assets) { b in
                     
                 }
             }
-            
-            //            let url = offlineAssets?.src ?? ""
-            //            let uurl = url.replace("/web/adventure", new: "")
-            //            if let filePath = self.loadOfflineRelativePath(uurl, extendPath: "/\(presetName)") {
-            //                self.moveOfflineWebFile(filePath: filePath, url: url,policy: offlineAssets?.policy ?? 0) { isSuccess in
-            //                    index+=1
-            //                    if index == urls.count {
-            //                        block(true)
-            //                    }
-            //                }
-            //            } else {
-            //                index+=1
-            //                if index == urls.count {
-            //                    block(true)
-            //                }
-            //            }
         }
         block(true)
     }
@@ -112,15 +101,14 @@ public class GXHybridCacheManager: NSObject {
         }
         
         let url = asset.src ?? ""
-        let uurl = url.replace("/web/adventure", new: "")
-        guard let filePath = self.loadOfflineRelativePath(uurl, extendPath: "/\(presetName)") else {
+        guard let filePath = self.getPresetOfflineFilePath(url, extendPath: "/\(presetName)") else {
             block(false)
             return
         }
         
         if let toFolderPath = self.getBoxURLFolderBy(remoteURL: url) {
             let toPath: String = toFolderPath + "/" + "\(url.lastPathComponent)"
-            
+//            LogInfo("moveOfflineWebFile---当前线程:\(Thread.current)")
             FileManager.moveFile(fromFilePath: filePath, toFilePath: toPath, fileType: .directory , moveType: .copy) { isSuccess in
                 if isSuccess {
                     //保存配置信息
@@ -190,45 +178,6 @@ public class GXHybridCacheManager: NSObject {
         }
     }
     
-    /// 移动压缩文件
-    /// - Parameters:
-    ///   - path: 文件路径
-    ///   - unzipName: 解压之后名字
-    ///   - block: <#block description#>
-    public func moveOfflineWebZip(path: String,
-                                  unzipName:String,
-                                  block: @escaping ((_ progress: Float,_ isSuccess: Bool) -> Void)) {
-        guard let folderPath = presetPath else {
-            print("预置路径不存在")
-            block(0, false)
-            return
-        }
-        let toPath = folderPath + "/\(path.lastPathComponent)"
-        FileManager.moveFile(fromFilePath: path, toFilePath: toPath, fileType: .directory , moveType: .copy) { isSuccess in
-            if isSuccess {
-                //移除解压的文件
-                self.removeFile(path: unzipName)
-                
-                SSZipArchive.unzipFile(atPath: toPath, toDestination: folderPath, overwrite: true, password: nil) { str, fileInfo, count, total in
-                    let progress = Float(count)/Float(total)
-                    block(Float(progress),false)
-                } completionHandler: { str, b, err in
-                    if b == true {
-                        //移除解压的文件
-                        let isFileExists = FileManager.isFileExists(atPath: str)
-                        if isFileExists {
-                            FileManager.removefile(atPath: str)
-                        }
-                        block(1.0,b)
-                    }
-                }
-            } else {
-                block(0, false)
-            }
-        }
-        //
-    }
-    
     /// 将离线包对应配置和离线包存储
     /// - Parameter presetConfigName: <#presetConfigName description#>
     /// - Returns: <#description#>
@@ -251,34 +200,6 @@ public class GXHybridCacheManager: NSObject {
                              moveType: .copy) { isSuccess in
             block(isSuccess)
         }
-    }
-    
-    /// 根目录/扩展目录/URL的path
-    /// - Parameters:
-    ///   - url: <#url description#>
-    ///   - extendPath: <#extendPath description#>
-    /// - Returns: <#description#>
-    public func loadOfflineRelativePath(_ url: String, extendPath: String = "") -> String? {
-        guard let presetPath = presetPath else {
-            print("未获取预置资源路径")
-            return nil
-        }
-        
-        // 资源ID
-        guard let resourceID = self.resourceID(url) else {
-            print("未获取到资源ID")
-            return nil
-        }
-        
-        // 资源全路径
-        let filePath = presetPath + extendPath + resourceID
-        // 查看本地文件是否存在
-        let isFileExist = FileManager.isFileExists(atPath: filePath)
-        if isFileExist == false {
-            print("文件不存在:\(filePath)")
-            return nil
-        }
-        return filePath
     }
     
     /// 从URL获取资源ID 减去前面域名
@@ -309,6 +230,28 @@ public class GXHybridCacheManager: NSObject {
             // Fallback on earlier versions
             return url.path.stringByDeletingPathExtension
         }
+    }
+    
+    /// 预置目录/扩展目录/URL文件名
+    /// - Parameters:
+    ///   - url: url description
+    ///   - extendPath: <#extendPath description#>
+    /// - Returns: <#description#>
+    func getBoxLastPathComponentPath(_ lastPathComponent: String, extendPath: String = "") -> String? {
+        guard let presetPath = presetPath else {
+            print("未获取预置资源路径")
+            return nil
+        }
+        
+        // 资源全路径
+        let filePath = presetPath + "/\(extendPath)" + "/\(lastPathComponent)"
+        // 查看本地文件是否存在
+        let isFileExist = FileManager.isFileExists(atPath: filePath)
+        if isFileExist == false {
+            print("文件不存在")
+            return nil
+        }
+        return filePath
     }
 }
 
@@ -377,14 +320,14 @@ public extension GXHybridCacheManager {
     func loadOfflineData(_ url: String) -> Data?{
         // 资源全路径
         if let fileUrl = self.loadOfflinePath(url)?.toFileUrl , let data = try? Data(contentsOf: fileUrl) {
-//            let fh = try? FileHandle.init(forReadingFrom: fileUrl)
-//            var data : Data?
-//            if #available(iOS 13.4, *) {
-//                data = try? fh?.readToEnd()
-//            } else {
-//                // Fallback on earlier versions
-//                data = fh?.readDataToEndOfFile()
-//            }
+            //            let fh = try? FileHandle.init(forReadingFrom: fileUrl)
+            //            var data : Data?
+            //            if #available(iOS 13.4, *) {
+            //                data = try? fh?.readToEnd()
+            //            } else {
+            //                // Fallback on earlier versions
+            //                data = fh?.readDataToEndOfFile()
+            //            }
             LogInfo("\(fileUrl)找到磁盘缓存")
             return data
         }  else {
@@ -446,10 +389,10 @@ public extension GXHybridCacheManager {
     /// - Returns: <#description#>
     func loadOfflinePath(_ url: String, extensionFolder: String) -> String? {
         
-//        let b = url.has("umi.574b22ed.js")
-//        if b == true {
-//            print(b)
-//        }
+        //        let b = url.has("umi.574b22ed.js")
+        //        if b == true {
+        //            print(b)
+        //        }
         
         //获取此URL的策略
         if let assetModel = self.getBoxOfflineAssetModel(url: url,extensionFolder: extensionFolder) {
@@ -534,12 +477,12 @@ public extension GXHybridCacheManager {
     /// - Returns: description
     func getOldManifestData(url: String) -> Dictionary<String, Any>? {
         
-        guard let manifestPath = self.getOldManifestPath(url: url) else {
+        guard let oldManifestPath = self.getOldManifestPath(url: url) else {
             print("文件不存在")
             return nil
         }
         
-        if let localPresetConfigData = manifestPath.toFileUrl?.filejsonData{
+        if let localPresetConfigData = oldManifestPath.toFileUrl?.filejsonData{
             guard let localJsonDict = localPresetConfigData as? Dictionary<String, Any> else {
                 print("JSON格式有问题")
                 return nil
@@ -649,6 +592,128 @@ extension GXHybridCacheManager {
         }
         return manifestPath
     }
+    
+    
+}
+
+//MARK: 预置资源操作
+extension GXHybridCacheManager {
+    
+    /// 移动压缩文件
+    /// - Parameters:
+    ///   - path: 文件路径
+    ///   - unzipName: 解压之后名字
+    ///   - block: block description
+    public func moveOfflineWebZip(path: String,
+                                  unzipName:String,
+                                  block: @escaping ((_ progress: Float,_ isSuccess: Bool) -> Void)) {
+        guard let folderPath = presetPath else {
+            print("预置路径不存在")
+            block(0, false)
+            return
+        }
+        let toPath = folderPath + "/\(path.lastPathComponent)"
+        FileManager.moveFile(fromFilePath: path, toFilePath: toPath, fileType: .directory , moveType: .copy) { isSuccess in
+            if isSuccess {
+                //移除压缩包
+                self.removeFile(path: unzipName)
+                
+                SSZipArchive.unzipFile(atPath: toPath, toDestination: folderPath, overwrite: true, password: nil) { str, fileInfo, count, total in
+//                    LogInfo("当前线程:\(Thread.current)")
+                    let progress = Float(count)/Float(total)
+                    block(Float(progress),false)
+                } completionHandler: { str, b, err in
+                    if b == true {
+                        //移除解压的文件
+                        let isFileExists = FileManager.isFileExists(atPath: str)
+                        if isFileExists {
+                            FileManager.removefile(atPath: str)
+                        }
+                        
+                        //移动至特定目录
+                        self.movePresetPkg { isSuccess in
+                            
+                        }
+                        
+                        //移动成功之后删除解压之后的备用文件
+//                        self.removeFile(path: unzipName)
+                        block(1.0,b)
+                    }
+                }
+            } else {
+                block(0, false)
+            }
+        }
+        //
+    }
+    /// 获取预置文件夹中预置文件
+    /// - Parameter url: url description
+    /// - Returns: <#description#>
+    func getPresetManifestPaths() -> Array<String>? {
+        
+        guard let presetPath , let presetName else {
+            print("预置路径不存在")
+            return nil
+        }
+        
+        let presetManifestFolderPath = presetPath + "/" + "/\(presetName)" + "/\(self.manifestPathName)"
+        
+        let filePaths = FileManager.getAllFileNames(atPath:presetManifestFolderPath)
+        return filePaths
+    }
+    
+    /// 获取本地预置离线包版本数据
+    /// - Parameter url: <#url description#>
+    /// - Returns: <#description#>
+    func getPresetManifestModel(manifesetName: String) -> GXWebOfflineManifestModel? {
+        if let localPresetConfigPath = self.getPresetFilePath(fileName:manifesetName) ,
+           let localPresetConfigData = localPresetConfigPath.toFileUrl?.filejsonData{
+            guard let localJsonDict = localPresetConfigData as? Dictionary<String, Any> else {
+                print("JSON格式有问题")
+                return nil
+            }
+            return GXWebOfflineManifestModel.deserialize(from: localJsonDict)
+        }
+        return nil
+    }
+    
+    /// 根据URL名字换取预置离线包下资源
+    /// - Parameter url: url description
+    /// - Returns: <#description#>
+    func getPresetFilePath(fileName: String) -> String? {
+        return self.getBoxLastPathComponentPath(fileName, extendPath: "/\(self.presetName ?? "")/\(self.manifestPathName)")
+    }
+    
+    /// 根据配置的URL获取预置离线资源
+    /// - Parameters:
+    ///   - url:
+    ///   - extendPath: <#extendPath description#>
+    /// - Returns: <#description#>
+    public func getPresetOfflineFilePath(_ url: String, extendPath: String = "") -> String? {
+        guard let presetPath = presetPath else {
+            print("未获取预置资源路径")
+            return nil
+        }
+
+        // 资源ID
+        guard var resourceID = self.resourceID(url) else {
+            print("未获取到资源ID")
+            return nil
+        }
+        
+        resourceID = resourceID.replace("/\(webFolderName)", new: "")
+        
+        // 资源全路径
+        let filePath = presetPath + extendPath + resourceID
+        // 查看本地文件是否存在
+        let isFileExist = FileManager.isFileExists(atPath: filePath)
+        if isFileExist == false {
+            print("文件不存在:\(filePath)")
+            return nil
+        }
+        return filePath
+    }
+    
 }
 
 //MARK: 删除离线资源
