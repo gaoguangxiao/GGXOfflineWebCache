@@ -83,11 +83,11 @@ public class GXTaskDownloadDisk: NSObject {
     }
     
     public func start(block: @escaping GXTaskDownloadBlock) {
-        //        LogInfo("调用次数------瞬间")
+//        LogInfo("调用次数------瞬间")
         guard let urlPath = diskFile.downloadURLModel?.src else {
             return
         }
-        //        print("路径：\(urlPath)")
+//        print("打印路径：\(urlPath)")
         let isExist = diskFile.isExistDiskAndMD5Update(url: urlPath)
         //disk
         if isExist {

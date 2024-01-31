@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import GGXSwiftExtension
 
 //管理存储在磁盘的文件
-public class GXTaskDiskFile {
+public class GXTaskDiskFile: NSObject {
     
     public static var share = GXTaskDiskFile()
     

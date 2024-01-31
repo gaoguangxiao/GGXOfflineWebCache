@@ -24,13 +24,13 @@ class ViewController: UIViewController, GXHybridZipManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //1、配置本地资源包 将本地资源包 放于沙盒内部
-        let zip = GXHybridZipManager()
-        zip.unzipDelegate = self
-        zip.unzipProjecToBox(zipName: "dist.zip") { b in
-            
-        }
- 
+//        //1、配置本地资源包 将本地资源包 放于沙盒内部
+//        let zip = GXHybridZipManager()
+//        zip.unzipDelegate = self
+//        zip.unzipProjecToBox(zipName: "dist.zip") { b in
+//            
+//        }
+// 
         //2、
 //      资源包版本和资源包 下载路径
 //        GXHybridCacheManager.share.initLocalWebResource(name: "WebPreset",
@@ -42,10 +42,10 @@ class ViewController: UIViewController, GXHybridZipManagerDelegate {
 //        }
         
         ///下载json里面所有资源，并返回进度
-        let hyDownload = GXHybridDownload()
-        hyDownload.download(urls: [], path: "pkg") { total, loaded, state in
-            
-        }
+//        let hyDownload = GXHybridDownload()
+//        hyDownload.download(urls: [], path: "pkg") { total, loaded, state in
+//            
+//        }
         
 //        let hyDownload = GXHybridCacheManager()
         

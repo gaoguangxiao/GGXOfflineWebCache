@@ -26,4 +26,8 @@ public class GXWebOfflineAssetsModel: ZKJSONModel {
     /// 需要先对正则中的 {www_path} 占位符做替换，替换规则参考：附1
     public var match: String?
     
+    
+    /// 本地全路径-通过本地查找得到
+    public var localFullFilePath: String?
+    
 }

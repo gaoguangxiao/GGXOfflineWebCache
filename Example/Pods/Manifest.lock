@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (5.8.1)
-  - GGXOfflineWebCache (0.1.4):
+  - GGXOfflineWebCache (0.1.6):
     - GGXSwiftExtension
     - GXSwiftNetwork
     - GXTaskDownload
@@ -12,7 +12,7 @@ PODS:
     - HandyJSON
     - Moya
     - PKHUD
-  - GXTaskDownload (0.1.9):
+  - GXTaskDownload (0.2.5):
     - GGXSwiftExtension
     - HandyJSON
   - HandyJSON (5.0.2)
@@ -30,7 +30,7 @@ PODS:
   - RxSwift (6.6.0)
   - SnapKit (5.6.0)
   - SSZipArchive (2.4.3)
-  - ZKBaseSwiftProject (0.3.1):
+  - ZKBaseSwiftProject (0.3.4):
     - GGXSwiftExtension
     - HandyJSON
     - PKHUD
@@ -65,10 +65,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
-  GGXOfflineWebCache: 1caf9e34f9d17dd4c3065f170107c7c3ddb61f00
+  GGXOfflineWebCache: 6ecfcc7c18be8e18b04abdebcd4efe7ec1cb2514
   GGXSwiftExtension: f77bb3ef93bbe42305fd01523de0de3efafa3e08
   GXSwiftNetwork: a6b3f12448ffc57a93cc5b593679d1c467a82104
-  GXTaskDownload: 75347db89c90648e30929b23997521424d4438d9
+  GXTaskDownload: dad2c9e5b8b878eb59c85ba6be44c75a4c9d16c0
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
@@ -78,8 +78,8 @@ SPEC CHECKSUMS:
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
-  ZKBaseSwiftProject: 5f2d01ba3f8c3d80f58c00ad7861c95a60f4fc51
+  ZKBaseSwiftProject: 46b9027a6016f07296b6fb3f1674c5d6191d6683
 
 PODFILE CHECKSUM: dad854dba21b10757ee380f308e5cf7061a60f9d
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.0

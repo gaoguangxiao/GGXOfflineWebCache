@@ -37,7 +37,7 @@ public class GXHybridZipManager: NSObject {
             return
         }
         
-        //保存版本号-记录是否解压至特定目录
+//        保存版本号-记录是否解压至特定目录
         let appVersion = kAppVersion ?? ""
         if let presetVersion = UserDefaults.presetDataNameKey {
             guard presetVersion != appVersion else {
@@ -52,7 +52,8 @@ public class GXHybridZipManager: NSObject {
         //开启线程
         DispatchQueue.global().async {
             self.webOfflineCache.moveOfflineWebZip(path: path,
-                                                   unzipName: path.lastPathComponent.stringByDeletingPathExtension) { progress, isSuccess in
+                                                   unzipName: path.lastPathComponent.stringByDeletingPathExtension) { [weak self ]progress, isSuccess in
+                guard let `self` = self else { return }
                 //print("解压进度:\(progress)")
                 DispatchQueue.main.async {
                     self.unzipDelegate?.offlineUnZipipWebProgress(progress: progress)

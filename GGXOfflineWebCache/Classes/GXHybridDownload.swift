@@ -93,6 +93,26 @@ public extension GXHybridDownload {
         oneTaskDownload.start(forURL: url, block: block)
     }
     
+    /// 下载URL
+    /// - Parameters:
+    ///   - url: url description
+    ///   - path: <#path description#>
+    ///   - block: <#block description#>
+    func download(urls: Array<String>,
+                  path: String,
+                  priority: Int,
+                  block: @escaping GXTaskDownloadTotalBlock) {
+        let ownloadToPath = hyDownPath + "/\(path)"
+        var downloadUrls: Array<GXDownloadURLModel> = []
+        for url in urls {
+            let downloadModel = GXDownloadURLModel()
+            downloadModel.src    = url
+            downloadModel.priority = priority
+            downloadUrls.append(downloadModel)
+        }
+        taskDownload.startByURL(forURL: downloadUrls, path: ownloadToPath, block: block)
+    }
+    
     /// 下载指定的URLS
     /// - Parameters:
     ///   - urls: <#urls description#>

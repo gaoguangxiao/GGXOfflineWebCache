@@ -15,8 +15,8 @@ public enum GXReachabilityStatus {
     case cellular
 }
 
-typealias StatusChangeCallback = (_ status : GXReachabilityStatus)->()
-typealias PendingTask = ()->Void
+public typealias StatusChangeCallback = (_ status : GXReachabilityStatus)->()
+public typealias PendingTask = ()->Void
 
 public class ZKReachabilityManger {
     
@@ -116,7 +116,7 @@ public class ZKReachabilityManger {
         self.listeners.removeValue(forKey: id)
     }
     
-    func exeTaskOnceNetworkReachable(_ block: @escaping PendingTask) {
+    public func exeTaskOnceNetworkReachable(_ block: @escaping PendingTask) {
         if self.isReachable() {
              block()
          } else {

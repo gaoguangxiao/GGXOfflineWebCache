@@ -12,6 +12,7 @@ import GGXSwiftExtension
 public extension Keys {
     static let token = "token"
     static let agreePrivacyPolicy = "agreePrivacyPolicy"
+    static let versionUpdate = "versionUpdate"
 }
 
 public extension UserDefaults {
@@ -21,6 +22,11 @@ public extension UserDefaults {
     /// 隐私协议弹框
     @UserDefaultWrapper(key: Keys.agreePrivacyPolicy, defaultValue: false)
     static var agreePrivacyPolicy: Bool
+    
+    /// 版本更新
+    @UserDefaultWrapper(key: Keys.versionUpdate, defaultValue: "1.0.0")
+    static var versionUpdate: String
+    
 }
 
 
