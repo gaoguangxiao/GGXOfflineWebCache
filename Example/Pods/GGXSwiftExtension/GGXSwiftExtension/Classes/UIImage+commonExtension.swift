@@ -31,7 +31,7 @@ public extension UIImage {
             self.init()
         }
     }
-
+    
     /**
      *  判断一张图是否不存在 alpha 通道，注意 “不存在 alpha 通道” 不等价于 “不透明”。一张不透明的图有可能是存在 alpha 通道但 alpha 值为 1。
      */
@@ -41,11 +41,11 @@ public extension UIImage {
         }
         let alphaInfo = ciimg.alphaInfo
         let opaque = alphaInfo == .noneSkipLast
-            || alphaInfo == .noneSkipFirst
-            || alphaInfo == .none
+        || alphaInfo == .noneSkipFirst
+        || alphaInfo == .none
         return opaque
     }
-
+    
     /**
      *  在当前图片的上下左右增加一些空白（不支持负值），通常用于调节NSAttributedString里的图片与文字的间距
      *  @param extension 要拓展的大小
@@ -59,7 +59,7 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return finalImage
     }
-
+    
     /**
      *  将原图进行旋转，只能选择上下左右四个方向
      *
@@ -71,17 +71,17 @@ public extension UIImage {
         if orientation == .up {
             return self
         }
-
+        
         var contextSize = size
         if orientation == .left || orientation == .right {
             contextSize = CGSize(width: contextSize.height, height: contextSize.width)
         }
-
+        
         contextSize = contextSize.flatSpecific(scale: scale)
-
+        
         UIGraphicsBeginImageContextWithOptions(contextSize, false, scale)
         guard let context = UIGraphicsGetCurrentContext() else { return self }
-
+        
         // 画布的原点在左上角，旋转后可能图片就飞到画布外了，所以旋转前先把图片摆到特定位置再旋转，图片刚好就落在画布里
         switch orientation {
         case .up:
@@ -110,10 +110,10 @@ public extension UIImage {
         @unknown default:
             break
         }
-
+        
         // 在前面画布的旋转、移动的结果上绘制自身即可，这里不用考虑旋转带来的宽高置换的问题
         draw(in: size.rect)
-
+        
         let imageOut = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return imageOut ?? self
@@ -131,7 +131,7 @@ public extension UIImage {
         let flipImage = UIImage(cgImage:self.cgImage!, scale:self.scale,orientation:UIImage.Orientation(rawValue: flipImageOrientation)!)
         return flipImage
     }
-
+    
     /**
      *  创建一个纯色的UIImage
      *
@@ -143,7 +143,7 @@ public extension UIImage {
      */
     @objc static func image(withColor color: UIColor, size: CGSize, cornerRadius: CGFloat = 0) -> UIImage? {
         let size = size.flatted
-
+        
         if cornerRadius == 0 {
             UIGraphicsBeginImageContext(size)
             color.set()
@@ -152,23 +152,23 @@ public extension UIImage {
             UIGraphicsEndImageContext()
             return image
         }
-
+        
         var resultImage: UIImage?
-
+        
         let opaque = (cornerRadius == 0.0 && color.alphaValue == 1.0)
         UIGraphicsBeginImageContextWithOptions(size, opaque, 0)
         let context = UIGraphicsGetCurrentContext()
         context?.setFillColor(color.cgColor)
-
+        
         let path = UIBezierPath(roundedRect: size.rect, cornerRadius: cornerRadius)
         path.addClip()
         path.fill()
-
+        
         resultImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return resultImage
     }
-
+    
     /**
      *  创建一个指定大小和颜色的形状图片
      *  @param shape 图片形状
@@ -191,7 +191,7 @@ public extension UIImage {
         }
         return image(withShape: shape, size: size, lineWidth: lineWidth, tintColor: tintColor)
     }
-
+    
     /**
      *  创建一个指定大小和颜色的形状图片
      *  @param shape 图片形状
@@ -201,10 +201,10 @@ public extension UIImage {
      */
     static func image(withShape shape: DDUIImageShape, size: CGSize, lineWidth: CGFloat, tintColor: UIColor?) -> UIImage? {
         let size = size.flatted
-
+        
         var resultImage: UIImage?
         let tintColor = tintColor ?? UIColor.white
-
+        
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
         var path: UIBezierPath
@@ -215,10 +215,10 @@ public extension UIImage {
             path = UIBezierPath(ovalIn: size.rect)
         case .triangle:
             path = UIBezierPath()
-
+            
             path.move(to: CGPoint(x: 0, y: size.height))
             path.addLine(to: CGPoint(x: size.width / 2, y: 0))
-
+            
             path.addLine(to: CGPoint(x: size.width, y: size.height))
             path.close()
         case .navBack:
@@ -257,7 +257,7 @@ public extension UIImage {
             path.lineWidth = lineWidth
             path.lineCapStyle = .round
         }
-
+        
         if drawByStroke {
             context.setStrokeColor(tintColor.cgColor)
             path.stroke()
@@ -265,24 +265,24 @@ public extension UIImage {
             context.setFillColor(tintColor.cgColor)
             path.fill()
         }
-
+        
         resultImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-
+        
         return resultImage
     }
-
+    
     var circleImage: UIImage? {
         UIGraphicsBeginImageContext(size)
-
+        
         let context = UIGraphicsGetCurrentContext()
         context?.addEllipse(in: size.rect)
         context?.clip()
         draw(in: size.rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
-
+        
         UIGraphicsEndImageContext()
-
+        
         return image
     }
     
@@ -320,7 +320,7 @@ public extension UIImage {
         return resize(size: CGSize(width:size.width / scale, height:size.height / scale),
                       scale: screenScale)
     }
-
+    
     /// 切图
     func crop(rect: CGRect, scale: CGFloat = 0) -> UIImage {
         let imageRect = size.rect
@@ -338,7 +338,7 @@ public extension UIImage {
             return self
         }
     }
-
+    
     /**
      *  在当前图片的基础上叠加一张图片，并指定绘制叠加图片的起始位置
      *
@@ -359,7 +359,7 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return imageOut
     }
-
+    
     /**
      *  返回一个被mask的图片
      *
@@ -375,9 +375,9 @@ public extension UIImage {
         if usingMaskImageMode {
             // 用CGImageMaskCreate创建生成的 image mask。
             // 黑色部分显示，白色部分消失，透明部分显示，其他颜色会按照颜色的灰色度对图片做透明处理。
-
+            
             guard let maskDataProvider = maskRef.dataProvider else { return self }
-
+            
             mask = CGImage(
                 maskWidth: maskRef.width,
                 height: maskRef.height,
@@ -387,7 +387,7 @@ public extension UIImage {
                 provider: maskDataProvider,
                 decode: nil,
                 shouldInterpolate: true)
-
+            
         } else {
             /*
              用一个纯CGImage作为mask。这个image必须是单色(例如：黑白色、灰色)、没有alpha通道、不能被其他图片mask。
@@ -397,16 +397,16 @@ public extension UIImage {
             // 白色部分显示，黑色部分消失，透明部分消失，其他灰色度对图片做透明处理。
             mask = maskRef
         }
-
+        
         guard let finalMaskImg = mask,
-            let maskedImage = cgImage?.masking(finalMaskImg) else {
+              let maskedImage = cgImage?.masking(finalMaskImg) else {
             return self
         }
-
+        
         let returnImage = UIImage(cgImage: maskedImage, scale: scale, orientation: imageOrientation)
         return returnImage
     }
-
+    
     /**
      *  将文字渲染成图片，最终图片和文字一样大
      */
@@ -415,7 +415,7 @@ public extension UIImage {
         let stringSize = attributedString.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil).size.sizeCeil
         UIGraphicsBeginImageContextWithOptions(stringSize, false, 0)
         _ = UIGraphicsGetCurrentContext()
-
+        
         attributedString.draw(in: stringSize.rect)
         let resultImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -423,24 +423,24 @@ public extension UIImage {
     }
     
     /**
-    *  修正图片方向
-    */
+     *  修正图片方向
+     */
     func fixOrientation() -> UIImage {
         if imageOrientation == .up {
             return self
         }
-
+        
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
-
+        
         draw(in: CGRect(origin: .zero, size: size))
-
+        
         guard let result = UIGraphicsGetImageFromCurrentImageContext() else {
             UIGraphicsEndImageContext()
             return self
         }
-
+        
         UIGraphicsEndImageContext()
-
+        
         return result
     }
     
@@ -464,5 +464,91 @@ public extension UIImage {
             return UIImage(ciImage: output)
         }
         return  self
+    }
+}
+
+//qrcode
+
+public class QRCreateModel {
+    
+    /// 文本
+    public var text: String?
+    
+    /// 二维码中间的logo
+    public var logo: String?
+    
+    /// 二维码缩放倍数{27*scale,27*scale}
+    public var scale: Float = 10
+    
+    /// 二维码背景颜色
+    public var backgroundColor: UIColor = UIColor.white
+    
+    /// 二维码颜色
+    public var contentColor: UIColor = UIColor.black
+    
+    public init(text: String, logo: String? = nil, scale: Float = 10, backgroundColor: UIColor = .white, contentColor: UIColor = .black) {
+        self.text = text
+        self.logo = logo
+        self.scale = scale
+        self.backgroundColor = backgroundColor
+        self.contentColor = contentColor
+    }
+}
+
+public extension UIImage {
+    
+    private static func addLogo(ciImage: CIImage, model: QRCreateModel) -> UIImage? {
+        
+        guard let _ = model.logo,
+              let logoImage = UIImage(named: model.logo!) else {
+            
+            return nil
+        }
+        
+        let image = UIImage(ciImage: ciImage)
+        let originX = (image.size.width - logoImage.size.width)/2.0
+        let originY = (image.size.height - logoImage.size.height)/2.0
+        
+        UIGraphicsBeginImageContext(image.size)
+        image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+        logoImage.draw(in: CGRect(x: originX, y: originY, width: logoImage.size.width, height: logoImage.size.height))
+        
+        let outPutImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return outPutImage
+    }
+    
+    static func createQRCode(model: QRCreateModel) -> UIImage? {
+        
+        guard let qrCode = model.text else { return nil }
+        
+        guard let data = qrCode.data(using: .utf8) else { return nil }
+        
+        let filter = CIFilter(name: "CIQRCodeGenerator",parameters: ["inputMessage":data,
+                                                                     "inputCorrectionLevel":"Q"])
+        
+        // 创建一个 CIContext 对象：
+        let context = CIContext()
+        
+        let transformed = CGAffineTransform(scaleX: 10, y: 10)
+        
+        // 获取生成的二维码图像
+        if let outputImage = filter?.outputImage?.transformed(by: transformed) {
+            // 将图像转换为可显示的 CGImage
+            
+            if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
+                // 创建 UIImage 并显示
+                let qrCodeImage = UIImage(cgImage: cgImage)
+                
+                guard let qrImageWithLogo = addLogo(ciImage: outputImage, model: model) else {
+
+                    return qrCodeImage
+                }
+  
+                return qrImageWithLogo
+            }
+        }
+        return nil
     }
 }

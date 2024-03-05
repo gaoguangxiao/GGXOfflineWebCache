@@ -140,8 +140,24 @@ public extension String {
     }
 }
 
+//MARK: 字符串操作
+public extension String {
+
+    static let random_str_characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    
+    static func randomString(length : Int) -> String{
+        var ranStr = ""
+        for _ in 0..<length {
+            let index = Int(arc4random_uniform(UInt32(random_str_characters.count)))
+            ranStr.append(random_str_characters[random_str_characters.index(random_str_characters.startIndex, offsetBy: index)])
+        }
+        return ranStr
+    }
+}
+
 // MARK: - URL Encode & Decode
 public extension String {
+        
     var toUrl: URL? {
         if let url = URL.init(string: self) {
             return url
@@ -155,11 +171,17 @@ public extension String {
     
     var toFileUrl: URL? {
         var url : URL?
+        
+        let charSet = CharacterSet.urlQueryAllowed as NSCharacterSet
+        let mutSet = charSet.mutableCopy() as! NSMutableCharacterSet
+        mutSet.addCharacters(in: "#")
+        let result = self.addingPercentEncoding(withAllowedCharacters: mutSet as CharacterSet)
+        
         if #available(iOS 16.0, *) {
-            url = URL(filePath: self)
+            url = URL(filePath: result ?? "" )
         } else {
             // Fallback on earlier versions
-            url = URL(fileURLWithPath: self)
+            url = URL(fileURLWithPath: result ?? "")
         }
         return url
     }
@@ -334,10 +356,45 @@ public extension String {
         return regex?.matches(in: self, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, self.count))
     }
     
+//    func replaceNonEnglishCharactersWithSpaces(text: String) -> String {
+//        let nonEnglishCharactersRange = NSMakeRange(0, text.utf16.count)
+//        let regex = try! NSRegularExpression(pattern: "[^a-zA-Z]", options: [])
+//        let modifiedString = regex.stringByReplacingMatches(in: text, options: [], range: nonEnglishCharactersRange, withTemplate: " ")
+//        return modifiedString
+//    }
+    
     /// 替换字符
     func replace(pattern:String,replacement:String) -> String? {
         let regex = try? NSRegularExpression(pattern: pattern, options: [])
         return regex?.stringByReplacingMatches(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count), withTemplate: replacement)
     }
    
+}
+
+//MARK: 图片base64
+public extension String {
+    /// 图片base64转Data数据
+    ///
+    var base64Image: UIImage? {
+        if let base64Data = convertImageBase64ToImageData(imageBase64Str: self){
+            return UIImage.init(data: base64Data)!
+        }
+        return nil
+    }
+    
+    func convertImageBase64ToImageData(imageBase64Str: String) -> Data? {
+        var base64String = imageBase64Str
+
+        if base64String.hasPrefix("data:image") {
+            guard let newBase64String = base64String.components(separatedBy: ",").last else {
+                return nil
+            }
+            base64String = newBase64String
+        }
+        guard let decodedData = Data(base64Encoded: base64String, options: .ignoreUnknownCharacters) else {
+            return nil
+        }
+        return decodedData
+    }
+    
 }

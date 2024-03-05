@@ -43,3 +43,28 @@ public extension Int {
     }
 }
 
+
+public extension Int {
+    
+    /// 60 * 68 *60 24小时转换为 00:00:00 系那是
+    var bshmmDown: String {
+        
+//        if
+        let timeout = self
+            
+            let days = self/(3600*24)
+            
+            let hours = (timeout-days*24*3600)/3600
+            
+            let minute = (timeout-days*24*3600-hours*3600)/60
+            
+            let second = timeout-days*24*3600-hours*3600-minute*60
+            
+        
+            return "\(String(format: "%.2d", hours)):\(String(format: "%.2d", minute)):\(String(format: "%.2d", second))"
+//        }
+        
+//        return "00:00:00"
+        
+    }
+}

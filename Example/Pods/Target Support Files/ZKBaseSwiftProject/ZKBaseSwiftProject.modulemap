@@ -1,6 +1,0 @@
-framework module ZKBaseSwiftProject {
-  umbrella header "ZKBaseSwiftProject-umbrella.h"
-
-  export *
-  module * { export * }
-}

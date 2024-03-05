@@ -7,7 +7,6 @@
 
 import Foundation
 import GXSwiftNetwork
-import ZKBaseSwiftProject
 
 class ManiFestApi: MSBApi {
     

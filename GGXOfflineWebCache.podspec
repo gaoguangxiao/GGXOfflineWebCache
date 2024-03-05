@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.1.6'
-  s.summary          = '增加预置资源配置'
+  s.version          = '0.1.7'
+  s.summary          = '更新pod依赖，移除依赖基础工程'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -39,7 +39,6 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-    s.dependency 'ZKBaseSwiftProject'
     s.dependency 'GGXSwiftExtension'
     s.dependency 'GXTaskDownload'
     s.dependency 'SSZipArchive'

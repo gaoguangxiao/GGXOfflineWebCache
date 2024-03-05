@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import ZKBaseSwiftProject
+import GXSwiftNetwork
 
-public class GXWebOfflineAssetsModel: ZKJSONModel {
+public class GXWebOfflineAssetsModel: MSBApiModel {
     
     /// 如果不写域名，默认使用 {www_path}
     public var src: String? //

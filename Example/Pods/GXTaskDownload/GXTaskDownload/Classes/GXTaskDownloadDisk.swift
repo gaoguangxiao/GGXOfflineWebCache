@@ -40,7 +40,7 @@ public class GXTaskDownloadDisk: NSObject {
     }
     
     deinit {
-//        print("\(self)-deinit")
+        LogInfo("\(self)-deinit")
     }
     
     //
