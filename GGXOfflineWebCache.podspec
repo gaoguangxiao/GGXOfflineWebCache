@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.1.7'
+  s.version          = '0.1.8'
   s.summary          = '更新pod依赖，移除依赖基础工程'
 
 # This description is used to generate tags and improve search results.
