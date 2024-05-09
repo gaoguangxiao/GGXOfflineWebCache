@@ -10,6 +10,13 @@ import UIKit
 import GGXOfflineWebCache
 
 class ViewController: UIViewController, GXHybridZipManagerDelegate {
+    func configWebStart() {
+        
+    }
+    
+    func offlineConfigWebProgress(progress: Float) {
+        
+    }
     
     func offlineUnZipipWebProgress(progress: Float) {
         

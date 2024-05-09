@@ -137,7 +137,7 @@ public class GXHybridCacheManager: NSObject {
         for offlineAssets in urls {
             if let assets = offlineAssets {
                 self.moveOfflineWebFile(asset: assets) { b in
-                    LogInfo("moveOfflineWebFile---当前线程:\(Thread.current)-移动成功: \(assets.src ?? "")")
+//                    LogInfo("moveOfflineWebFile---当前线程:\(Thread.current)-移动成功: \(assets.src ?? "")")
                 }
             }
         }
@@ -150,7 +150,7 @@ public class GXHybridCacheManager: NSObject {
             if let assets = offlineAssets {
                 self.moveOfflineWebFile(asset: assets) { b in
                     moveFinishCount+=1
-                    LogInfo("moveOfflineWebFile---当前线程:\(Thread.current)-移动成功: \(assets.src ?? "")")
+//                    LogInfo("moveOfflineWebFile---当前线程:\(Thread.current)-移动成功: \(assets.src ?? "")")
                     block(false,1,urls.count)
                 }
             }
