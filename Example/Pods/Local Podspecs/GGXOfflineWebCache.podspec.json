@@ -1,7 +1,7 @@
 {
   "name": "GGXOfflineWebCache",
-  "version": "0.1.8",
-  "summary": "更新pod依赖，移除依赖基础工程",
+  "version": "0.2.0",
+  "summary": "增加移动文件速度",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GGXOfflineWebCache.git",
-    "tag": "0.1.8"
+    "tag": "0.2.0"
   },
   "platforms": {
     "ios": "12.0"
