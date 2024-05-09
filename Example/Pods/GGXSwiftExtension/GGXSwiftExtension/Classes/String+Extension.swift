@@ -19,6 +19,10 @@ public extension String {
         return count
     }
     
+    var range: NSRange {
+        return NSRange(location: 0, length: count)
+    }
+    
     /// 预估尺寸，根据字体、宽度
     func size(font: UIFont, width: CGFloat = SCREEN_WIDTH_STATIC) -> CGSize {
         return (self as NSString).boundingRect(with: CGSize(width: width, height: CGFloat(HUGE)), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil).size

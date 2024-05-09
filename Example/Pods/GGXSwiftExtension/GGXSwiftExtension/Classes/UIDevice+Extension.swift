@@ -337,8 +337,16 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
     
     /// 用户界面当前是否横屏,用户界面横屏了才会返回true
     @objc class func isInterfaceLandscape() -> Bool {
-        let orientation = UIApplication.shared.statusBarOrientation
-        return orientation == .landscapeLeft || orientation == .landscapeRight
+        if #available(iOS 13.0, *) {
+            if let tmpOrientation = UIApplication.windowScenes.first?.interfaceOrientation {
+                return tmpOrientation.isLandscape
+            }
+            return false
+        } else {
+            // Fallback on earlier versions
+            let orientation = UIApplication.shared.statusBarOrientation
+            return orientation == .landscapeLeft || orientation == .landscapeRight
+        }
     }
     
     /// 设备当前是否横屏无论支不支持横屏，只要设备横屏了，就会返回YES
@@ -489,6 +497,26 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         return statusH
     }
     
+    /// 获取window安全域左边间距
+    static var getSafeAreaLeft: CGFloat {
+        guard let window = UIApplication.rootWindow else { return 0 }
+        if #available(iOS 11.0, *) {
+            return window.safeAreaInsets.left
+        } else {
+            return 0
+        }
+    }
+    
+    /// 获取window安全域左边间距
+    static var getSafeAreaRight: CGFloat {
+        guard let window = UIApplication.rootWindow else { return 0 }
+        if #available(iOS 11.0, *) {
+            return window.safeAreaInsets.right
+        } else {
+            return 0
+        }
+    }
+    
     //底部安全域
     @objc static var getTouchBarHeight: CGFloat {
         var touchBarH: CGFloat = 0
@@ -502,8 +530,17 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
 
 
 //设备适配
-extension UIDevice {
-    public static func deviceFactor(_ standardHeight: CGFloat = UIDevice.isIPad ? 768 : 414 ) -> CGFloat {
+public extension UIDevice {
+    
+    static func deviceFactor(_ standardHeight: CGFloat = UIDevice.isIPad ? 768 : 414 ) -> CGFloat {
         return SCREEN_WIDTH_STATIC/standardHeight
+    }
+    
+    /// 兼容横屏和竖屏 横屏只有44
+    static func TopBarHeighttRelative() -> CGFloat {
+        if UIDevice.isInterfaceLandscape() {
+            return NavigationBarHeight + 20
+        }
+        return StatusBarHeight + NavigationBarHeight
     }
 }

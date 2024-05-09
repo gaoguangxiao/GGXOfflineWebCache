@@ -102,7 +102,7 @@ extension GXHybridCheckManager {
             //获取之后立马删除
             self.removeTask()
 //            print("任务校验：\(url)-:\(Thread.current)")
-            GXManifestApiService.requestManifest(url: url) { [weak self] configModel in
+            GXManifestApiService.requestManifestApi(url: url) { [weak self] configModel in
                 
                 guard let `self` = self else { return }
                 if let configModel , let assets = configModel.assets {

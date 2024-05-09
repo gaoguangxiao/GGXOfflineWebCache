@@ -10,11 +10,26 @@ import Combine
 import GGXSwiftExtension
 import SSZipArchive
 
+public protocol GXHybridCacheManagerDelegate: NSObject {
+    
+    /// 解压结束
+    func unzipFinish()
+    
+    /// 配置开始
+    func configStart()
+    
+    /// 配置结束
+    func configFinish()
+}
+
+
 public class GXHybridCacheManager: NSObject {
     
     public static let share = GXHybridCacheManager()
     
     public var resourceCachePath: String = "/WebResource"
+    
+    public weak var delegate: GXHybridCacheManagerDelegate?
     
     public lazy var presetPath: String? = {
         guard let cache = FileManager.cachesPath else { return nil }
@@ -78,15 +93,69 @@ public class GXHybridCacheManager: NSObject {
         block(true)
     }
     
+    public func movePresetPkg(block: @escaping (_ isSuccess: Bool,_ count: Int, _ total:Int) -> Void)  {
+        var moveFinishCount = 0
+        var totalCount = 0
+        if let paths = getPresetManifestPaths() {
+            for name in paths {
+                let presetManifestModel = getPresetManifestModel(manifesetName: name)
+                if let assets = presetManifestModel?.assets {
+                    totalCount += assets.count
+                }
+            }
+        }
+        
+        if let paths = getPresetManifestPaths() {
+            for name in paths {
+                let presetManifestModel = getPresetManifestModel(manifesetName: name)
+                guard let assets = presetManifestModel?.assets else {
+                    block(false,0,0)
+                    return
+                }
+                self.moveOfflineWebFile(urls: assets) { isSuccess, count, total in
+//                }
+                    if isSuccess {
+                        //保存配置
+                        if let configFilePath = self.getPresetFilePath(fileName: name) , isSuccess == true {
+                            self.updateCurrentManifestUserPreset(manifestJSON: configFilePath) { b in
+
+                            }
+                        }
+                    } else {
+                        moveFinishCount+=1
+//                        print("\(name)移动成功:\(moveFinishCount)、: \(totalCount)")
+                    }
+                    block(moveFinishCount >= totalCount,moveFinishCount,totalCount)
+                }
+            }
+//            block(true,1,paths.count)
+        }
+        block(true,1,1)
+    }
+    
     public func moveOfflineWebFile(urls: Array<GXWebOfflineAssetsModel?>,block: @escaping (_ isSuccess: Bool) -> Void)  {
         for offlineAssets in urls {
             if let assets = offlineAssets {
                 self.moveOfflineWebFile(asset: assets) { b in
-                    
+                    LogInfo("moveOfflineWebFile---当前线程:\(Thread.current)-移动成功: \(assets.src ?? "")")
                 }
             }
         }
         block(true)
+    }
+    
+    public func moveOfflineWebFile(urls: Array<GXWebOfflineAssetsModel?>,block: @escaping (_ isSuccess: Bool,_ count: Int, _ total:Int) -> Void)  {
+        var moveFinishCount = 0
+        for offlineAssets in urls {
+            if let assets = offlineAssets {
+                self.moveOfflineWebFile(asset: assets) { b in
+                    moveFinishCount+=1
+                    LogInfo("moveOfflineWebFile---当前线程:\(Thread.current)-移动成功: \(assets.src ?? "")")
+                    block(false,1,urls.count)
+                }
+            }
+        }
+        block(true,urls.count,urls.count)
     }
     
     /// 移动特定的文件
@@ -116,6 +185,7 @@ public class GXHybridCacheManager: NSObject {
                 if isSuccess {
                     //保存配置信息
                     self.saveUrlInfo(asset: asset, folderPath: toFolderPath)
+//                    LogInfo("moveOfflineWebFile---当前线程:\(Thread.current)-移动成功: \(filePath)")
                     block(true)
                 } else {
                     block( false)
@@ -600,10 +670,10 @@ extension GXHybridCacheManager {
     ///   - block: block description
     public func moveOfflineWebZip(path: String,
                                   unzipName:String,
-                                  block: @escaping ((_ progress: Float,_ isSuccess: Bool) -> Void)) {
+                                  block: @escaping ((_ progress: Float,_ isUnZipSuccess: Bool,_ isMoveSuccess: Bool) -> Void)) {
         guard let folderPath = presetPath else {
             print("预置路径不存在")
-            block(0, false)
+            block(0, false,false)
             return
         }
         let toPath = folderPath + "/\(path.lastPathComponent)"
@@ -615,18 +685,13 @@ extension GXHybridCacheManager {
                 SSZipArchive.unzipFile(atPath: toPath, toDestination: folderPath, overwrite: true, password: nil) { str, fileInfo, count, total in
 //                    LogInfo("当前线程:\(Thread.current)")
                     let progress = Float(count)/Float(total)
-                    block(Float(progress),false)
+                    block(Float(progress),false,false)
                 } completionHandler: { str, b, err in
                     if b == true {
                         //移除解压的文件
                         let isFileExists = FileManager.isFileExists(atPath: str)
                         if isFileExists {
                             FileManager.removefile(atPath: str)
-                        }
-                        
-                        //移动初始化至特定目录
-                        self.movePresetPkg { isSuccess in
-                            
                         }
                         
                         //移动内部静态资源
@@ -638,14 +703,28 @@ extension GXHybridCacheManager {
                         } catch let e {
                             print(e)
                         }
-                                                
+                        
+                        /// 配置开始
+                        self.delegate?.configStart()
+                        
+                        //移动进度
+                        self.movePresetPkg { isSuccess, count, total in
+                            let progress = Float(count)/Float(total)
+                            print("移动进度:\(progress)")
+                            block(Float(progress),b,isSuccess)
+                            if isSuccess {
+                                self.delegate?.configFinish()
+                            }
+                        }
                         //移动成功之后删除解压之后的备用文件
                         self.removeFile(path: unzipName)
-                        block(1.0,b)
+                        
+                        self.delegate?.unzipFinish()
+                        block(1.0,b,true)
                     }
                 }
             } else {
-                block(0, false)
+                block(0, false,false)
             }
         }
         //

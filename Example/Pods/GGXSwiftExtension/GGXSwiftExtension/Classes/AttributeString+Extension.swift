@@ -49,3 +49,8 @@ public extension NSMutableAttributedString {
         return changedAttributedString
     }
 }
+
+public extension NSAttributedString {
+    
+    
+}

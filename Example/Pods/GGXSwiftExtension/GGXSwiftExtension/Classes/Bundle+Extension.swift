@@ -37,3 +37,33 @@ public extension Bundle {
         }
     }
 }
+
+
+public extension Bundle {
+
+    static func resourceBunlde(bundleName: String) -> Bundle {
+        
+        let main_bundle = Bundle.main
+        
+//        print("mainBundle: \(main_bundle)")
+        // 找到pod的bundle
+        if let bundleURL = Bundle.main.url(forResource: bundleName, withExtension: "bundle") {
+            
+            return Bundle(url: bundleURL) ?? main_bundle
+        } else {
+            if var bUrl = main_bundle .url(forResource: "Frameworks", withExtension: nil) {
+                
+                bUrl = bUrl.appendingPathComponent(bundleName)
+                bUrl = bUrl.appendingPathExtension("framework")
+                
+                //找bundle位置
+                bUrl = bUrl.appendingPathComponent(bundleName)
+                bUrl = bUrl.appendingPathExtension("bundle")
+                
+                return Bundle(url: bUrl) ?? main_bundle
+            }
+        }
+        return main_bundle
+    }
+    
+}

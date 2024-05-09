@@ -3,7 +3,7 @@
   "version": "0.1.8",
   "summary": "更新pod依赖，移除依赖基础工程",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/小修/GGXOfflineWebCache",
+  "homepage": "https://github.com",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -16,8 +16,9 @@
     "tag": "0.1.8"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "12.0"
   },
+  "swift_versions": "5.0",
   "source_files": "GGXOfflineWebCache/Classes/**/*",
   "dependencies": {
     "GGXSwiftExtension": [
@@ -32,5 +33,6 @@
     "GXSwiftNetwork": [
 
     ]
-  }
+  },
+  "swift_version": "5.0"
 }

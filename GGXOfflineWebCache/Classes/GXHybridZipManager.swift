@@ -11,9 +11,15 @@ import GGXSwiftExtension
 public protocol GXHybridZipManagerDelegate: NSObjectProtocol {
     /// 解压进度
     func offlineUnZipipWebProgress(progress: Float)
-    
+        
     /// 解压完成
     func offlineUnzip(completedWithError: Bool)
+    
+    /// 配置开始
+    func configWebStart()
+    
+    /// 配置文件进度
+    func offlineConfigWebProgress(progress: Float)
 }
 
 public class GXHybridZipManager: NSObject {
@@ -25,6 +31,7 @@ public class GXHybridZipManager: NSObject {
     lazy var webOfflineCache: GXHybridCacheManager = {
         let hybridCache = GXHybridCacheManager()
         hybridCache.presetName = "dist"
+        hybridCache.delegate = self
         return hybridCache
     }()
     
@@ -52,20 +59,28 @@ public class GXHybridZipManager: NSObject {
         //开启线程
         DispatchQueue.global().async {
             self.webOfflineCache.moveOfflineWebZip(path: path,
-                                                   unzipName: path.lastPathComponent.stringByDeletingPathExtension) { [weak self ]progress, isSuccess in
+                                                   unzipName: path.lastPathComponent.stringByDeletingPathExtension) { [weak self ]progress, isSuccess,isMoveSuccess in
                 guard let `self` = self else { return }
                 //print("解压进度:\(progress)")
-                DispatchQueue.main.async {
-                    self.unzipDelegate?.offlineUnZipipWebProgress(progress: progress)
+                if !isSuccess {
+                    DispatchQueue.main.async {
+                        self.unzipDelegate?.offlineUnZipipWebProgress(progress: progress)
+                    }
                 }
-                
-                if isSuccess {
+                ///
+                if isSuccess, isMoveSuccess {
                     UserDefaults.presetDataNameKey = appVersion
                     DispatchQueue.main.async {
                         self.unzipDelegate?.offlineUnzip(completedWithError: true)
                     }
+                    block(isSuccess)
+                } else {
+                    if isSuccess , !isMoveSuccess{
+                        DispatchQueue.main.async {
+                            self.unzipDelegate?.offlineConfigWebProgress(progress: progress)
+                        }
+                    }
                 }
-                block(isSuccess)
             }
         }
     }
@@ -73,4 +88,22 @@ public class GXHybridZipManager: NSObject {
     deinit {
         LogInfo("\(self)-deinit")
     }
+}
+
+extension GXHybridZipManager: GXHybridCacheManagerDelegate {
+    public func unzipFinish() {
+        
+    }
+    
+    public func configStart() {
+        DispatchQueue.main.async {
+            self.unzipDelegate?.configWebStart()
+        }
+    }
+    
+    public func configFinish() {
+        
+    }
+    
+    
 }

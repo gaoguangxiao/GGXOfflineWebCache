@@ -9,6 +9,7 @@ import Foundation
 import WebKit
 
 //数据存储
+//@available(iOS 9.0, *)
 public extension WKWebsiteDataStore {
  
     class func removeWebsiteDataStore() {

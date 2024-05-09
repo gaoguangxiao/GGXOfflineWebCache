@@ -31,6 +31,19 @@ public extension Dictionary {
         return String(data: jsonData, encoding: .utf8)
     }
 
+    func decode<T: Decodable>(type: T.Type) -> T? {
+        do {
+            guard let jsonStr = self.toJsonString else { return nil }
+            guard let jsonData = jsonStr.data(using: .utf8) else { return nil }
+            let decoder = JSONDecoder()
+            let obj = try decoder.decode(type, from: jsonData)
+            return obj
+        } catch let error {
+            print(error)
+            return nil
+        }
+    }
+    
     /// 字典到json字符串
     var toPrettyString: String? {
         guard JSONSerialization.isValidJSONObject(self) else {
