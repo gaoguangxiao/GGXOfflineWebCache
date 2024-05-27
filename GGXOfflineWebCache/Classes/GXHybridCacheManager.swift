@@ -571,10 +571,12 @@ public extension GXHybridCacheManager {
         }
         
         // 资源ID
-        guard let resourceID = self.resourceName(url) else {
+        guard var resourceID = self.resourceName(url) else {
             print("未获取到资源信息路径")
             return nil
         }
+        //将sr目录按照配置目录移除
+        resourceID = resourceID.replace("\(self.webFolderName)/", new: "")
         
         guard let resourceInfo = self.resourceInfoPath(url) else {
             print("未获取到资源信息路径")
