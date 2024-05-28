@@ -6,13 +6,14 @@
 //
 
 import Foundation
-import HandyJSON
+import SmartCodable
 
-open class MSBApiModel: MSBRespApiModel {
-//    public override init() { }
-//    open var data : T?
+open class MSBApiModel: SmartCodable {
+    required public init() { }
+    open var data : SmartAny?
     open var success : Bool = false
-//    open var msg : String = ""
+    open var msg : String?
+    open var code : Int = 0 //业务端代码
 }
 
 

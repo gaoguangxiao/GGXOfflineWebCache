@@ -6,7 +6,7 @@
 
 import Foundation
 import Moya
-import HandyJSON
+//import HandyJSON
 import Alamofire
 //import SwiftyUserDefaults
 import UIKit
@@ -40,6 +40,7 @@ open class MSBApi: TargetType {
     
     open var mock: Bool { false }
     open var verbose: Bool { false }
+    public static var requestTimeoutInterval: Float?
     open var requestUrl: String?
     open var requestPath: String
     open var requestHeaders: [String: String]?
@@ -53,6 +54,7 @@ open class MSBApi: TargetType {
                 method: Moya.Method = .get,
                 parameters: [String: Any] = [:],
                 sampleData: String = "",
+                timeout: Float = MSBApiConfig.shared.timeoutInterval,
                 showErrorMsg:Bool = false,
                 showHud:Bool = true) {
 //        requestUrl = url
@@ -60,6 +62,7 @@ open class MSBApi: TargetType {
         requestMethod = method
         requestParameters = parameters
 //        requestHeaders    = headers
+        MSBApi.requestTimeoutInterval = timeout
         requestSampleData = sampleData
         requestShowErrorMsg      = showErrorMsg
         requestShowHUD   = showHud
@@ -117,6 +120,27 @@ open class MSBApi: TargetType {
         useProvider.request(self, self, onFailure: onFailure, onSuccess: onSuccess)
     }
     
+}
+
+// MARK: ==== Closure
+extension MSBApi {
+    
+    private static let requestClosure = { (endpoint: Endpoint, 
+                                           done: MoyaProvider.RequestResultClosure) in
+        do {
+            var request = try endpoint.urlRequest()
+            /// 设置超时时间
+            if let outTimer = MSBApi.requestTimeoutInterval {
+                request.timeoutInterval = TimeInterval(outTimer)
+            } else {
+                request.timeoutInterval =  TimeInterval(MSBApiConfig.shared.timeoutInterval)
+            }
+            done(.success(request))
+            
+        } catch  {
+            done(.failure(MoyaError.underlying(error, nil)))
+        }
+    }
 }
 
 // MARK: =================== TargetType
@@ -189,10 +213,13 @@ extension MSBApi {
 // MARK: =================== providers
 extension MSBApi {
     
-    static let silenceProvider = MoyaProvider<MSBApi>(plugins: [])
     static let providerLogPlugin = NetworkLoggerPlugin()
+//    static let providerActivityPlugin = NetworkActivityPlugin(networkActivityClosure: <#T##NetworkActivityClosure#>)
+    static let silenceProvider = MoyaProvider<MSBApi>(plugins: [])
     static let verboseProvider = MoyaProvider<MSBApi>(plugins: [providerLogPlugin])
     static let mockProvider = MoyaProvider<MSBApi>(stubClosure: MoyaProvider.immediatelyStub)
+    // 扩展一个可以设置超时的请求
+    fileprivate static let outTimeProvider = MoyaProvider<MSBApi>(requestClosure: MSBApi.requestClosure,plugins: [])
     
     var provider: MoyaProvider<MSBApi> {
         if MSBApiConfig.shared.getIsDebug?() != true {
@@ -202,7 +229,7 @@ extension MSBApi {
         } else if verbose {
             return MSBApi.verboseProvider
         } else {
-            return MSBApi.silenceProvider
+            return MSBApi.outTimeProvider
         }
     }
 }

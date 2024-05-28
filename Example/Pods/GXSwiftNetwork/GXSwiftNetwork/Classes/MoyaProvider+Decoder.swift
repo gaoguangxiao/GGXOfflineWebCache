@@ -8,7 +8,7 @@ import Foundation
 import Moya
 //import SwiftyUserDefaults
 import Alamofire
-import HandyJSON
+//import HandyJSON
 import PKHUD
 
 // MARK: - request MoyaProvider
@@ -17,7 +17,7 @@ extension MoyaProvider {
     /// 解析成想要的model类
     internal func request<T: MSBApiModel>( _ target: Target,
                                          _ rTarget:MSBApi,
-                                        onFailure: @escaping (MSBRespApiModel) -> Void,
+                                           onFailure: @escaping (MSBRespApiModel) -> Void,
                                            onSuccess: @escaping (T) -> Void,
                                         fullResponse: ((Moya.Response) -> Void)? = nil) {
 //        let markedLoginTime = Defaults[.tryToLoginTime]
@@ -49,15 +49,14 @@ extension MoyaProvider {
                         let msg = model?.msg
                         HUD.flash(.label(msg), delay: 1.5)
                     }
-                    guard let model = model else {
+                    guard let model else {
                         let apiError = MSBRespApiModel(code: response.statusCode, msg: "数据解析失败")
-                        apiError.respData = response.data
-                        apiError.response = response.response
                         check401Fail(apiError)
                         return
                     }
-                    model.response = response.response
-                    model.respData = response.data
+//                    model.response = response.response
+//                    model.respData = response.data
+                    
                     onSuccess(model)
                 } catch let error {
                     // HTTP statuc code error or json parsing error.
@@ -76,9 +75,6 @@ extension MoyaProvider {
                         HUD.flash(.label(errorMessage), delay: 1.5)
                     }
                     let apiError = MSBRespApiModel(code: response.statusCode, msg: errorMessage)
-//                    apiError.respAllHeaderFields = response.response?.allHeaderFields
-                    apiError.respData = response.data
-                    apiError.response = response.response
                     check401Fail(apiError)
                 }
             case let .failure(moyaError):

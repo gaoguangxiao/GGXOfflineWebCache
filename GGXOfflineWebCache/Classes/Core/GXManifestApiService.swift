@@ -18,19 +18,10 @@ class ManiFestApi: MSBApi {
 
 public class GXManifestApiService: NSObject {
     
-//    public static func requestManifest(url: String,closure: @escaping ((GXWebOfflineManifestModel?) -> ())) {
-//        let api = ManiFestApi(url: url)
-//        api.request { (result: GXWebOfflineManifestModel?) in
-//            closure(result)
-//        } onFailure: { _ in
-//            closure(nil)
-//        }
-//    }
-    
     public static func requestManifestApi(url: String,closure: @escaping ((GXWebOfflineManifestModel?) -> ())) {
         let api = ManiFestApi(url: url)
         api.request { (result: GXWebOfflineManifestBaseModel?) in
-            closure(result?.data)
+            closure(result?.ydata)
         } onFailure: { _ in
             closure(nil)
         }

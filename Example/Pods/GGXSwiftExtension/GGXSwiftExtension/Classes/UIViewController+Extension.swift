@@ -94,7 +94,7 @@ extension UIViewController {
             if let scene = UIApplication.windowScenes.first{
                 if #available(iOS 16.0, *) {
                     self.setNeedsUpdateOfSupportedInterfaceOrientations()
-                    let geometryPreferencesIOS = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: .portrait)
+                    let geometryPreferencesIOS = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: orientation)
                     scene.requestGeometryUpdate(geometryPreferencesIOS) { error in
 //                        print("横屏结果\(error)")
                     }
@@ -109,8 +109,14 @@ extension UIViewController {
         }
     }
     
-    public func p_switchLowOrientationWithLaunchScreen(orientation:UIInterfaceOrientationMask) {
-        let ori = NSNumber(integerLiteral: Int(orientation.rawValue))
+    public func p_switchLowOrientationWithLaunchScreen(orientation: UIInterfaceOrientationMask) {
+        var deviceInt: UIDeviceOrientation = .portrait
+        if orientation == .landscape {
+            deviceInt = .landscapeLeft
+        } else {
+            deviceInt = .portrait
+        }
+        let ori = NSNumber(integerLiteral: deviceInt.rawValue)
         UIDevice.current.setValue(ori, forKey: "orientation")
     }
 }

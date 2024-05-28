@@ -39,7 +39,7 @@ public extension Bundle {
 }
 
 
-public extension Bundle {
+@objc public extension Bundle {
 
     static func resourceBunlde(bundleName: String) -> Bundle {
         

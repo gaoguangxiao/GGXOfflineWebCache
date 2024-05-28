@@ -23,13 +23,13 @@ public extension URL {
     }
     
     
-    var base64FileData: String {
+    var base64FileData: String? {
         do {
             let data = try Data(contentsOf: self)
             return data.base64EncodedString()
         } catch {
             print("解析音频数据失败")
-            return ""
+            return nil
         }
     }
 

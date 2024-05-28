@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import GXSwiftNetwork
+import SmartCodable
 
-public class GXWebOfflineAssetsModel: MSBApiModel {
+public class GXWebOfflineAssetsModel: SmartCodable {
     
     /// 如果不写域名，默认使用 {www_path}
     public var src: String? //
@@ -29,5 +29,7 @@ public class GXWebOfflineAssetsModel: MSBApiModel {
     
     /// 本地全路径-通过本地查找得到
     public var localFullFilePath: String?
-    
+ 
+    /// 初始化
+    required public init(){}
 }

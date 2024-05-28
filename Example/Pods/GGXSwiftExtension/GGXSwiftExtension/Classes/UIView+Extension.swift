@@ -27,7 +27,7 @@ public extension UIView {
         set(num) { frame = CGRect(x: x, y: y, width: width, height: flat(num)) }
         get { return frame.size.height }
     }
-
+    
     /// 中心点横坐标
     @objc var centerX: CGFloat {
         set(num) { frame = CGRect(x: flat(num - width / 2), y: y,
@@ -40,31 +40,31 @@ public extension UIView {
                                   width: width, height: height) }
         get { return y + flat(height / 2) }
     }
-
+    
     /// 左边缘
     @objc var left: CGFloat {
         set(num) { x = flat(num) }
         get { return frame.origin.x }
     }
-
+    
     /// 右边缘
     @objc var right: CGFloat {
         set(num) { x =  flat(num - width) }
         get { return x + width }
     }
-
+    
     /// 上边缘
     @objc var top: CGFloat {
         set(num) { y = flat(num) }
         get { return y }
     }
-
+    
     /// 下边缘
     @objc var bottom: CGFloat {
         set(num) { y = flat(num - height) }
         get { return y + height }
     }
-
+    
     // MARK: VC
     // the VC myself belone to
     var viewController: UIViewController? {
@@ -77,7 +77,7 @@ public extension UIView {
         }
         return responder as? UIViewController
     }
-
+    
     /// 对传进来的 `UIView` 截图，生成一个 `UIImage` 并返回
     ///
     /// - Parameter afterUpdates: 是否要在界面更新完成后才截图
@@ -115,7 +115,7 @@ public extension UIView {
     }
     
     
-
+    
     // MARK: Animation
     /// zoom in animation (maybe for voice practice)
     @objc func zoomInDuration(_ duration: TimeInterval,
@@ -127,12 +127,12 @@ public extension UIView {
         },
                        completion: completion)
     }
-
+    
     /// zoom in animation (maybe for voice practice)
     @objc func zoomInDurationCompletion(_ completion: @escaping (_ : Bool) -> Void) {
         zoomInDuration(0.25, completion: completion)
     }
-
+    
     /// bounces animation 弹簧动画
     @objc func bouncesAnimation() {
         let duration = 0.6
@@ -143,7 +143,7 @@ public extension UIView {
             0.15,
             0.3,
             0.45
-            ].map { NSNumber(value: $0 / duration) }
+        ].map { NSNumber(value: $0 / duration) }
         springAnimation.duration = duration
         layer.add(springAnimation, forKey: nil)
     }
@@ -160,6 +160,22 @@ public extension UIView {
         self.layer.mask = shape
     }
     
+    @objc func ai_setShadowToCorners(rect: CGRect, corners: UIRectCorner, cornerRadii: CGSize = CGSize(width: 10, height: 10), fillColor: UIColor = .clear, shadowColor: UIColor = .black, shadowOpacity: Float = 0.5, shadowRadius: CGFloat = 10, shadowOffset: CGSize = CGSize(width: 5, height: 5)) {
+        
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: cornerRadii)
+        
+        let shadowLayer = CAShapeLayer()
+        shadowLayer.frame = rect
+        shadowLayer.path = path.cgPath
+        shadowLayer.shadowColor = shadowColor.cgColor
+        shadowLayer.shadowOpacity = shadowOpacity
+        shadowLayer.shadowRadius = shadowRadius
+        shadowLayer.shadowOffset = shadowOffset
+        shadowLayer.fillColor = fillColor.cgColor
+        
+        self.layer.insertSublayer(shadowLayer, at: 0)
+    }
+    
     func createShadeLayer(startColor: UIColor, endColor: UIColor) {
         let gradientLayer = CAGradientLayer()
         
@@ -171,6 +187,6 @@ public extension UIView {
         gradientLayer.locations = [0,1]
         
         self.layer.insertSublayer(gradientLayer, at:0)
-//        return gradientLayer
+        //        return gradientLayer
     }
 }
