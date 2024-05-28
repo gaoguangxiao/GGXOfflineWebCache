@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import HandyJSON
+import SmartCodable
 
-public class GXDownloadURLModel: NSObject ,HandyJSON {
+public class GXDownloadURLModel: NSObject ,SmartCodable {
     
     required public override init() {
         super.init()

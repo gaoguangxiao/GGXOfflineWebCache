@@ -7,7 +7,7 @@
 
 import Foundation
 import GGXSwiftExtension
-import HandyJSON
+//import HandyJSON
 
 extension GXTaskDownloadDisk: GXDownloadingDelegate {
     

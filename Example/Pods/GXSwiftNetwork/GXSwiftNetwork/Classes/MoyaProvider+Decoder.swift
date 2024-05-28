@@ -8,7 +8,6 @@ import Foundation
 import Moya
 //import SwiftyUserDefaults
 import Alamofire
-//import HandyJSON
 import PKHUD
 
 // MARK: - request MoyaProvider

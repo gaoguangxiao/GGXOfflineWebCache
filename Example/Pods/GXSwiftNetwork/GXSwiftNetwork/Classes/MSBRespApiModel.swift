@@ -7,7 +7,6 @@
 
 import Foundation
 import SmartCodable
-//import HandyJSON
 
 open class MSBRespApiModel: NSObject, SmartCodable {
 //    open var response: HTTPURLResponse?

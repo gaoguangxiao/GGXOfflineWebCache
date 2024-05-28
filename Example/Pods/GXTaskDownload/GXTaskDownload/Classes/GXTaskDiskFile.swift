@@ -133,7 +133,16 @@ public extension GXTaskDiskFile {
                 print("JSON格式有问题")
                 return nil
             }
-            return GXDownloadURLModel.deserialize(from: localJsonDict)
+            let model = GXDownloadURLModel()
+            model.src = localJsonDict["src"] as? String
+            model.md5 = localJsonDict["md5"] as? String
+            model.policy = localJsonDict["policy"] as? Int
+            model.priority = localJsonDict["priority"] as? Int ?? 0
+            model.info     = localJsonDict["info"] as? String
+            model.match    = localJsonDict["match"] as? String
+//            return GXDownloadURLModel.deserialize(from: localJsonDict)
+            return model
+            
             
         }
         return nil
