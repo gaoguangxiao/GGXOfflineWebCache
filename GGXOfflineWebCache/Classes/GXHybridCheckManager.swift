@@ -129,7 +129,9 @@ extension GXHybridCheckManager {
                         self.checkFinish()
                     }
                 } else {
-                    self.delegate?.finishCheck(urls: canDownloadUrls, manifestUrls: canUpdateManifestUrls)
+                    self.addFinishTaskCount()
+                    self.checkFinish()
+//                    self.delegate?.finishCheck(urls: canDownloadUrls, manifestUrls: canUpdateManifestUrls)
                 }
             }
         } else {
