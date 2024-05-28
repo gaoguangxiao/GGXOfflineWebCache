@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.2.4'
+  s.version          = '0.2.5'
   s.summary          = '修复url接口失败的回调'
 
 # This description is used to generate tags and improve search results.
