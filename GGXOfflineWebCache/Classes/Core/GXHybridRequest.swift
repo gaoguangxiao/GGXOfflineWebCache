@@ -32,9 +32,9 @@ extension GXHybridRequest {
     
     public func sendHyUrl(url: URL, block: @escaping (Data?, URLResponse?, Error?) -> Void) {
         let request = URLRequest(url: url)
-        LogInfo("开始请求")
+//        LogInfo("开始请求")
         dataTask = Self.session?.dataTask(with: request) { data, response, error in
-            LogInfo("结束请求")
+//            LogInfo("结束请求")
             block(data,response,error)
         }
         dataTask?.resume()

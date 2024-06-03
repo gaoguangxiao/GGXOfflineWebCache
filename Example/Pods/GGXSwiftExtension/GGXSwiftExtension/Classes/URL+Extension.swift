@@ -26,7 +26,8 @@ public extension URL {
     var base64FileData: String? {
         do {
             let data = try Data(contentsOf: self)
-            return data.base64EncodedString()
+            let base64 = data.base64EncodedString()
+            return base64.length > 0 ? base64 : nil
         } catch {
             print("解析音频数据失败")
             return nil

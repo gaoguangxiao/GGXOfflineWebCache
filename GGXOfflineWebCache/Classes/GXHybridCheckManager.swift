@@ -102,9 +102,9 @@ extension GXHybridCheckManager {
             //获取之后立马删除
             self.removeTask()
 //            print("任务校验：\(url)-:\(Thread.current)")
-            GXManifestApiService.requestManifestApi(url: url) { [weak self] configModel in
+            GXManifestApiService.requestManifestJSON(url: url) { [weak self] configModel in
                 
-                guard let `self` = self else { return }
+                guard let self else { return }
                 if let configModel , let assets = configModel.assets {
                     //1、通过URL获取本地预置，有值代表无需更新
                     if self.getSandboxPresetModel(url: url) != nil {
@@ -117,6 +117,10 @@ extension GXHybridCheckManager {
                             if let urlPath = asset.src {
                                 let diskFile = GXTaskDiskFile()
                                 let folderPath =                            GXHybridCacheManager.share.resourceCachePath + (urlPath.toPath.stringByDeletingLastPathComponent)
+                                /// 下载的URL信息
+                                if let remoteModel = GXDownloadURLModel.deserialize(from: asset.toDictionary()) {
+                                    diskFile.remoteDownloadURLModel = remoteModel
+                                }
                                 diskFile.taskDownloadPath = folderPath
                                 let isExist = diskFile.isExistDiskAndMD5Update(url: urlPath)
                                 if isExist == false{

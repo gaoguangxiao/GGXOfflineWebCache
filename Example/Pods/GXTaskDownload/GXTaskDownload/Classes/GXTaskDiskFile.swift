@@ -53,7 +53,7 @@ public class GXTaskDiskFile: NSObject {
     //    var urlStr: String?
     
     /// URL下载信息
-    var downloadURLModel: GXDownloadURLModel?
+    public var remoteDownloadURLModel: GXDownloadURLModel?
     
     func getUrlInfoLaseComponent(_ url: String) -> String {
         return url.md5Value + ".json"
@@ -75,7 +75,7 @@ public class GXTaskDiskFile: NSObject {
     }
     
     public func checkUrlTask() -> Bool {
-        guard let urlStr = self.downloadURLModel?.src else {
+        guard let urlStr = self.remoteDownloadURLModel?.src else {
             print("URL不可为空")
             return false
         }
@@ -99,7 +99,7 @@ public class GXTaskDiskFile: NSObject {
             //获取其URL信息的MD5信息和磁盘的是否一致。
             if let urlInfoModel = getURLFileInfoModel(url: url),
                let loaclUrlMD5 = urlInfoModel.md5,
-               let urlMD5 = downloadURLModel?.md5 {
+               let urlMD5 = remoteDownloadURLModel?.md5 {
                 print("\(loaclUrlMD5)--\(urlMD5)")
                 if !loaclUrlMD5.has(urlMD5,option: .caseInsensitive) {
                     clearFileAndInfo(forUrl: url)

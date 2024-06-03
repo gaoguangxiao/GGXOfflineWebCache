@@ -58,7 +58,7 @@ public class GXTaskDownloadDisk: NSObject {
         } else {
             let downloadURLModel = GXDownloadURLModel()
             downloadURLModel.src = url
-            diskFile.downloadURLModel = downloadURLModel
+            diskFile.remoteDownloadURLModel = downloadURLModel
             diskFile.createFilePath(forURL: url)
         }
         //配置回调
@@ -73,7 +73,7 @@ public class GXTaskDownloadDisk: NSObject {
         guard let uurl = urlModel.src?.toUrl else {
             return
         }
-        diskFile.downloadURLModel = urlModel
+        diskFile.remoteDownloadURLModel = urlModel
         
         ///更改downloader的优先级从
         taskPriority = urlModel.priority
@@ -84,7 +84,7 @@ public class GXTaskDownloadDisk: NSObject {
     
     public func start(block: @escaping GXTaskDownloadBlock) {
 //        LogInfo("调用次数------瞬间")
-        guard let urlPath = diskFile.downloadURLModel?.src else {
+        guard let urlPath = diskFile.remoteDownloadURLModel?.src else {
             return
         }
 //        print("打印路径：\(urlPath)")
@@ -110,7 +110,7 @@ public class GXTaskDownloadDisk: NSObject {
 extension GXTaskDownloadDisk {
     public func saveUrlInfo() {
         
-        if let url = diskFile.downloadURLModel?.src {
+        if let url = diskFile.remoteDownloadURLModel?.src {
             //文件信息以 文件名-info.json结尾
             let urlInfoPath = diskFile.path + "/" + "\(url.md5Value).json"
             
@@ -120,7 +120,7 @@ extension GXTaskDownloadDisk {
             }
             
             FileManager.createFile(atPath: urlInfoPath)
-            if let jsonData = diskFile.downloadURLModel?.toJSONString(), let pkgPath = urlInfoPath.toFileUrl {
+            if let jsonData = diskFile.remoteDownloadURLModel?.toJSONString(), let pkgPath = urlInfoPath.toFileUrl {
                 try? jsonData.write(to: pkgPath, atomically: true, encoding: .utf8)
             }
             

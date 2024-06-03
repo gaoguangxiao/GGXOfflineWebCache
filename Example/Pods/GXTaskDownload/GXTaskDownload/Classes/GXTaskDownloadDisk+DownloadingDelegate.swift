@@ -27,7 +27,7 @@ extension GXTaskDownloadDisk: GXDownloadingDelegate {
                 let totalBytesCount = Double(download.totalBytesCount)
                 //对比文件的MD5和模型是否一致
                 if let boxFileMd5 = boxPath.toFileUrl?.toMD5(),
-                   let urlMD5 = diskFile.downloadURLModel?.md5 {
+                   let urlMD5 = diskFile.remoteDownloadURLModel?.md5 {
                     let r = boxFileMd5.has(urlMD5,option: .caseInsensitive)
                     if r == true {
                         self.saveUrlInfo()
