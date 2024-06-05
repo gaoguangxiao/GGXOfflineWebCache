@@ -576,7 +576,7 @@ public extension GXHybridCacheManager {
             return nil
         }
         //将sr目录按照配置目录移除
-        resourceID = resourceID.replace("\(self.webFolderName)/", new: "")
+//        resourceID = resourceID.replace("\(self.webFolderName)/", new: "")
         
         guard let resourceInfo = self.resourceInfoPath(url) else {
             print("未获取到资源信息路径")

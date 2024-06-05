@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.2.6'
-  s.summary          = '修复预置更新模型解析'
+  s.version          = '0.2.7'
+  s.summary          = '修复src目录回退之前版本'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
