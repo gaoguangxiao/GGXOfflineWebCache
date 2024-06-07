@@ -106,6 +106,7 @@ public class GXHybridCacheManager: NSObject {
         }
         
         if let paths = getPresetManifestPaths() {
+//            print("Manifest的数量：\(paths.count)")
             for name in paths {
                 let presetManifestModel = getPresetManifestModel(manifesetName: name)
                 guard let assets = presetManifestModel?.assets else {
@@ -117,9 +118,12 @@ public class GXHybridCacheManager: NSObject {
                     if isSuccess {
                         //保存配置
                         if let configFilePath = self.getPresetFilePath(fileName: name) , isSuccess == true {
+//                            print("manifest config: \(configFilePath)")
                             self.updateCurrentManifestUserPreset(manifestJSON: configFilePath) { b in
 
                             }
+                        } else {
+//                            print("manifest config error")
                         }
                     } else {
                         moveFinishCount+=1
@@ -673,6 +677,14 @@ extension GXHybridCacheManager {
     public func moveOfflineWebZip(path: String,
                                   unzipName:String,
                                   block: @escaping ((_ progress: Float,_ isUnZipSuccess: Bool,_ isMoveSuccess: Bool) -> Void)) {
+        //将离线资源移除-重新新建
+        if let presetPath {
+            FileManager.removefile(atPath: presetPath)
+            print("app更新移除本地离线资源")
+//            self.removeFileWith(url: presetPath)
+//            self.removeFile(path: presetPath)
+        }
+
         guard let folderPath = presetPath else {
             print("预置路径不存在")
             block(0, false,false)
@@ -690,7 +702,7 @@ extension GXHybridCacheManager {
                     block(Float(progress),false,false)
                 } completionHandler: { str, b, err in
                     if b == true {
-                        //移除解压的文件
+                        //解压完成-移除压缩包
                         let isFileExists = FileManager.isFileExists(atPath: str)
                         if isFileExists {
                             FileManager.removefile(atPath: str)

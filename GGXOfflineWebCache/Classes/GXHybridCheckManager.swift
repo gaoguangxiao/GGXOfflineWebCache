@@ -56,7 +56,7 @@ public class GXHybridCheckManager: NSObject {
         self.tasksCount = urls.count
         
         ///最大校验数
-        let maxCurrentCount = urls.count <= 9 ? urls.count : 9
+        let maxCurrentCount = 1
         
         self.waitingUrlTasks.append(contentsOf: urls)
 
