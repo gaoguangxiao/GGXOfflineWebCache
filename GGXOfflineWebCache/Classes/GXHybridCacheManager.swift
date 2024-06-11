@@ -496,6 +496,47 @@ public extension GXHybridCacheManager {
         }
         return nil
     }
+
+    /// 模糊匹配
+    func getOfflineManifestPathName(url: String) -> String? {
+        guard let presetPath = presetPath else {
+            print("未获取预置资源路径")
+            return nil
+        }
+        //获取文件夹名
+        let manifestfoldName = self.getOfflineManifestFolderName(url: url)
+        //获取路径
+        let manifestFolderPath = presetPath + "/" + self.manifestPathName + "/" + "\(manifestfoldName)"
+        
+        let filePaths = FileManager.getAllFileNames(atPath:manifestFolderPath)
+        //filePaths中唯一的
+        guard let _filePath = filePaths?.first(where: { $0.contains(manifestfoldName)
+        }) else {
+            print("没有此资源:\(url)")
+            return nil
+        }
+        return _filePath
+    }
+    
+    func getOfflineManifestfoldName(manifestfoldName: String) -> String? {
+        guard let presetPath = presetPath else {
+            print("未获取预置资源路径")
+            return nil
+        }
+        //获取文件夹名
+//        let manifestfoldName = self.getOfflineManifestFolderName(url: url)
+        //获取路径
+        let manifestFolderPath = presetPath + "/" + self.manifestPathName + "/" + "\(manifestfoldName)"
+        
+        let filePaths = FileManager.getAllFileNames(atPath:manifestFolderPath)
+        //filePaths中唯一的
+        guard let _filePath = filePaths?.first(where: { $0.contains(manifestfoldName)
+        }) else {
+            print("没有此资源:\(manifestfoldName)")
+            return nil
+        }
+        return _filePath
+    }
     
     /// 获取本地配置manifest
     /// - Parameter url: <#url description#>
@@ -628,9 +669,16 @@ public extension GXHybridCacheManager {
 
 //MARK: 路径匹配
 extension GXHybridCacheManager {
+    
+    /// 获取manifest的文件夹名
+    func getOfflineManifestFolderName(url: String) -> String {
+        return url.lastPathComponent.removeMD5.stringByDeletingPathExtension
+    }
+    
     ///
     func getOfflineManifestFolder(url: String) -> String {
-        let folderName = self.manifestPathName + "/" + url.lastPathComponent.removeMD5.stringByDeletingPathExtension
+        let manifestfoldName = self.getOfflineManifestFolderName(url: url)
+        let folderName = self.manifestPathName + "/" + manifestfoldName
         return folderName
     }
     
@@ -746,7 +794,7 @@ extension GXHybridCacheManager {
     /// 获取预置文件夹中预置文件
     /// - Parameter url: url description
     /// - Returns: <#description#>
-    func getPresetManifestPaths() -> Array<String>? {
+    public func getPresetManifestPaths() -> Array<String>? {
         
         guard let presetPath , let presetName else {
             print("预置路径不存在")
@@ -962,7 +1010,7 @@ public extension GXHybridCacheManager {
         self.oflineDownload.download(urls: manifestJSONs,path: self.manifestPathName,priority: 3) { total, loaded, state in
             //移除md5，并删除
             if state == .completed || state == .error {
-                //移除旧配置
+                //移除旧配置,manifest不需要保存json
                 block(true)
             }
         }
