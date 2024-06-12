@@ -773,7 +773,7 @@ extension GXHybridCacheManager {
                         self.movePresetPkg { isSuccess, count, total in
                             let progress = Float(count)/Float(total)
 //                            print("移动进度:\(progress)")
-                            block(Float(progress),b,isSuccess)
+                            block(Float(progress),b,false)
                             if isSuccess {
                                 self.delegate?.configFinish()
                             }
