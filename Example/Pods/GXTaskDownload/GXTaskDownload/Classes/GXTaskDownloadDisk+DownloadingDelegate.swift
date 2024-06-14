@@ -34,8 +34,10 @@ extension GXTaskDownloadDisk: GXDownloadingDelegate {
                         downloadBlock?(download.progress, state)
                     } else {
                         //下载之后的文件和文件URL的md5不一致，说明配置有问题
-                        self.saveUrlInfo()
-                        LogInfo("下载之后的文件和文件URL的md5不一致:\(urlPath)的MD5:\(urlMD5)，计算的为:\(boxFileMd5)")
+//                        self.saveUrlInfo()
+                        //v2 删除下载失败的文件。
+                        LogInfo("下载之后的文件和文件URL的md5不一致:\(urlPath)的MD5:\(urlMD5)\n本地计算为:\(boxFileMd5)\n文件的沙盒路径: \(boxPath)")
+                        diskFile.clearFile(forUrl: urlPath)
                         downloadBlock?(download.progress, GXDownloadingState.error)
                     }
                 } else {
