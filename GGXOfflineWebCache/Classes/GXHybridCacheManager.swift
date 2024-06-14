@@ -46,10 +46,10 @@ public class GXHybridCacheManager: NSObject {
     }()
     
     /// 预置资源包名字
-    public var presetName: String?
+    var presetName: String?
     
     /// src配置服务器路径
-    public var webFolderName: String = "web/adventure"
+    public var webFolderName: String = ""
     
     //manifest名字
     public var manifestPathName: String = "manifest"
@@ -69,29 +69,29 @@ public class GXHybridCacheManager: NSObject {
         
     }
     
-    public func movePresetPkg(block: @escaping (_ isSuccess: Bool) -> Void)  {
-        if let paths = getPresetManifestPaths() {
-            for name in paths {
-                let presetManifestModel = getPresetManifestModel(manifesetName: name)
-                guard let assets = presetManifestModel?.assets else {
-                    block(false)
-                    return
-                }
-                self.moveOfflineWebFile(urls: assets) { isSuccess in
-                    print("\(name)移动成功")
-                    
-                    //保存配置
-                    if let configFilePath = self.getPresetFilePath(fileName: name) , isSuccess == true {
-                        self.updateCurrentManifestUserPreset(manifestJSON: configFilePath) { b in
-
-                        }
-                    } else {
-                    }
-                }
-            }
-        }
-        block(true)
-    }
+//    public func movePresetPkg(block: @escaping (_ isSuccess: Bool) -> Void)  {
+//        if let paths = getPresetManifestPaths() {
+//            for name in paths {
+//                let presetManifestModel = getPresetManifestModel(manifesetName: name)
+//                guard let assets = presetManifestModel?.assets else {
+//                    block(false)
+//                    return
+//                }
+//                self.moveOfflineWebFile(urls: assets) { isSuccess in
+//                    print("\(name)移动成功")
+//                    
+//                    //保存配置
+//                    if let configFilePath = self.getPresetFilePath(fileName: name) , isSuccess == true {
+//                        self.updateCurrentManifestUserPreset(manifestJSON: configFilePath) { b in
+//
+//                        }
+//                    } else {
+//                    }
+//                }
+//            }
+//        }
+//        block(true)
+//    }
     
     public func movePresetPkg(block: @escaping (_ isSuccess: Bool,_ count: Int, _ total:Int) -> Void)  {
         var moveFinishCount = 0
@@ -621,7 +621,6 @@ public extension GXHybridCacheManager {
             return nil
         }
         //将sr目录按照配置目录移除
-//        resourceID = resourceID.replace("\(self.webFolderName)/", new: "")
         
         guard let resourceInfo = self.resourceInfoPath(url) else {
             print("未获取到资源信息路径")

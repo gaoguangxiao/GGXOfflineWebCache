@@ -27,10 +27,14 @@ public class GXHybridZipManager: NSObject {
     /// 代理
     public weak var unzipDelegate: GXHybridZipManagerDelegate?
     
+    /// src配置服务器路径
+    public var webFolderName: String = "web/adventure"
+    
     /// 离线包管理类
     lazy var webOfflineCache: GXHybridCacheManager = {
         let hybridCache = GXHybridCacheManager()
         hybridCache.presetName = "dist"
+        hybridCache.webFolderName = webFolderName
         hybridCache.delegate = self
         return hybridCache
     }()

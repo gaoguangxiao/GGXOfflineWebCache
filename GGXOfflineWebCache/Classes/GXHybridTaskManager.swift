@@ -41,8 +41,6 @@ public class GXHybridTaskManager: NSObject {
     /// 离线包管理类
     lazy var webOfflineCache: GXHybridCacheManager = {
         let hybridCache = GXHybridCacheManager()
-        hybridCache.presetName = "dist"
-        hybridCache.webFolderName = "web/adventure"
         return hybridCache
     }()
     
