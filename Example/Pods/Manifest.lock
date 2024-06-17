@@ -10,7 +10,7 @@ PODS:
     - Moya
     - PKHUD
     - SmartCodable
-  - GXTaskDownload (0.2.9):
+  - GXTaskDownload (0.3.0):
     - GGXSwiftExtension
     - SmartCodable
   - Moya (15.0.0):
@@ -18,11 +18,12 @@ PODS:
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - PKHUD (5.3.0)
-  - SmartCodable (3.4.5)
+  - SmartCodable (4.0.0)
   - SSZipArchive (2.4.3)
 
 DEPENDENCIES:
   - GGXOfflineWebCache (from `../`)
+  - SmartCodable (= 4.0.0)
 
 SPEC REPOS:
   trunk:
@@ -44,12 +45,12 @@ SPEC CHECKSUMS:
   GGXOfflineWebCache: 35d4d35c41365ed47dcf9ceae655f130c1a10b5b
   GGXSwiftExtension: 23fc72e1c2b4bafc4380fd493fe128b9fc9f6bcd
   GXSwiftNetwork: f94d6144430c580846bb586f061269aca646d619
-  GXTaskDownload: 8b63844b03abfbe56b86cf3a33c15c845a1bb9d8
+  GXTaskDownload: 10cf9cfd0dde8d90683320f0171aa13edfd8a400
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
-  SmartCodable: 935b8b3d83133cb07286b0780f614bc739c1e116
+  SmartCodable: a93b23bfd09d29165fe1cb2b1e40ee2c759b2f2d
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
 
-PODFILE CHECKSUM: dad854dba21b10757ee380f308e5cf7061a60f9d
+PODFILE CHECKSUM: daab9b71a9133ceed44f3bff376553b7d280111e
 
 COCOAPODS: 1.15.0

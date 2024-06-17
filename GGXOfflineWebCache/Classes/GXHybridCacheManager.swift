@@ -46,7 +46,7 @@ public class GXHybridCacheManager: NSObject {
     }()
     
     /// 预置资源包名字
-    var presetName: String?
+    public var presetName: String?
     
     /// src配置服务器路径
     public var webFolderName: String = ""
@@ -755,6 +755,8 @@ extension GXHybridCacheManager {
                             FileManager.removefile(atPath: str)
                         }
                         
+                        self.delegate?.unzipFinish()
+                        
                         //移动内部静态资源
                         let fromPresetPath = folderPath + "/\(unzipName)" + "/\(self.presetFolder)"
                         let toPresetPath = folderPath.stringByAppendingPathComponent(path: "\(self.presetFolder)")
@@ -780,7 +782,6 @@ extension GXHybridCacheManager {
                         //移动成功之后删除解压之后的备用文件
                         self.removeFile(path: unzipName)
                         
-                        self.delegate?.unzipFinish()
                         block(1.0,b,true)
                     }
                 }

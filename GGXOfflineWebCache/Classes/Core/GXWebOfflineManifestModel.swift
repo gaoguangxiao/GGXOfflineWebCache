@@ -14,7 +14,7 @@ public class GXWebOfflineManifestBaseModel: MSBApiModel {
 //    public var data: GXWebOfflineManifestModel?
     ///
     var ydata: GXWebOfflineManifestModel? {
-        return GXWebOfflineManifestModel.deserialize(from: data?.peel as? Dictionary<String, Any>)
+        return GXWebOfflineManifestModel.deserialize(from: data as? Dictionary<String, Any>)
     }
 }
 

@@ -12,14 +12,14 @@ public protocol GXHybridZipManagerDelegate: NSObjectProtocol {
     /// 解压进度
     func offlineUnZipipWebProgress(progress: Float)
         
-    /// 解压完成
-    func offlineUnzip(completedWithError: Bool)
-    
     /// 配置开始
     func configWebStart()
     
     /// 配置文件进度
     func offlineConfigWebProgress(progress: Float)
+    
+    /// 解压以及配置完成
+    func offlineUnzip(completedWithError: Bool)
 }
 
 public class GXHybridZipManager: NSObject {
@@ -27,13 +27,16 @@ public class GXHybridZipManager: NSObject {
     /// 代理
     public weak var unzipDelegate: GXHybridZipManagerDelegate?
     
+    /// 预置压缩包名称
+    public var presetZipName: String = "dist"
+    
     /// src配置服务器路径
     public var webFolderName: String = "web/adventure"
     
     /// 离线包管理类
     lazy var webOfflineCache: GXHybridCacheManager = {
         let hybridCache = GXHybridCacheManager()
-        hybridCache.presetName = "dist"
+        hybridCache.presetName = presetZipName
         hybridCache.webFolderName = webFolderName
         hybridCache.delegate = self
         return hybridCache
@@ -73,10 +76,10 @@ public class GXHybridZipManager: NSObject {
                 }
                 ///
                 if isSuccess, isMoveSuccess {
-                    UserDefaults.presetDataNameKey = appVersion
-                    DispatchQueue.main.async {
-                        self.unzipDelegate?.offlineUnzip(completedWithError: true)
-                    }
+//                    UserDefaults.presetDataNameKey = appVersion
+//                    DispatchQueue.main.async {
+//                        self.unzipDelegate?.offlineUnzip(completedWithError: true)
+//                    }
                     block(isSuccess)
                 } else {
                     if isSuccess , !isMoveSuccess{
@@ -106,7 +109,11 @@ extension GXHybridZipManager: GXHybridCacheManagerDelegate {
     }
     
     public func configFinish() {
-        
+        let appVersion = kAppVersion ?? ""
+        UserDefaults.presetDataNameKey = appVersion
+        DispatchQueue.main.async {
+            self.unzipDelegate?.offlineUnzip(completedWithError: true)
+        }
     }
     
     

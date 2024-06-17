@@ -9,7 +9,7 @@ import Foundation
 
 
 /// Records the default values of model properties during decoding, used for filling in when decoding fails.
-struct InitialModelCache {
+class DecodingCache {
     
     
     /// Stores a snapshot of the Model being parsed.
@@ -17,13 +17,20 @@ struct InitialModelCache {
     /// - avoid parsing confusion with multi-level nested models
     private(set) var snapshots: [Snapshot] = []
     
+    /// 正在解析的属性类型
+    var decodedType: SmartDecodable.Type?
+    
     var topSnapshot: Snapshot? {
         return self.snapshots.last
     }
     
     /// Cache the initial state of a Decodable object.
-    mutating func cacheInitialState<T: Decodable>(for type: T.Type) {
+    func cacheInitialState<T: Decodable>(for type: T.Type) {
+        
+        
         if let object = type as? SmartDecodable.Type {
+        
+            decodedType = object
             
             var snapshot = Snapshot()
             
@@ -43,7 +50,7 @@ struct InitialModelCache {
     }
     
     /// Clears the decoding status of the last record
-    mutating func clearLastState<T: Decodable>(for type: T.Type) {
+    func clearLastState<T: Decodable>(for type: T.Type) {
         
         // If the current type being decoded does not inherit from SmartDecodable Model, it does not need to be processed.
         // The properties within the model being decoded should not be cleared. They can be cleared only after decoding is complete.
@@ -57,7 +64,12 @@ struct InitialModelCache {
     /// Gets the initialization value of the attribute (key)
     func getValue<T>(forKey key: CodingKey) -> T? {
         
-        if let cacheValue = snapshots.last?.initialValues[key.stringValue] {
+        if var cacheValue = snapshots.last?.initialValues[key.stringValue] {
+            // 进行CGFloat类型解析时候，是当Double来解析的。所以需要进行类型转换一下。
+            if let temp = cacheValue as? CGFloat {
+                cacheValue = Double(temp)
+            }
+            
             if let value = cacheValue as? T {
                 return value
             } else if let caseValue = cacheValue as? (any SmartCaseDefaultable) {
@@ -76,24 +88,21 @@ struct InitialModelCache {
         return nil
     }
     
-    /// Custom conversion strategy for decoded values
-    func tranform(decodedValue: Any?, for codingPath: [CodingKey]) -> Any? {
-        if let lastKey = codingPath.last {
+    func tranform(value: JSONValue, for key: CodingKey?) -> Any? {
+        if let lastKey = key {
             let container = topSnapshot?.transformers.first(where: {
                 $0.location.stringValue == lastKey.stringValue
             })
-            if let tranformValue = container?.tranformer.transformFromJSON(decodedValue) {
+            if let tranformValue = container?.tranformer.transformFromJSON(value.peel) {
                 return tranformValue
             }
         }
         return nil
     }
-    
-    
 }
 
 
-extension InitialModelCache {
+extension DecodingCache {
     struct Snapshot {
         /// The current decoding type
         var typeName: String = ""
