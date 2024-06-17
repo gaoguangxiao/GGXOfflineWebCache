@@ -10,10 +10,11 @@ import SmartCodable
 
 open class MSBApiModel: SmartCodable {
     required public init() { }
-    open var data : SmartAny?
+    
+    @SmartAny
+    open var data: Any?
+    
     open var success : Bool = false
     open var msg : String?
     open var code : Int = 0 //业务端代码
 }
-
-
