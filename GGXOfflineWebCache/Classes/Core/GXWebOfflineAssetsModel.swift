@@ -18,6 +18,7 @@ public class GXWebOfflineAssetsModel: SmartCodable {
 
     /// 资源获取策略 支持 0、3 默认0。
     /// 0：忽视本地缓存，从远端获取；
+    /// 2：
     /// 3：优先读取本地缓存，在没有创建缓存时使用网络，同时创建缓存
     /// 当匹配到请求之后直接从 Cache 缓存中取得结果，如果 Cache 缓存中没有结果，那就会发起网络请求，拿到网络请求结果并将结果更新至 Cache 缓存，并将结果返回给客户端。这种策略比较适合结果不怎么变动且对实时性要求不高的请求。
     public var policy = 0
@@ -30,6 +31,9 @@ public class GXWebOfflineAssetsModel: SmartCodable {
     /// 本地全路径-通过本地查找得到
     public var localFullFilePath: String?
  
+    
+    public var isUsable = false
+    
     /// 初始化
     required public init(){}
 }

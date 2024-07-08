@@ -97,13 +97,12 @@ public class GXTaskDiskFile: NSObject {
         let isExist = isExistDiskDataWith(url: url)
         if isExist {
             let filePath = getFilePath(url: url)
-            LogInfo("文件地址：\(filePath)")
-            
+//            LogInfo("文件地址：\(filePath)")
             //获取其URL信息的MD5信息和磁盘的是否一致。
             if let urlInfoModel = getURLFileInfoModel(url: url),
                let loaclUrlMD5 = urlInfoModel.md5,
                let urlMD5 = remoteDownloadURLModel?.md5 {
-                print("loaclUrl:\(url) \n \(loaclUrlMD5)--\(urlMD5)")
+//                print("loaclUrl:\(url) \n 本地\(loaclUrlMD5)--远端：\(urlMD5)")
                 if !loaclUrlMD5.has(urlMD5,option: .caseInsensitive) {
                     clearFileAndInfo(forUrl: url)
                     return false
@@ -112,7 +111,7 @@ public class GXTaskDiskFile: NSObject {
             //改为获取本地文件md5
             if let loaclUrlMD5 = self.getFileMD5ByUrl(url: url) ,
                let urlMD5 = remoteDownloadURLModel?.md5 {
-                print("loaclUrl:\(url) \n \(loaclUrlMD5)--\(urlMD5)")
+//                print("loaclUrl:\(url) \n \(loaclUrlMD5)--\(urlMD5)")
                 if !loaclUrlMD5.has(urlMD5,option: .caseInsensitive) {
                     clearFileAndInfo(forUrl: url)
                     return false

@@ -10,6 +10,7 @@ import Alamofire
 //import SwiftyUserDefaults
 import UIKit
 import PKHUD
+import SmartCodable
 /* 使用方法：
  - 定义
  class exampleApi: BearShowApi {
@@ -119,6 +120,30 @@ open class MSBApi: TargetType {
         useProvider.request(self, self, onFailure: onFailure, onSuccess: onSuccess)
     }
     
+    open func request<T: SmartCodable>(onSuccess: @escaping (T) -> Void,
+                                      onFailure: @escaping (MSBRespApiModel) -> Void,
+                                      provider: MoyaProvider<MSBApi>? = nil,
+                                      fullResponse: ((Moya.Response) -> Void)? = nil) {
+        var useProvider = self.provider
+        if let paramProvider = provider {
+            useProvider = paramProvider
+        }
+        
+        useProvider.request(self, self, onFailure: onFailure, onSuccess: onSuccess)
+    }
+    
+    open func requestStream<T: SmartCodable>(onSuccess: @escaping (T) -> Void,
+                                      onFailure: @escaping (MSBRespApiModel) -> Void,
+                                      provider: MoyaProvider<MSBApi>? = nil,
+                                      fullResponse: ((Moya.Response) -> Void)? = nil) {
+        var useProvider = self.provider
+        if let paramProvider = provider {
+            useProvider = paramProvider
+        }
+//        useProvider.s
+        useProvider.requestStream(self, self, onFailure: onFailure, onSuccess: onSuccess)
+    }
+    
 }
 
 // MARK: ==== Closure
@@ -176,34 +201,14 @@ extension MSBApi {
     public var sampleData: Data { requestSampleData.data(using: String.Encoding.utf8) ?? Data() }
     //    public var showErrorMsg: Bool { requestShowErrorMsg }
     public var task: Task {
+    
         if !requestParameters.keys.isEmpty {
-            //            if (method == .post) {
-            //                if requestParameters["fileData"] != nil {
-            //                    if let imageData = requestParameters["fileData"] as? Data  {
-            //                        //根据当前时间设置图片上传时候的名字
-            //                        let date:Date = Date()
-            //                        let formatter = DateFormatter()
-            //                        formatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
-            //                        var dateStr:String = formatter.string(from: date as Date)
-            //
-            //                        let formData = MultipartFormData(provider: .data(imageData), name: "file", fileName: dateStr, mimeType: "image/jpeg")
-            //                        return .uploadMultipart([formData])
-            //                    } else {
-            //                        return .requestParameters(parameters: requestParameters, encoding: URLEncoding.default)
-            //                    }
-            //
-            //                } else {
-            //                    return .requestParameters(parameters: requestParameters, encoding: URLEncoding.default)
-            //                }
-            //            } else {
-            //                return .requestParameters(parameters: requestParameters, encoding: URLEncoding.default)
-            //            }
+            
             return .requestParameters(parameters: requestParameters, encoding: URLEncoding.default)
             //
         } else if !sampleData.isEmpty{
             return .requestData(sampleData)
-        }
-        else {
+        } else {
             return .requestPlain
         }
     }
@@ -213,6 +218,7 @@ extension MSBApi {
 extension MSBApi {
     
     static let providerLogPlugin = NetworkLoggerPlugin()
+//    static let streamProvider = NetworkStreamProvider()
 //    static let providerActivityPlugin = NetworkActivityPlugin(networkActivityClosure: <#T##NetworkActivityClosure#>)
     static let silenceProvider = MoyaProvider<MSBApi>(plugins: [])
     static let verboseProvider = MoyaProvider<MSBApi>(plugins: [providerLogPlugin])

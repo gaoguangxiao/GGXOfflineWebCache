@@ -295,6 +295,27 @@ public extension UIImage {
 }
 
 public extension UIImage {
+    
+    @available(iOS 13.0.0, *)
+    func bycustomPreparingThumbnail(ofSize: CGSize) async -> UIImage? {
+        if #available(iOS 15.0, *) {
+            return self.preparingThumbnail(of: ofSize)
+        } else {
+            // 参数一：指定将来创建出来的图片大小
+            // 参数二：设置是否透明
+            // 参数三：是否缩放
+            UIGraphicsBeginImageContextWithOptions(ofSize, false, 0)
+            draw(in: CGRect(origin: CGPoint.zero, size: ofSize))
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            if let outImg = image {
+                return outImg
+            } else {
+                return self
+            }
+        }
+    }
+    
     /// 缩放
     func resize(size: CGSize, scale: CGFloat = 0) -> UIImage {
         let formatSize = CGSize(width: ceil(size.width), height: ceil(size.height))

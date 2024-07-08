@@ -1,6 +1,6 @@
 {
   "name": "GGXOfflineWebCache",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "summary": "更新数据解析",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GGXOfflineWebCache.git",
-    "tag": "0.3.3"
+    "tag": "0.3.4"
   },
   "platforms": {
     "ios": "12.0"

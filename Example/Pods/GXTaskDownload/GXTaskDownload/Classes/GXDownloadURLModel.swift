@@ -31,4 +31,7 @@ public class GXDownloadURLModel: NSObject ,SmartCodable {
     public var info: String?
     
     public var match: String?
+    
+    /// 资源是否可用
+    public var isUsable = false
 }

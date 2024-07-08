@@ -249,6 +249,16 @@ public extension String {
         }
     }
     
+    var toHost: String? {
+        guard let url = self.toUrl else { return "" }
+        if #available(iOS 16.0, *) {
+            return url.host()
+        } else {
+            // Fallback on earlier versions
+            return url.host
+        }
+    }
+        
     func getMIMETypeFromPathExtension() -> String {
         var MIMEType = "text/html"
         let pathExtension = self.pathExtension

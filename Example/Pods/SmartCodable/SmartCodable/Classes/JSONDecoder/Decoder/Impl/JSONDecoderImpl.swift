@@ -11,14 +11,14 @@ import Foundation
 struct JSONDecoderImpl {
     let codingPath: [CodingKey]
     let userInfo: [CodingUserInfoKey: Any]
-
+    
     let json: JSONValue
     let options: SmartJSONDecoder._Options
     
     
     /// Records the initialization values of the properties in the keyed container.
     var cache: DecodingCache
-
+    
     init(userInfo: [CodingUserInfoKey: Any], from json: JSONValue, codingPath: [CodingKey], options: SmartJSONDecoder._Options) {
         self.userInfo = userInfo
         self.codingPath = codingPath
@@ -34,8 +34,8 @@ struct JSONDecoderImpl {
 // and when the exception is handled, the initial value can be obtained.
 extension JSONDecoderImpl: Decoder {
     func container<Key>(keyedBy key: Key.Type) throws ->
-        KeyedDecodingContainer<Key> where Key: CodingKey
-    {
+    KeyedDecodingContainer<Key> where Key: CodingKey {
+        
         switch self.json {
         case .object(let dictionary):
             let container = KeyedContainer<Key>(
@@ -44,7 +44,6 @@ extension JSONDecoderImpl: Decoder {
                 dictionary: dictionary
             )
             return KeyedDecodingContainer(container)
-            
         case .string(let string): // json string modeling compatibility
             if let dict = string.toJSONObject() as? [String: Any],
                let dictionary = JSONValue.make(dict)?.object {
@@ -55,7 +54,6 @@ extension JSONDecoderImpl: Decoder {
                 )
                 return KeyedDecodingContainer(container)
             }
-            
         case .null:
             throw DecodingError.valueNotFound([String: JSONValue].self, DecodingError.Context(
                 codingPath: self.codingPath,
@@ -64,12 +62,14 @@ extension JSONDecoderImpl: Decoder {
         default:
             break
         }
+        
         throw DecodingError.typeMismatch([String: JSONValue].self, DecodingError.Context(
             codingPath: self.codingPath,
             debugDescription: "Expected to decode \([String: JSONValue].self) but found \(self.json.debugDataTypeDescription) instead."
         ))
     }
-
+    
+    
     func unkeyedContainer() throws -> UnkeyedDecodingContainer {
         switch self.json {
         case .array(let array):
@@ -81,11 +81,11 @@ extension JSONDecoderImpl: Decoder {
         case .string(let string): // json字符串的模型化兼容
             if let arr = string.toJSONObject() as? [Any],
                let array = JSONValue.make(arr)?.array {
-               return UnkeyedContainer(
-                   impl: self,
-                   codingPath: self.codingPath,
-                   array: array
-               )
+                return UnkeyedContainer(
+                    impl: self,
+                    codingPath: self.codingPath,
+                    array: array
+                )
             }
         case .null:
             throw DecodingError.valueNotFound([String: JSONValue].self, DecodingError.Context(
@@ -100,7 +100,7 @@ extension JSONDecoderImpl: Decoder {
             debugDescription: "Expected to decode \([JSONValue].self) but found \(self.json.debugDataTypeDescription) instead."
         ))
     }
-
+    
     func singleValueContainer() throws -> SingleValueDecodingContainer {
         SingleValueContainer(
             impl: self,
@@ -116,27 +116,27 @@ extension JSONDecoderImpl: Decoder {
 internal struct _JSONKey: CodingKey {
     public var stringValue: String
     public var intValue: Int?
-
+    
     public init?(stringValue: String) {
         self.stringValue = stringValue
         self.intValue = nil
     }
-
+    
     public init?(intValue: Int) {
         self.stringValue = "\(intValue)"
         self.intValue = intValue
     }
-
+    
     public init(stringValue: String, intValue: Int?) {
         self.stringValue = stringValue
         self.intValue = intValue
     }
-
+    
     internal init(index: Int) {
         self.stringValue = "Index \(index)"
         self.intValue = index
     }
-
+    
     internal static let `super` = _JSONKey(stringValue: "super")!
 }
 

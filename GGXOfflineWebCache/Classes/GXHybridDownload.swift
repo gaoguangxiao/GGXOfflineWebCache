@@ -24,39 +24,8 @@ public class GXHybridDownload: NSObject {
     /// 单文件下载
     let oneTaskDownload = GXTaskDownloadDisk()
     
-    //    public func downloadUrl(url: String, unzip: Bool, deleteZip: Bool,block: @escaping GXTaskDownloadBlock) {
-    //        //一个URL对应一个任务
-    //        let taskDownload = GXTaskDownloadDisk()
-    //        taskDownload.diskFile.taskDownloadPath = hyDownPath
-    //        //配置下载路径
-    //        self.webDownloadPath = taskDownload.diskFile.downloadPath
-    //        //开始下载
-    //        taskDownload.start(forURL: url) { progress, state in
-    //            if state == .completed {
-    //                self.unzipFile(url: url,deleteZip: deleteZip)
-    //            }
-    //            block(progress,state)
-    //        }
-    //    }
-    
-    //    func unzipFile(url: String, deleteZip: Bool) {
-    //        //获取上级
-    //        let zipPath = self.webDownloadPath ?? ""
-    //        let zipAllPath = zipPath + "/\(url.lastPathComponent)"
-    //        //解压
-    //        SSZipArchive.unzipFile(atPath: zipAllPath,
-    //                               toDestination: zipPath) { str, fileInfo, i, j in
-    //            print("str:\(str)、fileinfo:\(fileInfo),,,i=\(i),,,,j=\(j))")
-    //        } completionHandler: { str, b, error in
-    //
-    //            let isFileExists = FileManager.isFileExists(atPath: str)
-    //            if isFileExists {
-    //                FileManager.removefile(atPath: str)
-    //            }
-    //            //            print("str:\(str)、b:\(b),,,error=\(error)")
-    //        }
-    //
-    //    }
+    // 动态下载队列
+    private var downloadingTasks: Dictionary<String, GXTaskDownloadDisk> = [:]
     
     deinit {
         LogInfo("\(self)-deinit")
@@ -149,6 +118,7 @@ public extension GXHybridDownload {
                            path: String,
                            block: @escaping GXTaskDownloadBlock) {
         
+        let oneTaskDownload = GXTaskDownloadDisk()
         oneTaskDownload.diskFile.taskDownloadPath = self.hyDownPath + "/\(path)"
         
         let downloadModel = GXDownloadURLModel()
@@ -164,6 +134,49 @@ public extension GXHybridDownload {
             }
             oneTaskDownload.prepare(urlModel: downloadModel)
             oneTaskDownload.start(block: block)
+        } else {
+            block(0,.error)
+        }
+    }
+    
+    // 将下载中的文件记录，用于判断当处于下载中，直接return,下载完毕的可以对其进行更新。为下载的进行下载
+    func asyncDownloadAndUpdate(urlModel: GXWebOfflineAssetsModel,
+                           path: String,
+                           block: @escaping GXTaskDownloadBlock) {
+        
+        guard let src = urlModel.src else {
+            return
+        }
+        let md5 = src.md5Value
+        
+        let download = GXTaskDownloadDisk()
+        downloadingTasks[md5] = download
+        download.diskFile.taskDownloadPath = self.hyDownPath + "/\(path)"
+        
+        let downloadModel = GXDownloadURLModel()
+        downloadModel.src    = src
+        downloadModel.policy = urlModel.policy
+        downloadModel.md5    = urlModel.md5
+        downloadModel.match  = urlModel.match
+        
+        if let url = downloadModel.src {
+            let isExist = download.diskFile.checkUrlTask(url: urlModel.src ?? "")
+            if isExist == true {
+                download.diskFile.clearFile(forUrl: url)
+            }
+            download.prepare(urlModel: downloadModel)
+            download.start { progress, state in
+                if state == .completed || state == .error {
+                    self.downloadingTasks.removeValue(forKey: md5)
+//                    LogInfo("剩余下载任务数量：\(self.downloadingTasks.count)，\(state)")
+//                    for dow in self.downloadingTasks {
+//                        LogInfo("剩余下载任务：\(dow.key)--\(src)")
+//                    }
+                    block(progress,state)
+                } else {
+                    block(progress,state)
+                }
+            }
         } else {
             block(0,.error)
         }

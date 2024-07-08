@@ -120,6 +120,7 @@ extension GXTaskDownloadDisk {
             }
             
             FileManager.createFile(atPath: urlInfoPath)
+            diskFile.remoteDownloadURLModel?.isUsable = true
             if let jsonData = diskFile.remoteDownloadURLModel?.toJSONString(), let pkgPath = urlInfoPath.toFileUrl {
                 try? jsonData.write(to: pkgPath, atomically: true, encoding: .utf8)
             }

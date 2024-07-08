@@ -27,7 +27,7 @@ extension GXTaskDownloadDisk: GXDownloadingDelegate {
                 let totalBytesCount = Double(download.totalBytesCount)
                 //对比文件的MD5和模型是否一致
                 if let boxFileMd5 = boxPath.toFileUrl?.toMD5(),
-                   let urlMD5 = diskFile.remoteDownloadURLModel?.md5 {
+                   let urlMD5 = diskFile.remoteDownloadURLModel?.md5, urlMD5.length > 0 {
                     let r = boxFileMd5.has(urlMD5,option: .caseInsensitive)
                     if r == true {
                         self.saveUrlInfo()
@@ -40,13 +40,14 @@ extension GXTaskDownloadDisk: GXDownloadingDelegate {
                         diskFile.clearFile(forUrl: urlPath)
                         downloadBlock?(download.progress, GXDownloadingState.error)
                     }
-                } else {
+                } 
+                else {
                     //                    print("文件大小:\(downloadCount)")
                     if totalBytesCount == downloadCount {
                         self.saveUrlInfo()
                         downloadBlock?(download.progress, state)
                     } else {
-                        LogInfo("文件有损:\(totalBytesCount)、urlPath：\(urlPath)")
+                        LogInfo("文件有损，可下载\(totalBytesCount)、已下载：\(downloadCount)、urlPath：\(urlPath), 本地存储路径: \(boxPath)")
                         downloadBlock?(download.progress, GXDownloadingState.error)
                     }
                 }

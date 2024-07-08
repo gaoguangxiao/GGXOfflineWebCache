@@ -8,15 +8,11 @@
 
 import Foundation
 
-extension Array{
+public extension Array {
     
-    func removeObject(object: String) -> Array<String>{
-
-        var temp = self as!Array<String>
-        if let removeIndex = temp.index(where: {$0 == object}) {
-            temp.remove(at:removeIndex)
-        }
-        return temp
+    /// Removes elements from an array that meet a specific condition
+    func removeElement<T: Equatable>(item: T, from array: inout [T]) {
+        array.removeAll { $0 == item }
     }
-
+    
 }
