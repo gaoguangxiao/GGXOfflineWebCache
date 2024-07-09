@@ -20,10 +20,7 @@ public class GXHybridDownload: NSObject {
     
     /// 增加全局下载管理
     let taskDownload = GXDownloadManager()
-    
-    /// 单文件下载
-    let oneTaskDownload = GXTaskDownloadDisk()
-    
+
     // 动态下载队列
     private var downloadingTasks: Dictionary<String, GXTaskDownloadDisk> = [:]
     
@@ -34,33 +31,6 @@ public class GXHybridDownload: NSObject {
 }
 
 public extension GXHybridDownload {
-    
-    /// 下载URL
-    /// - Parameters:
-    ///   - url: <#url description#>
-    ///   - block: <#block description#>
-    func download(url: String, block: @escaping GXTaskDownloadBlock) {
-        self.download(url: url, path: "", block: block)
-    }
-    
-    /// 下载URL
-    /// - Parameters:
-    ///   - url: <#url description#>
-    ///   - path: <#path description#>
-    ///   - block: <#block description#>
-    func download(url: String,
-                  path: String,
-                  priority: Int = 3,
-                  block: @escaping GXTaskDownloadBlock) {
-        oneTaskDownload.diskFile.taskDownloadPath = hyDownPath + "/\(path)"
-        oneTaskDownload.taskPriority = priority
-        let isExist = oneTaskDownload.diskFile.checkUrlTask(url: url)
-        if isExist == true {
-            oneTaskDownload.diskFile.clearFile(forUrl: url)
-        }
-        //开始下载
-        oneTaskDownload.start(forURL: url, block: block)
-    }
     
     /// 下载URL
     /// - Parameters:
@@ -168,10 +138,6 @@ public extension GXHybridDownload {
             download.start { progress, state in
                 if state == .completed || state == .error {
                     self.downloadingTasks.removeValue(forKey: md5)
-//                    LogInfo("剩余下载任务数量：\(self.downloadingTasks.count)，\(state)")
-//                    for dow in self.downloadingTasks {
-//                        LogInfo("剩余下载任务：\(dow.key)--\(src)")
-//                    }
                     block(progress,state)
                 } else {
                     block(progress,state)

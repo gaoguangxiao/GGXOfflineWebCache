@@ -975,28 +975,6 @@ public extension GXHybridCacheManager {
         }
     }
     
-    /// 更新当前离线包manifest配置
-    /// - Parameters:
-    ///   - manifestJSON: <#manifestJSON description#>
-    ///   - block: <#block description#>
-    func updateCurrentManifest(manifestJSON: String, block: @escaping (Bool) -> Void) {
-        //下载新配置
-        let manifestPath = self.getOfflineManifestFolder(url: manifestJSON)
-        self.oflineDownload.download(url: manifestJSON,
-                                     path: manifestPath) { [weak self] progress, state in
-            if state == .completed || state == .error {
-                print("配置文件下载完毕:\(manifestJSON)")
-                
-                //获取当前预置目录下位置
-                if let currentManifestPath = self?.getOldManifestPath(url: manifestJSON) {
-                    FileManager.removefile(atPath: currentManifestPath)
-                }
-                //移除旧配置
-                block(true)
-            }
-        }
-    }
-    
     func updatePkgManifest(maniModel: GXWebOfflineManifestModel, maniPath: String, block: @escaping (Bool) -> Void) {
         //保存配置
         guard let maniStr = maniModel.toJSONString() else {
@@ -1079,12 +1057,11 @@ public extension GXHybridCacheManager {
     }
     
     func asyncUpdateOfflineWithURL(_ assets: GXWebOfflineAssetsModel, path: String) {
-//        LogInfo("异步更新URL: \(assets.src ?? "")")
+
         self.oflineDownload.asyncDownloadAndUpdate(urlModel: assets, path: path) { progress, state in
             if state == .completed {
-//                LogInfo("\(assets.src ?? "")异步更新成功")
             }
         }
-        
+//        
     }
 }
