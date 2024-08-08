@@ -34,22 +34,6 @@ open class GXURLSchemeHander: NSObject {
 @available(iOS 11.0, *)
 extension GXURLSchemeHander: WKURLSchemeHandler{
     open func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
-        if #available(iOS 15.0, *) {
-            Task {
-                do {
-                    let (data,response) = try await URLSession.shared.data(for: urlSchemeTask.request)
-//                   代码后期需要异步方法的结果才使用async let
-//                   代码后续行需要异步执行结果,需要用wait
-//                    async let (data,response) = URLSession.shared.data(for: urlSchemeTask.request)
-                    urlSchemeTask.didReceive(response)
-                    urlSchemeTask.didReceive(data)
-                    urlSchemeTask.didFinish()
-                } catch let e {
-                    urlSchemeTask.didFailWithError(e)
-                }
-            }
-        } else {
-            // Fallback on earlier versions
             dataTask = Self.session?.dataTask(with: urlSchemeTask.request) { [weak urlSchemeTask] data, response, error in
                 //            LogInfo("结束请求")
                 guard let urlSchemeTask = urlSchemeTask else { return }
@@ -66,7 +50,6 @@ extension GXURLSchemeHander: WKURLSchemeHandler{
                 }
             }
             dataTask?.resume()
-        }
     }
     
     open func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {

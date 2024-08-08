@@ -137,7 +137,9 @@ public extension GXHybridDownload {
             download.prepare(urlModel: downloadModel)
             download.start { progress, state in
                 if state == .completed || state == .error {
-                    self.downloadingTasks.removeValue(forKey: md5)
+                    DispatchQueue.main.sync {
+                        self.downloadingTasks.removeValue(forKey: md5)
+                    }
                     block(progress,state)
                 } else {
                     block(progress,state)
