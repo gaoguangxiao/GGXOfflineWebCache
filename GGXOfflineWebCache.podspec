@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.3.9'
-  s.summary          = '优化下载对异步任务移除功能'
+  s.version          = '0.4.0'
+  s.summary          = '优化多URLS下载时的回调'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

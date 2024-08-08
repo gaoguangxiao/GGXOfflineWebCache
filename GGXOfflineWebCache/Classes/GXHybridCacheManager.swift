@@ -106,7 +106,7 @@ public class GXHybridCacheManager: NSObject {
                         moveFinishCount+=1
                         //                        print("\(name)移动成功:\(moveFinishCount)、: \(totalCount)")
                     }
-                    block(moveFinishCount >= totalCount,moveFinishCount,totalCount)
+                    block(false,moveFinishCount,totalCount)
                 }
             }
             //            block(true,1,paths.count)
