@@ -17,7 +17,8 @@ enum GXOfflineError: Error {
 open class GXURLSchemeHander: NSObject {
     private var dataTask: URLSessionDataTask?
     private static var session: URLSession?
-    
+    //This task has already been stopped处理
+    private var holdUrlSchemeTasks: Dictionary<String, Bool> = [:]
     public override init() {
         Self.updateSession()
     }
@@ -29,15 +30,37 @@ open class GXURLSchemeHander: NSObject {
         let config = URLSessionConfiguration.default
         Self.session = URLSession(configuration: config)
     }
+    
+    func transformUrlSchemeTasks(urlSchemeTask: WKURLSchemeTask) -> String {
+        return urlSchemeTask.request.url?.absoluteString.md5Value ?? ""
+    }
+    
+    func isExistUrlSchemeTasks(urlSchemeTask: WKURLSchemeTask) -> Bool {
+        return holdUrlSchemeTasks[transformUrlSchemeTasks(urlSchemeTask: urlSchemeTask)] ?? false
+    }
+    
+    func addUrlSchemeTasks(urlSchemeTask: WKURLSchemeTask) {
+        if !isExistUrlSchemeTasks(urlSchemeTask: urlSchemeTask) {
+            holdUrlSchemeTasks[transformUrlSchemeTasks(urlSchemeTask: urlSchemeTask)] = true
+        }
+    }
+    
+    func removeUrlSchemeTasks(urlSchemeTask: WKURLSchemeTask) {
+        if isExistUrlSchemeTasks(urlSchemeTask: urlSchemeTask) {
+            holdUrlSchemeTasks.removeValue(forKey: transformUrlSchemeTasks(urlSchemeTask: urlSchemeTask))
+        }
+    }
 }
 
 @available(iOS 11.0, *)
 extension GXURLSchemeHander: WKURLSchemeHandler{
     open func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
-            dataTask = Self.session?.dataTask(with: urlSchemeTask.request) { [weak urlSchemeTask] data, response, error in
-                //            LogInfo("结束请求")
-                guard let urlSchemeTask = urlSchemeTask else { return }
+        dataTask = Self.session?.dataTask(with: urlSchemeTask.request) { [weak urlSchemeTask] data, response, error in
+            //            LogInfo("结束请求")
+            guard let urlSchemeTask = urlSchemeTask else { return }
+            if self.isExistUrlSchemeTasks(urlSchemeTask: urlSchemeTask) {
                 if let error = error, error._code != NSURLErrorCancelled {
+                    LogInfo("webView(start urlSchemeTask:) - NSURLErrorCancelled")
                     urlSchemeTask.didFailWithError(error)
                 } else {
                     if let response = response {
@@ -48,12 +71,19 @@ extension GXURLSchemeHander: WKURLSchemeHandler{
                     }
                     urlSchemeTask.didFinish()
                 }
+                //4、移除任务
+                self.removeUrlSchemeTasks(urlSchemeTask: urlSchemeTask)
+            } else {
+                LogInfo("webView(start urlSchemeTask:) - noExistUrlSchemeTasks")
             }
-            dataTask?.resume()
+        }
+        dataTask?.resume()
+        //2、标记网络处理任务
+        self.addUrlSchemeTasks(urlSchemeTask: urlSchemeTask)
     }
     
     open func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
-        
-        
+        //3、处理标记的网络任务
+        self.removeUrlSchemeTasks(urlSchemeTask: urlSchemeTask)
     }
 }
