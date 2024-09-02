@@ -4,11 +4,7 @@
 ////
 ////  Created by 李响 on 2022/1/11.
 ////
-//
-//import UIKit
-//import Alamofire
-//import Moya
-////import SwiftyUserDefaults
+
 //
 ///// 两个字典相加 +
 internal func + (left: [String: String], right: [String: String]) -> [String: String] {
@@ -23,6 +19,15 @@ internal func log(_ msg: Any, _ file: String = #file, _ fn: String = #function, 
     print("「 DEBUG模式下打印日志： 」****** \((file as NSString).lastPathComponent) >> \(line) >> \(fn) >> \(msg) ******")
     #endif
 }
+
+//extension MSBApi: MSBDataResponse {
+//    public typealias Model = <#type#>
+//    
+//    public static func model() async throws -> Model {
+//        let api = MSBApi(path: <#String#>)
+//    }
+//}
+
 //
 //public protocol MSBRelativeModel {
 //   

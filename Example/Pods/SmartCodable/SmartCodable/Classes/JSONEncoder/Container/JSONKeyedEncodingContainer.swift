@@ -2,7 +2,7 @@
 //  JSONKeyedEncodingContainer.swift
 //  SmartCodable
 //
-//  Created by qixin on 2024/6/3.
+//  Created by Mccc on 2024/6/3.
 //
 
 import Foundation
@@ -30,29 +30,6 @@ struct JSONKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerProtocol,
         self.impl = impl
         self.object = object
         self.codingPath = codingPath
-    }
-
-    private func _converted(_ key: Key) -> CodingKey {
-        
-        if let objectType = impl.cache.cacheType {
-            if let mappings = objectType.mappingForKey() {
-                for mapping in mappings {
-                    if mapping.to.stringValue == key.stringValue {
-                        return mapping.to
-                    }
-                }
-            }
-        }
-                
-        switch self.options.keyEncodingStrategy {
-        case .useDefaultKeys:
-            return key
-        case .convertToSnakeCase:
-            let newKeyString = SmartJSONEncoder.KeyEncodingStrategy._convertToSnakeCase(key.stringValue)
-            return _JSONKey(stringValue: newKeyString, intValue: key.intValue)
-        case .custom(let converter):
-            return converter(codingPath + [key])
-        }
     }
 
     mutating func encodeNil(forKey key: Self.Key) throws {

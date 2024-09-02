@@ -9,8 +9,7 @@ import Foundation
 import SmartCodable
 
 open class MSBRespApiModel: NSObject, SmartCodable {
-//    open var response: HTTPURLResponse?
-//    open var respData: Data?
+    
     open var code : Int = 0 //业务端代码
     open var msg: String?
     

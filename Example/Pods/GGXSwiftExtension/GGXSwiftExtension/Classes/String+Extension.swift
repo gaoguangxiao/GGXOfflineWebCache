@@ -63,10 +63,17 @@ public extension String {
         return components(separatedBy: s)
     }
     
-    func range(of searchString: String) -> NSRange {
-        return (self as NSString).range(of: searchString)
-    }
+//    func range(of searchString: String) -> NSRange {
+//        return (self as NSString).range(of: searchString)
+//    }
     
+    func rangeOC(of searchString: String) -> NSRange {
+        if let range = self.range(of: searchString, options: .caseInsensitive) {
+            let nsrange = NSRange(range, in: self)
+            return nsrange
+        }
+        return NSRange(location: 0, length: 0)
+    }
     /// 去掉左右空格
     func trim() -> String {
         return trimmingCharacters(in: CharacterSet.whitespaces)
@@ -221,7 +228,7 @@ public extension String {
         guard self.contains(baseUrl) && (self.hasPrefix("https://") || self.hasPrefix("http://"))
         else { return self }
         
-        let range = self.range(of: baseUrl)
+        let range = self.rangeOC(of: baseUrl)
         // get  "https://www.baidu.com?"
         let headerStrig = self.substring(to: range.location + range.length)
         // get key1=value1&key2=value2
@@ -409,6 +416,25 @@ public extension String {
             return nil
         }
         return decodedData
+    }
+    
+}
+
+//MARK: Base64
+extension String {
+    
+    public func encodBase64(using encoding: String.Encoding = .utf8) -> String? {
+        if let data = self.data(using: encoding) {
+            return data.base64EncodedString()
+        }
+        return nil
+    }
+    
+    public func decodeBase64(encoding: String.Encoding = .utf8) -> String? {
+        if let data = Data(base64Encoded: self) {
+            return String(data: data, encoding: encoding)
+        }
+        return nil
     }
     
 }

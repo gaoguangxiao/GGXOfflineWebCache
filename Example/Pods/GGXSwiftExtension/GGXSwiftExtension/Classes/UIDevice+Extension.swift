@@ -473,8 +473,8 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         return Int(UIScreen.main.bounds.size.height)
     }
     
-    @objc static var currentSystemVersion: Double {
-        return Double(UIDevice.current.systemVersion) ?? 0
+    @objc static var currentSystemVersion: String {
+        return UIDevice.current.systemVersion
     }
     
     /// 获取状态栏高度

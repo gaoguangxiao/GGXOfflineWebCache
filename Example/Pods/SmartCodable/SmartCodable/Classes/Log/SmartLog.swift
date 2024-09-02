@@ -17,7 +17,8 @@ public struct SmartConfig {
         
     }
     
-    /// Set debug mode
+    /// Set debugging mode, default is none. 
+    /// Note: When not debugging, set to none to reduce overhead.
     public static var debugMode: DebugMode {
         get { return _mode }
         set { _mode = newValue }
@@ -34,7 +35,7 @@ public struct SmartConfig {
     /// Once enabled, an assertion will be performed where parsing fails, providing a more direct reminder to the user that parsing has failed at this point.
     public static var openErrorAssert: Bool = false
     
-    private static var _mode = DebugMode.warning
+    private static var _mode = DebugMode.none
 }
 
 
@@ -43,6 +44,8 @@ extension SmartLog {
         impl: JSONDecoderImpl,
         isOptionalLog: Bool = false,
         forKey key: CodingKey, value: JSONValue?, type: T.Type) {
+            
+            guard SmartConfig.debugMode != .none else { return }
             
             // 如果被忽略了，就不要输出log了。
             let typeString = String(describing: T.self)
@@ -76,6 +79,9 @@ extension SmartLog {
     static func createContainerLog(
         impl: JSONDecoderImpl,
         error: DecodingError) {
+            
+            guard SmartConfig.debugMode != .none else { return }
+            
             let className = impl.cache.topSnapshot?.typeName ?? ""
             var address = ""
             if let parsingMark = CodingUserInfoKey.parsingMark {
@@ -111,7 +117,6 @@ struct SmartLog {
         logIfNeeded(level: .verbose) {
             let header = getHeader()
             let footer = getFooter()
-            
             
             if let logItem = LogItem.make(with: error) {
                 let output = "\(className) 👈🏻 👀\n \(logItem.formartMessage)\n"

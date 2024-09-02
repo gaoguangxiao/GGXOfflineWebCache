@@ -39,7 +39,7 @@ public let ReportBuglyAbility_Notification = "ReportBuglyAbility_Notification"
         MSBApiConfig.shared.getApiHost = { apiHost }
         MSBApiConfig.shared.showHUDAbility = { error in
             // 根据业务需要展示API错误信息
-            var showErr = error
+//            _ = error
 //            if showErr.code == 6 {
 //                showErr.msg = "网络连接不畅，请检查网络"
 //            }

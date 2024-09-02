@@ -2,10 +2,10 @@
 //  SmartAny.swift
 //  SmartCodable
 //
-//  Created by qixin on 2024/6/13.
+//  Created by Mccc on 2024/6/13.
 //
 
-/// Attribute wrapper, used to wrap Any.
+/// Attribute wrapper, used to wrap Any.SmartAny allows only Any, [Any], and [String: Any] types to be modified.
 @propertyWrapper
 public struct SmartAny<T>: Codable {
     public var wrappedValue: T
@@ -51,6 +51,8 @@ public struct SmartAny<T>: Codable {
         } else if let arr = wrappedValue as? [Any] {
             let value = arr.cover
             try container.encode(value)
+        } else if let model = wrappedValue as? SmartCodable {
+            try container.encode(model)
         } else {
             let value = SmartAnyImpl(from: wrappedValue)
             try container.encode(value)

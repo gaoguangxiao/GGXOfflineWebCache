@@ -2,7 +2,7 @@
 //  JSONValue.swift
 //  SmartCodable
 //
-//  Created by qixin on 2024/5/17.
+//  Created by Mccc on 2024/5/17.
 //
 
 import Foundation
@@ -26,10 +26,10 @@ enum JSONValue: Equatable {
             return .null
         case let string as String:
             return .string(string)
-        case let bool as Bool:
-            return .bool(bool)
         case let number as NSNumber:
             return .number(number.stringValue)
+        case let bool as Bool:
+            return .bool(bool)
         case let array as [Any]:
             let jsonArray = array.compactMap { make($0) }
             return .array(jsonArray)

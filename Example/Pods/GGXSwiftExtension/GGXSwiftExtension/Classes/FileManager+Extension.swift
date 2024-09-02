@@ -18,7 +18,7 @@ extension FileManager {
         case directory
     }
     
-     /// 移动类型
+    /// 移动类型
     public enum MoveFileType {
         case move
         case copy
@@ -27,7 +27,7 @@ extension FileManager {
 
 
 public extension FileManager {
-
+    
     /**
      * 计算单个文件的大小
      */
@@ -44,7 +44,7 @@ public extension FileManager {
         }
         return fileSize/1024/1024
     }
-
+    
     /**
      * 遍历所有子目录， 并计算文件大小
      */
@@ -174,7 +174,7 @@ extension  FileManager {
             let toFileFolderPath = directory(atPath: toFilePath)
             if !isFileExists(atPath: toFilePath) && fileType == .file ?
                 !createFile(atPath: toFilePath) :
-                !createFolder(atPath: toFileFolderPath)  {
+                    !createFolder(atPath: toFileFolderPath)  {
                 block?(false)
             } else {
                 if isOverwrite && isFileExists(atPath: toFilePath) {
@@ -182,7 +182,7 @@ extension  FileManager {
                     do {
                         try fileManagerDefault.removeItem(atPath: toFilePath)
                     } catch _ {
-
+                        
                     }
                 }
                 
@@ -205,7 +205,7 @@ extension  FileManager {
     public static func isFileExists(atPath path: String) -> Bool {
         fileManagerDefault.fileExists(atPath: path)
     }
-
+    
     /// 获取 (文件夹/文件) 的前一个路径
     public static func directory(atPath path: String) -> String {
         (path as NSString).deletingLastPathComponent
@@ -218,12 +218,12 @@ extension  FileManager {
     
     /// 获取所有文件路径
     public static func getAllFiles(atPath folderPath: String) -> [Any]? {
-         // 查看文件夹是否存在，如果存在就直接读取，不存在就直接反空
-         if isFileExists(atPath: folderPath) {
+        // 查看文件夹是否存在，如果存在就直接读取，不存在就直接反空
+        if isFileExists(atPath: folderPath) {
             return fileManagerDefault.enumerator(atPath: folderPath)?.allObjects
-         }
-         return nil
-     }
+        }
+        return nil
+    }
     
     /// 获取所有文件名（性能要比getAllFiles差一些）
     public static func getAllFileNames(atPath folderPath: String) -> [String]? {
@@ -242,7 +242,7 @@ extension  FileManager {
         return files.map {
             folderPath + "/"+"\($0)"
         }
-     }
+    }
     
     /// 计算单个文件的大小
     public static func fileSize(atPath path: String) -> Double {
@@ -264,4 +264,59 @@ extension  FileManager {
         return fileSize
     }
     
+}
+
+extension FileManager {
+    
+    /// 其path为相对path，默认
+    public static func deleteFileByPath(_ path: String? = nil, _ folderName: String? = nil) {
+        if let path {
+            let fileAtPath = self.filePath(folder: folderName, path: path, fileExt: "wav")
+            if FileManager.isFileExists(atPath: fileAtPath) {
+                FileManager.removefile(atPath: fileAtPath)
+            }
+        } else {
+            let folderPath = getSynthesisfolderPath(folder: folderName)
+            FileManager.removefolder(atPath: folderPath)
+        }
+    }
+    
+    /// 构建目录
+    public static func create(_ systemFolder: String? = nil,
+                       folder: String? = nil,
+                       path: String, 
+                       fileExt: String) -> String {
+        let resourceFolder = getSynthesisfolderPath(folder: folder)
+        // 资源目录下 创建文件
+        let filePath =  "\(resourceFolder)\(path.stringByDeletingLastPathComponent)"
+        //创建指定路径下，前面所有的文件夹
+        FileManager.createFolder(atPath:filePath)
+        return "\(filePath)/\(path.lastPathComponent).\(fileExt)"
+    }
+    
+    /// 获取资源路径
+    public static func filePath(_ systemFolder: String? = nil,
+                  folder: String? = nil,
+                  path: String,
+                  fileExt: String) -> String {
+        // 存放至 系统沙盒某目录
+        let resourceFolder = getSynthesisfolderPath(folder: folder)
+        
+        let filePath =  "\(resourceFolder)\(path.stringByDeletingLastPathComponent)"
+        
+        return "\(filePath)/\(path.lastPathComponent).\(fileExt)"
+    }
+    
+    static func getSynthesisfolderPath(_ systemFolder: String? = nil, 
+                                folder: String? = nil) -> String {
+        // 存放至 系统沙盒某目录
+        let boxFolder = if let systemFolder { systemFolder }
+        else { FileManager.cachesPath ?? "" }
+        
+        // 是否在系统下 建立指定文件夹
+        let resourceFolder = if let folder { boxFolder + "/\(folder)" }
+        else { boxFolder }
+        return resourceFolder
+        
+    }
 }

@@ -10,12 +10,25 @@ import Foundation
 extension Double {
     func roundTo(places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor        
+        return (self * divisor).rounded() / divisor
     }
     
     
     func doubleToString() -> String {
         return NSString(format: "%.2f",self) as String
+    }
+    
+    public func toDiskSize() -> String {
+//        let byteCount = Double(self)
+        let units = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]
+        var index = 0
+        var size = self
+        while size >= 1024 {
+            size /= 1024
+            index += 1
+        }
+        let formattedSize = String(format: "%.2f", size)
+        return "\(formattedSize)\(units[index])"
     }
 }
 
