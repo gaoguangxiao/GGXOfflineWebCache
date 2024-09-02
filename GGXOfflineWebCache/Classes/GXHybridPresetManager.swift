@@ -17,6 +17,9 @@ public protocol GXHybridPresetManagerDelegate: NSObjectProtocol {
     /// 下载进度
     func offlineWebProgress(progress: Float)
     
+    /// 下载进度和速度
+    func offlineWebSpeed(speed: Double)
+    
     /// 加载完毕
     func offlineWeb(completedWithError error: Error?)
     
@@ -35,9 +38,13 @@ public class GXHybridPresetManager: NSObject {
     }()
     
     /// 离线下载
-    lazy var oflineDownload: GXHybridDownload = {
-        let download = GXHybridDownload()
-        download.hyDownPath = "WebResource"
+    lazy var oflineDownload: GXDownloadManager = {
+        let download = GXDownloadManager()
+        download.isOpenDownloadSpeed = true
+        download.downloadSpeedBlock = { [weak self] speed in
+            guard let self else { return }
+            delegate?.offlineWebSpeed(speed: speed)
+        }
         return download
     }()
     
@@ -64,18 +71,26 @@ public class GXHybridPresetManager: NSObject {
     ///   - assets: <#assets description#>
     ///   - block: <#block description#>
     func downloadPreset(assets: Array<GXWebOfflineAssetsModel>, manifestUrls: Array<String>)  {
-        
-        self.oflineDownload.download(urls: assets, path: nil,priority: 3) { [weak self] total, loaded, state in
-            
-            guard let `self` = self else { return }
+
+        var downloadUrls: Array<GXDownloadURLModel> = []
+        for url in assets {
+            let downloadModel = GXDownloadURLModel()
+            downloadModel.src    = url.src
+            downloadModel.policy = url.policy
+            downloadModel.md5    = url.md5
+            downloadModel.match  = url.match
+            //            downloadModel.priority = priority
+            downloadUrls.append(downloadModel)
+        }
+        self.oflineDownload.start(forURL: downloadUrls, path: "WebResource") { [weak self] total, loaded, state in
+            guard let self else { return }
             if state == .completed || state == .error {
-                
-                self.updatePresetManifest(manifestUrls: manifestUrls)
-                
+               updatePresetManifest(manifestUrls: manifestUrls)
             } else {
-                self.delegate?.offlineWebProgress(progress: loaded/total)
+               delegate?.offlineWebProgress(progress: loaded/total)
             }
         }
+        
     }
     
     func updatePresetManifest(manifestUrls: Array<String>) {
@@ -103,7 +118,6 @@ extension GXHybridPresetManager: GXHybridCheckManagerDelegate {
         if urls.count == 0 {
             self.delegate?.offlineWeb(completedWithError: nil)
         } else {
-//            print("finishCheck执行次数-----下载的URL数量:\(urls.count)")
             self.downloadPreset(assets: urls, manifestUrls: manifestUrls)
         }
     }
