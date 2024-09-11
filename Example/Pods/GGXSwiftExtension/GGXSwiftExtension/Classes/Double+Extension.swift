@@ -19,7 +19,6 @@ extension Double {
     }
     
     public func toDiskSize() -> String {
-//        let byteCount = Double(self)
         let units = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]
         var index = 0
         var size = self

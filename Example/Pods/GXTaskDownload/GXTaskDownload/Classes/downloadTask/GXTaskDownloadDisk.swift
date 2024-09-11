@@ -78,7 +78,7 @@ public class GXTaskDownloadDisk: NSObject {
         ///更改downloader的优先级从
         taskPriority = urlModel.priority
         
-        //指定文件URL
+//        //指定文件URL
         downloader.url = uurl
     }
     
@@ -98,6 +98,8 @@ public class GXTaskDownloadDisk: NSObject {
         }
         //配置回调
         self.downloadBlock = block
+        //指定文件URL
+//        downloader.url = diskFile.remoteDownloadURLModel?.src?.toUrl
         downloader.start()
     }
     

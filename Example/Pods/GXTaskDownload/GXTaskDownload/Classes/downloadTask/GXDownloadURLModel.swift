@@ -32,6 +32,9 @@ public class GXDownloadURLModel: NSObject ,SmartCodable {
     
     public var match: String?
     
+    // 文件大小
+    public var size: Double = 1.0
+    
     /// 资源是否可用
     public var isUsable = false
 }

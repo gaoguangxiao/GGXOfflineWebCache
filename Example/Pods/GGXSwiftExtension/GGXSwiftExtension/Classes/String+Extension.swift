@@ -149,6 +149,35 @@ public extension String {
                     }
         }
     }
+    
+    //
+    func toDiskSize() -> Double {
+//        let byteCount = Double(self)
+        let units = ["B", "K", "M", "G", "T", "P", "E", "Z", "Y"]
+        //获取单位
+        let lastStr = self.substring(from: self.length - 1)
+        //获取数值
+        var byteCount = Double(self.substring(to: self.length - 1)) ?? 0
+        //
+        var index = 0
+        if let _index = units.firstIndex(of: lastStr) {
+            index = _index;
+        } else {
+            if self.has("K") { index = 1
+            } else if self.has("M") { index = 2
+            } else if self.has("G") { index = 3
+            } else if self.has("T") { index = 4
+            } else if self.has("P") { index = 5
+            } else if self.has("E") { index = 6
+            }
+        }
+        
+        while index > 0 {
+            byteCount *= 1024
+            index -= 1
+        }
+        return byteCount
+    }
 }
 
 //MARK: 字符串操作

@@ -31,6 +31,8 @@ public class GXWebOfflineAssetsModel: SmartCodable {
     /// 本地全路径-通过本地查找得到
     public var localFullFilePath: String?
  
+    /// 文件大小
+    public var size: String?
     
     public var isUsable = false
     

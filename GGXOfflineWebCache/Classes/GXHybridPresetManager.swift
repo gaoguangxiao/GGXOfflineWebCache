@@ -17,8 +17,8 @@ public protocol GXHybridPresetManagerDelegate: NSObjectProtocol {
     /// 下载进度
     func offlineWebProgress(progress: Float)
     
-    /// 下载进度和速度
-    func offlineWebSpeed(speed: Double)
+    /// 下载速度，下载量
+    func offlineWebSpeed(speed: Double, loaded: Double, total: Double)
     
     /// 加载完毕
     func offlineWeb(completedWithError error: Error?)
@@ -41,9 +41,9 @@ public class GXHybridPresetManager: NSObject {
     lazy var oflineDownload: GXDownloadManager = {
         let download = GXDownloadManager()
         download.isOpenDownloadSpeed = true
-        download.downloadSpeedBlock = { [weak self] speed in
+        download.downloadSpeedBlock = { [weak self] speed ,loaded,total in
             guard let self else { return }
-            delegate?.offlineWebSpeed(speed: speed)
+            delegate?.offlineWebSpeed(speed: speed,loaded: loaded,total: total)
         }
         return download
     }()
@@ -73,14 +73,21 @@ public class GXHybridPresetManager: NSObject {
     func downloadPreset(assets: Array<GXWebOfflineAssetsModel>, manifestUrls: Array<String>)  {
 
         var downloadUrls: Array<GXDownloadURLModel> = []
-        for url in assets {
-            let downloadModel = GXDownloadURLModel()
-            downloadModel.src    = url.src
-            downloadModel.policy = url.policy
-            downloadModel.md5    = url.md5
-            downloadModel.match  = url.match
-            //            downloadModel.priority = priority
-            downloadUrls.append(downloadModel)
+        for urlAssets in assets {
+            if let url = urlAssets.src,
+                url.contains("http") {
+                let downloadModel = GXDownloadURLModel()
+                downloadModel.src    = urlAssets.src
+                downloadModel.policy = urlAssets.policy
+                downloadModel.md5    = urlAssets.md5
+                downloadModel.match  = urlAssets.match
+                if let size = urlAssets.size {
+                    downloadModel.size = size.toDiskSize()
+                }
+                downloadUrls.append(downloadModel)
+            } else {
+                //LogInfo("\(urlAssets.src ?? "") not contains http")
+            }
         }
         self.oflineDownload.start(forURL: downloadUrls, path: "WebResource") { [weak self] total, loaded, state in
             guard let self else { return }

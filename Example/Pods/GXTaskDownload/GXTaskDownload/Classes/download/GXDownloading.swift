@@ -17,6 +17,9 @@ public protocol GXDownloading {
     /// A receiver implementing the `DownloadingDelegate` to receive state change, completion, and progress events from the `Downloading` instance.
     var delegate: GXDownloadingDelegate? { get set }
     
+    /// A `Int64` representing the total amount of bytes for the entire file
+    var totalBytesCount: Int64 { get set }
+    
     /// The current progress of the downloader. Ranges from 0.0 - 1.0, default is 0.0.
     var progress: Float { get }
     

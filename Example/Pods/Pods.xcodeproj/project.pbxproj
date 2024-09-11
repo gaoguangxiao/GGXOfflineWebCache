@@ -20,12 +20,13 @@
 		0A34A7F557D39C000D75F444C97EC702 /* mz_strm_zlib.c in Sources */ = {isa = PBXBuildFile; fileRef = CC309FAEDEC13093B142B24232520224 /* mz_strm_zlib.c */; };
 		0A6C460266DDEE431F6DA9BF78BC1D15 /* PKHUDProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E78F719563ED9651EF1CAA4F24E6426 /* PKHUDProgressView.swift */; };
 		0A975AFB214179B00E0A09CF57877229 /* MoyaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72214D652008AEC98C9DCF2948C186A9 /* MoyaError.swift */; };
-		0BFFB1D8EA2E4A6F895713F6EF5C3BA1 /* GXTaskDownload-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D66D1D7883611E9E2CEA233C2966A5C3 /* GXTaskDownload-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0BFFB1D8EA2E4A6F895713F6EF5C3BA1 /* GXTaskDownload-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF41F007FBC9815C89CCA249D4826462 /* GXTaskDownload-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C218BDBE953DFFAA021FA055C15020E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB6704A70D55B80A3F7281F31BAE70C /* Foundation.framework */; };
 		0D316FCEF16F504FEEAF523F2C72074A /* SmartKeyDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BAB2429AE11B346126EF1160D5D55A /* SmartKeyDecodingStrategy.swift */; };
 		0E6D891604E30C840E3E47C0C8FBEC50 /* JSONKeyedEncodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE91538B7339243957F9C11C50723F7 /* JSONKeyedEncodingContainer.swift */; };
 		0F1D68554CA1AC595168E8FB4E1A6E63 /* CachedResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DE4B3E54D7FB397B7AB9D143A926E /* CachedResponseHandler.swift */; };
 		0FA5B65EB53B1207D07F85B7DF8C120D /* SmartFlat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C50E7F9084DC78481B117210F30B2 /* SmartFlat.swift */; };
+		10D1FD32A10486BB2FE1693A5E943CB4 /* GXDownloadURLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CC1504EDC8AA5FB473A9E1CF6A3C3 /* GXDownloadURLModel.swift */; };
 		13394FFDC9559D7D17F9EC34633F19D0 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A371D8DD6FD51144359AD38EBCCDA80 /* Cancellable.swift */; };
 		13C542BF21A1B657964B3753EFDD8CB5 /* PKHUDErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288D95AC719A0C445E5087BF00E92BE /* PKHUDErrorView.swift */; };
 		156B55EDE4AE6C9273B122058E95FE5A /* SmartCodable-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9AE1A81F63FB4732ADC19E2B890E11 /* SmartCodable-dummy.m */; };
@@ -44,10 +45,10 @@
 		24C4C6945854760CE30947052111A017 /* SmartEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA018BE59D9FBDB53B6899A1D02754A8 /* SmartEncodable.swift */; };
 		24FD3491E5E3A379C5150B871BF34573 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E643AD6227B5C0AF20D6CA12707D057A /* JSONValue.swift */; };
 		267AFFCEBA7E9172CB6194E1C1FE2B85 /* PKHUDWideBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2723BEFDAB2B9F752777EFC274D5A359 /* PKHUDWideBaseView.swift */; };
+		27680C4F2AB7692035885CEE69F28F66 /* GXDownloadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794C5A2DAE23C3361BB53A9BE52E7411 /* GXDownloadingDelegate.swift */; };
 		27889E6A2349DA02C57B1058A66230D6 /* SmartCaseDefaultable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECDC88DE9EBE80B550F95BE0A32D5BC /* SmartCaseDefaultable.swift */; };
 		28D71EDD19E624E4C8BD28D28F5CEEA3 /* EncodingCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8DA238C87653932099613A3A7D9BF5 /* EncodingCache.swift */; };
 		29ABD74E66C5B14682C0BDD6E27B8939 /* SSZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D0939063CE50EE8711C1308352B02EA /* SSZipArchive.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2B1CF9064D6E5CA20465A2F8B6D4E7A3 /* GXCheckTaskSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D26A0A58F1C0A2834DE2EBBB344963A /* GXCheckTaskSize.swift */; };
 		2B230B24827053BA3E9DA0C78A796BC2 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83711266837AACED1C26BD8C13DAADDA /* ResponseSerialization.swift */; };
 		2B42D035AFF52D62722161A7772C6C08 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61140B88104E79B7F12E70DC2B40A19D /* HTTPHeaders.swift */; };
 		2B913228979AA3A863E601CD461CFE54 /* Moya-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3288E2CC92EA918CD0F1F594828C3054 /* Moya-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,11 +56,11 @@
 		2D80F3CDAAECED09F1ACAE6077A1C7AD /* MSBApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD395C75831CAD473833CD30A8BED474 /* MSBApiConfig.swift */; };
 		30448EC0CA0DE58C39D7C085D91FBA9C /* mz_crypt_apple.c in Sources */ = {isa = PBXBuildFile; fileRef = 74D76C47D2D127B736083574EE57A0D9 /* mz_crypt_apple.c */; };
 		30BD601F09002EC8EB405B442ECB74F5 /* SSZipCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 20CF1131D60BF338EC9DF4BF55E9FC24 /* SSZipCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		33AC83DB1D34EB36391C647020036B03 /* GXDownloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA0FD63E8A8F014E418DA8C2C5DF21F /* GXDownloading.swift */; };
 		34037DB27CB0B131E549B437CE9A61D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB6704A70D55B80A3F7281F31BAE70C /* Foundation.framework */; };
 		3409ABF0C244C9046F22BA43EC6E2C38 /* mz_crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = C3B5E349ED5C22AB1566ABC971479783 /* mz_crypt.c */; };
 		342FE324E1D17162024FAAB61371EEA4 /* PKHUDSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BC7CDA38F8D4903D1754AFDCBF7033 /* PKHUDSuccessView.swift */; };
 		347F2A53A10EE701CB96DCE1BDA54B6D /* Moya+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F25FE1AB2CA175B802EC8BFC7D03CF /* Moya+Alamofire.swift */; };
-		357615C0CAA0A8697F4B7C024FC32605 /* String+OffLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B57ECFDCE7A9CF3B74D437D1738FE7 /* String+OffLine.swift */; };
 		36C78069A72BECAEB66B31FF794A09ED /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFFEB4F7C4186B959992C8AAE2ECB7D /* Request.swift */; };
 		37C1F0F29A50CE6C13D6A775645FCF38 /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4863126B274BC040EED55871DF0015 /* Plugin.swift */; };
 		37C5560B3B7205B3DB4950E4C252173D /* NetworkActivityPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2851AA9F999149A14B659F7D58103FCC /* NetworkActivityPlugin.swift */; };
@@ -71,19 +72,18 @@
 		3EF2A1D28AA813E47470815E33D372BC /* Pods-GGXOfflineWebCache_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 157B40C25BF695A7EE49B5C76C0A2EE9 /* Pods-GGXOfflineWebCache_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F2EF1CEC7693FABBD9016D0AC0CEFFD /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C789086F72EFD3D4937458053D5676DC /* Task.swift */; };
 		404A8D1E9787C613DCFA020E621C3ECD /* UIImage+commonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4F1FCB8DEAAE63081422F4F3BB9AA7 /* UIImage+commonExtension.swift */; };
+		42BA78737171722A9EEF6C97FDF0BF64 /* GXDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45993E294800DB78164D4DDE8935CC /* GXDownloadManager.swift */; };
 		4337931D8B8E3F3BA03C77C1B496BEAD /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF389F083E3847484C7CD78A05EADBC /* HTTPMethod.swift */; };
 		454743C5E37EE96CA58FCE3755557C80 /* SmartJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC43012C0FB7CA2C0BFE8FA16DDCCC1B /* SmartJSONDecoder.swift */; };
 		46908D592FF991B72F8BF7EF73052761 /* MSBDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A30ADB2A29D2681A25207EE8FCA2CB0 /* MSBDataResponse.swift */; };
 		46926D4FED596FC6DA750B17A32757C0 /* PKHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 55F1957A27AA227BB2703CDF1EDEE6F1 /* PKHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		47C9EEC5F69215021E5E3FE9E8EA7E63 /* GXDownloadURLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D104366B52BD22ADDA060156CC00A765 /* GXDownloadURLModel.swift */; };
 		4A854A564489E1FA10749F618393984A /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AD64CD731233C5CB4EAEB92F703CEE /* Transformer.swift */; };
 		4AB89CA7CB0E9A19ED4788CEFFCBC42B /* MoyaProvider+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E17BC7F1071D2CB7D072665775A41EF /* MoyaProvider+Defaults.swift */; };
 		4D7F6C817D79F55ED0EBFFF8AB3C7736 /* JSONDecoderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5D80E9CE2FE0A26A512BE36C65F7D2 /* JSONDecoderImpl.swift */; };
 		4E99F4979DE09F0C6CCF97BECF9C4BB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB6704A70D55B80A3F7281F31BAE70C /* Foundation.framework */; };
-		4EC1684685E4A4B2CFBEEBBEB7B76A1A /* GXCheckTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD580748B65EA731971189C959DCE8A4 /* GXCheckTaskManager.swift */; };
 		4F4B9DFA352D9958C7494D7BC24631D8 /* Alamofire-Alamofire in Resources */ = {isa = PBXBuildFile; fileRef = 085DBCE7DD98588B2ED103B1C1F36026 /* Alamofire-Alamofire */; };
-		501DCE1D20DF5226A7B606D4A3F0575F /* GXTaskDownload-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C38534C1F73DEE139FDF3FA60CBF50DD /* GXTaskDownload-dummy.m */; };
 		5075DC82A63A9807DFC390B4CE8046CD /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75215FFDF7B6DCD7FB9B3D3BAAA3F8B4 /* Session.swift */; };
+		5179B195422A658D444D6E5E83810A21 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4849E5DB5E03CFA456525AA5FFC74245 /* ReplaceMe.swift */; };
 		56B2E49ED1D7FCE76B998DB7DCE0C9BE /* ColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED40D677C5D568BBC3FF51A626BA903 /* ColorTransformer.swift */; };
 		571142A2747CD90165F631A8AE980A0A /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2944430F53BF6E2DDB9F9CF72591BB01 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		571C082C57405C2FFBD2BDA46223FF79 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584AD288402100544D231F7ED0628E6 /* String+Extension.swift */; };
@@ -100,6 +100,7 @@
 		5B7E12325F93527EE621E8F20A2F399F /* mz_zip_rw.c in Sources */ = {isa = PBXBuildFile; fileRef = 5602FC8B5A5D8B6E922ED3CB7A51E70C /* mz_zip_rw.c */; };
 		5B9951ED2D881777C4D0CAC36DA1FBC8 /* GXHybridRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CACCB54243FF2FA36D4D9762BF846 /* GXHybridRequest.swift */; };
 		5F0A20C77CFA9A8AFC74757A3FF6B00D /* URLRequest+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A6F41C17CA9585E0838E7B788DF760 /* URLRequest+Encoding.swift */; };
+		604454E1B756D5F05F4FFED2D84589E5 /* GXCheckTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9E0F30B47B0C3B90A1311F17FBACF3 /* GXCheckTaskManager.swift */; };
 		612AE0ABB9BCD3AF0E1D29B4C063CA62 /* StringEncoding+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF9B45A9BD991C4B9EA7DD33D7E730 /* StringEncoding+Alamofire.swift */; };
 		63C7C9886DA2050427881D8519F59CB5 /* IgnoredKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515DD06CCF808A8D7824957B2A082CC2 /* IgnoredKey.swift */; };
 		652C8F5B036F429556A1696805022AF1 /* Patcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F5F52ACEB339A535BF89438229A562 /* Patcher.swift */; };
@@ -124,7 +125,6 @@
 		72C19C762FADC82517C344E9F47D7E50 /* AlamofireExtended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C4F9E9157AB47B4AEEF1F846445788 /* AlamofireExtended.swift */; };
 		76D987A8B3342F268BBF829109767F1E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628E226989EF92E770B0613C9DD836A5 /* UIViewController+Extension.swift */; };
 		771566C8F8B89CC9B5C8C5F54A8E8810 /* Pods-GGXOfflineWebCache_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3162381E57DB8E6137B98FEF688AC181 /* Pods-GGXOfflineWebCache_Example-dummy.m */; };
-		77BD66A0EC22CFB14AD2E881EFC12BD8 /* GXDownloadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22624E12E182E0E6E8044AA12344D804 /* GXDownloadingState.swift */; };
 		77DE9034671D619437068CBE1321F47B /* UIEdgeInsets+CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EE30AD31A9DD9E4B7B34B93609D609 /* UIEdgeInsets+CommonExtension.swift */; };
 		794FC38D15336AB502B73B012005E9BD /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223A105F7AECE99EB1699D085EAADC1 /* Validation.swift */; };
 		795681285B4E2B121B5CD420131168F8 /* MultipartUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB7EC0EE2CDE9386D369778D60AF34 /* MultipartUpload.swift */; };
@@ -133,13 +133,14 @@
 		7ACEB4B83EBD0A39779609A28EFFD114 /* Task+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD012BCDAF1448405A3E40B0373477 /* Task+Extension.swift */; };
 		7AE2E0B382A14D58BE7DAA0C852DCD02 /* ServerTrustEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AA234BB921D05913DAB95DE4C9CDC9 /* ServerTrustEvaluation.swift */; };
 		7B31289432801123D391896F3E6C7E1A /* mz_os_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = CB267747B742D30777632BD2D8F6F8FB /* mz_os_posix.c */; };
+		7DA0F318F98539701AABB5EB2E7EB562 /* GXDownloader+URLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A369628D001CCA1FC2B71E5635F5CDD /* GXDownloader+URLSessionDelegate.swift */; };
 		7E58503622122D6E9245B0F69E09C2F9 /* PKHUDTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3888477128C0B4DA800A17CC7BD3D296 /* PKHUDTextView.swift */; };
 		7E90D7FEA31DC9317545112658068EB4 /* mz_strm_mem.h in Headers */ = {isa = PBXBuildFile; fileRef = 63ECB735399E74FE7DC20A8D8D7944C3 /* mz_strm_mem.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7EE00DC206E15540A460AFB6C0F7FFC1 /* URLTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E63E2F8320EFB5A8D82F99F7235FAD /* URLTransformer.swift */; };
 		80835A03865EBAC726314761F1CDEC83 /* JSONDecoderImpl+KeyedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B606CEE61CC5B27228F08067930741D /* JSONDecoderImpl+KeyedContainer.swift */; };
 		80AACF2D1A482BB8B4E397A281481AAD /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE317F8269236DF5A6466A8E9DE46DE /* HUD.swift */; };
-		810129241BB91026FA88BDD30442FA59 /* GXDownloadingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E25277AB59926830562484B72CA629 /* GXDownloadingError.swift */; };
 		817A94AB925D3C2041A2A08FED46E5FA /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F135FB6C989C26CD12ECFCE73AEC4B /* UserDefault+Extension.swift */; };
+		81C718D57A2CFADB2C912A93D8C4F111 /* GXTaskDownloadDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB1B2BB09B046C36454689D7A488EB /* GXTaskDownloadDisk.swift */; };
 		84834168FFFA3440A230E3C6C273683A /* GGXSwiftExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 86418903C43B3A0D58FD3D9B292BE3B9 /* GGXSwiftExtension-dummy.m */; };
 		84BEB9E439780B1E0DEF56459E3D3352 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB6704A70D55B80A3F7281F31BAE70C /* Foundation.framework */; };
 		863C77AC8E0D2AA60C0531BD24023844 /* mz_strm_pkcrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F686C87AC9B85CDB4673E74D2DB203 /* mz_strm_pkcrypt.c */; };
@@ -153,18 +154,18 @@
 		8CE70A7BAC5CE8D334B4755DDE32ED57 /* GXHybridZipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0760267AB81367D2170CB59961991247 /* GXHybridZipManager.swift */; };
 		8DD46EE7FB9503E7634E929DDE1CBA31 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90F6C8109D58D65FF7F25D88C9EC06 /* Notifications.swift */; };
 		8DF31D8D83A0110D5D8AE25CEAE6442F /* SmartAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633057FF2A549E0090CC1F543E77B3D0 /* SmartAny.swift */; };
-		8ECDDE4B89D59CD8C6426DA6FFDB18FF /* GXTaskDiskFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61193C793A29043D474192A18A90DBD /* GXTaskDiskFile.swift */; };
 		90D847B19214926EDE5210D44A08F3C7 /* RequestTaskMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D70A40275CD83015EB66E94B212300 /* RequestTaskMap.swift */; };
+		91588B732F1BAB0E52D8A8192C7DFE0F /* GXTaskDiskFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B7D0F003D4607B4937F3D3EA22A501 /* GXTaskDiskFile.swift */; };
 		91F1839815AEF90E864086242287C078 /* mz_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 665D41933066D6914DC9F07FA46B240A /* mz_os.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		92138A77DFEB4F76FCB582E97633896D /* URLRequest+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580D712018B11BCD37B06478DDBFF851 /* URLRequest+Alamofire.swift */; };
 		922D2752093CE1CD20CAF0B8160A331C /* mz_strm_os_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = 15FF39B7205F521F059C4FBC8C48CF2A /* mz_strm_os_posix.c */; };
+		9285553BABD35D3A30365C90A615A9BA /* GXDownloadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DCB272A6B12513FE23854218132FDC /* GXDownloadingState.swift */; };
 		931A520620EA98E0EF223DB9B294A265 /* mz_compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C0C1789CE28F13A08091F692EDBA7E3 /* mz_compat.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9378157945D7B405C862A05B0D6B971B /* Result+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1636685BB4D023B8411499D1D2E28B5E /* Result+Alamofire.swift */; };
 		94ADBE8CDFD2894D0444A871473B3848 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A362D1B8F57F131506FA945105BB224 /* URL+Extension.swift */; };
 		952662DC89A4799781602D2D43858604 /* mz_os.c in Sources */ = {isa = PBXBuildFile; fileRef = CD127AFB8D803D7AC1E9F5F7016304F1 /* mz_os.c */; };
 		95A8827E90E2DD0A1D4856492506B024 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863337A360E348EB9B6DAF106751EF13 /* MultipartFormData.swift */; };
 		9641AD07B172CD08E29641847FD14DD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB6704A70D55B80A3F7281F31BAE70C /* Foundation.framework */; };
-		96FFA3D08501F4A35978CA22487A8D1B /* GXTaskDownloadDisk+DownloadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A7C8DDA9A41F5FB2CCF7C76CA9DAF3 /* GXTaskDownloadDisk+DownloadingDelegate.swift */; };
 		970CB3EA93DD45F963B193B909AC0B76 /* GGXOfflineWebCache-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DAEDF270F5418BD2A21ECB7AC80AEAF4 /* GGXOfflineWebCache-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		978DFCB0B793F53CADC0FFBC49116BAF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABAB7562D0623DFC2D01E0A09448472 /* Security.framework */; };
 		97B0DA2B882AED1FA10BDAC1DADEBD63 /* JSONFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A06D9EE0EBFFDB04EE0588D97F639 /* JSONFuture.swift */; };
@@ -176,10 +177,10 @@
 		9ACC7765A1DCAFEF80C737DF1A12D088 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0BC4C13BB55F0D8BBA4FB7D913F2B /* Date+Extension.swift */; };
 		9B5ADB3F74AB90C542588E418B8F1E41 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A37225697F9E20841607EE46A43864 /* ReplaceMe.swift */; };
 		9C7D314BE45AB79E96B260656C36BAEC /* RedirectHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A499A98120B4A4B004A7BDBCA9B51D /* RedirectHandler.swift */; };
+		9D7AD7EFE5BC5E50F24A47075320BBEE /* GXTaskDownload-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E6475652C8C6A31B261AFAE48DC20070 /* GXTaskDownload-dummy.m */; };
 		9D8BED7F3F86BB39E7C0923D92E73F8B /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3A0EA62068DB9A39432F0116080F6 /* Combine.swift */; };
 		9EFEE9530FE488640515EC843E5DCFAB /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79286A51D8E3AF6B2AA50160EE64E24 /* NetworkLoggerPlugin.swift */; };
 		9FABCE141A4F199E76937F6B09A6AC55 /* RequestTypeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4E820E552D5435C80F5D96B0355372 /* RequestTypeWrapper.swift */; };
-		A08D88B32115B243726F747EFF3F1364 /* GXDownloadConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3652EAAEC8C9ED2286B82CA36D917A /* GXDownloadConstants.swift */; };
 		A1506893FF52AA466B130E8B05FBE868 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1921A1F9AC97C5F7E7191ECC9121E43 /* NetworkReachabilityManager.swift */; };
 		A1B06ABB861D793F09FB76AF343B4D20 /* LogContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499C0576DDBC636617530C6336CBC88E /* LogContainer.swift */; };
 		A1E8AE5392FCAA46BDF1A69D613CD540 /* SmartAnyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095DEE51909E2A828F72C8403828FDE6 /* SmartAnyImpl.swift */; };
@@ -187,7 +188,6 @@
 		A22A2ACF53FDC243AAAFB009005A710F /* Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44BBECA852BF12E90393D076F4FC35B /* Concurrency.swift */; };
 		A3FD52DF5584364FFD56965394C36CF2 /* URLConvertible+URLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E8A3CAB7E8FD1EA8E1339853BCC098 /* URLConvertible+URLRequestConvertible.swift */; };
 		A4020FB2EECDA949F565C5D25801AE41 /* _SpecialTreatmentEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22CC00ACB757A3E58D0CF1BA1F759F1 /* _SpecialTreatmentEncoder.swift */; };
-		A8C6D225621422AE8C347711F66EFF42 /* GXDownloadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151690E81FFEAE5430033C122E703CF9 /* GXDownloadingDelegate.swift */; };
 		AA602A49B1DC7FDED565CAD8BB89EAC1 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A9E19D5983670193E215E442C094A9 /* AFError.swift */; };
 		AB655C8FCD1566BF7FFD45DE5E2378CF /* mz_strm_pkcrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = BAE4E4942A9B432D04AECCAFA9C0C764 /* mz_strm_pkcrypt.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		ACA22E9CBD0E71BFBD43F11EB3B9D62C /* PKHUDSquareBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5A5DA0E61ED2C6F8CCD797B70C047 /* PKHUDSquareBaseView.swift */; };
@@ -197,16 +197,15 @@
 		ADED9E4D3A13C794724A4923EFACBA0A /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA2016F8C3F2E814CACB60547A081 /* AnyEncodable.swift */; };
 		AE69EBA91054D3C85B951A12239DEDC1 /* PKHUDAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643FD272A1AD3FE834DE3DCDF1C6BA5 /* PKHUDAssets.swift */; };
 		AEACCAC4F5A589420AE1C1D359C60488 /* JSONEncoderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813487E5FA2ED4EE1703B41EA45E1660 /* JSONEncoderImpl.swift */; };
+		B0A2328331C55FBE8234AC18E88910E7 /* GXCheckTaskSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D59A8A38065F95E7B0445F0D0641395 /* GXCheckTaskSize.swift */; };
 		B10E365C751D58C819F94F8A27322446 /* AVAudioSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8876BA9C524BE73142F1DBD9A0FA04 /* AVAudioSession+Extension.swift */; };
 		B5C66B48EB624FEC4D2F64A50F143716 /* DataStreamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C78023B61A240945BF9072B9B7434 /* DataStreamRequest.swift */; };
-		B7176A978B05A8C3ADC950C8F125D63C /* GXDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80899871B3A428B6F3BB9868223448C /* GXDownloadManager.swift */; };
 		B8BEB64658F69C755334ABBC47406E7B /* mz_zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 2615D6965D54BDA6D33B209D177FC3EF /* mz_zip.c */; };
 		B905DCCB2912EBE67C261AD7348D097E /* SmartUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42963AA315615F7AB20DB6B13E90997A /* SmartUpdater.swift */; };
 		BA7DC3B31BE9403F5CCD0FCCB976AC46 /* Cachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AEB9F89B72B69AE8632924AF3F242 /* Cachable.swift */; };
 		BA9BDC74E7FFA04ACE82A9DF382031C8 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A23E3D5C0FA6069F5B26A5843966E87 /* UIDevice+Extension.swift */; };
 		BC0A0C473B63B817926F4D58611281BB /* URLEncodedFormEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFB8A2476C497D09A2D017EE3D3BA5 /* URLEncodedFormEncoder.swift */; };
 		BC47089EA99BCDD5D2907A1308AE23F4 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520065C4AD65985907E3AD5AB1C3391 /* Window.swift */; };
-		BCDD9FF65637561BB062EA79A7E69B13 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AFA3BCAF251BB7EE33BA74D9448163 /* ReplaceMe.swift */; };
 		BE067E77F96280F5B7043B3F8F302BE3 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8090A24C67045DCB5857F5467ABA2362 /* Atomic.swift */; };
 		BEC1A64E4B54E319AAAF5DB1DF455121 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EA2BE3134D895CF92DBABEA5BF68E /* UIView+Extension.swift */; };
 		BFC4BEAEA14200D4E17270AEF89AC41B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB6704A70D55B80A3F7281F31BAE70C /* Foundation.framework */; };
@@ -219,6 +218,7 @@
 		C5D39B3FE2709079813514FDF946B8F2 /* mz_crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = F71016BF886577AFE60C6E47AB142B85 /* mz_crypt.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C5F6EA62DCED3CD8615D3E9A5BDAF100 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0AD9F89E1EC07BF2F293A1FBF9354D /* UITableViewCell+Extension.swift */; };
 		C6C98BB30DC11C39547DE8DD196C196B /* PKHUD-PKHUDResources in Resources */ = {isa = PBXBuildFile; fileRef = BFCB2D5C605270A32522299AED3B5AE6 /* PKHUD-PKHUDResources */; };
+		C737E8F421695C87C618F458182CBBAD /* String+OffLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690443E07DB9E9898BE57C5049A7CC41 /* String+OffLine.swift */; };
 		C78780489DCF12E10AF153DAAAA3E6F9 /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DEE5D3D6B0BC1821DB9AD46633DE0C7 /* ZipArchive.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C994D59186BAFFF4EC90C133384D08BC /* mz_strm_buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 8877D64C8FB8CEDAE617B019B42810F2 /* mz_strm_buf.c */; };
 		CA7BBFF257B43DD96FA210B569CDE2C6 /* WKWebView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB84FEF625B0DD6D2786B3308CF351A /* WKWebView+Extension.swift */; };
@@ -229,13 +229,11 @@
 		CDCB11AF9A2C0F6AB5AACAB620D127AE /* mz_strm_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = F7D4B971491AB2BEB7B1B358B895DA2B /* mz_strm_mem.c */; };
 		D05B21847CB531E07C03E85ED98983F6 /* mz_zip_rw.h in Headers */ = {isa = PBXBuildFile; fileRef = 1283A2006CBFB43C539E2200F4AE66AE /* mz_zip_rw.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D0F76CE794D5A1B15018DBAD27D9FE31 /* GXSwiftNetwork-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C8D2D2A6A4A2A8377082D05E9F8A2A74 /* GXSwiftNetwork-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3E212C206E94836B6971BC566A175B5 /* GXDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D9F968038829FD9562DEDE02DDF4C /* GXDownloader.swift */; };
 		D45E734B6BBFC4245DB7258D4030A7E1 /* GXHybridTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2841303DEC2354343B6BFD09F18EF7 /* GXHybridTaskManager.swift */; };
 		D46993F05E3C8D3071C25D6FE6408A77 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E44760074E0CC6A793F78BBE94B354 /* UIColor+Extension.swift */; };
-		D4DE3B1DC196C86627711CCFB4F2B059 /* GXTaskDownloadDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9289EBBF47A0DE1A02586A774A7568C3 /* GXTaskDownloadDisk.swift */; };
 		D5BC665CE02DBA0EB8217442B2E89EDD /* mz_strm.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B923FD500333AB3934D5ABCC3333994 /* mz_strm.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D63503194ECBC4C095222EA0020D07DB /* GXDownloader+URLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C97797F67F64A82A73822C4EC3647 /* GXDownloader+URLSessionDelegate.swift */; };
 		D71555394C1CB34700421D23086CBDBC /* GGXSwiftExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B6ED58407126B723D8A226599D06308 /* GGXSwiftExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D81F496B7950904E069F7C5B53B1B083 /* GXDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86BCA2FBEB624271E88858670B2CB2 /* GXDownloader.swift */; };
 		D8D795707C031F66759C208A15476AF4 /* AccessTokenPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC97B8F98209011F89EA7577B42D0B34 /* AccessTokenPlugin.swift */; };
 		D8DAD3BE546EEC1A6A4C886284D3AB8D /* SmartColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0199C6CED451C79F8A5CF89AAA0049 /* SmartColor.swift */; };
 		D9E541580790A3132C79295F185FC889 /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F197E09176CDFB77FEFD3B29DE2808 /* UIKit+Extension.swift */; };
@@ -246,6 +244,7 @@
 		DE8F5B68839128A005EE3549A1149B09 /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36BD687E222815FC6D890848F3F442D /* RequestInterceptor.swift */; };
 		DEA59657736DE86A1A5F814BF561DC8B /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0D4731C886528721F0DE02641BD7AE /* TargetType.swift */; };
 		E11BDA8509B0A5B750EB2CCB321AA812 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 952BAAB550BE377ACE31059FE3FF661E /* SSZipArchive.m */; };
+		E1A99218F15488411E4C227EF537361F /* GXTaskDownloadDisk+DownloadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD5E2D99F1FD6719CCEC112149F692D /* GXTaskDownloadDisk+DownloadingDelegate.swift */; };
 		E2C1A96E29A5F56F9751A82594348D2E /* String+OffLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F810C2BE014820127C4F9C116782F3 /* String+OffLine.swift */; };
 		E374FC357F08195428911975F0767004 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA05A9A217692FE064EF1C1ED34E38F /* ReplaceMe.swift */; };
 		E652D07879A41A276B0D9001B3FFDD76 /* SmartCodable-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E7D41FB56254BD2D8248A52541EC23F9 /* SmartCodable-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -256,19 +255,20 @@
 		E8F5B7ECD7A1EA3BC2AFE649010579AD /* mz_strm_split.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B662E32239B33A67D684FC473ACF948 /* mz_strm_split.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EB859689491059F4B95E957DE8A90B18 /* PKHUDAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6E1840D30F059703B75222E332F60 /* PKHUDAnimating.swift */; };
 		EE4DFB65E310ADA1B4E6B1CDB7F4F4E6 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CFB7D0C2255DC72C3F57DCBF93D9C /* FileManager+Extension.swift */; };
-		EE8E739E6178D5B30338A4EF50FCA9EE /* GXDownloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A36F9A9315A624DBF69C8907E96F5E /* GXDownloading.swift */; };
 		EEA7F906D99F0FA0C894C3050574006B /* mz_strm_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 733810CFE46981E9A6A2F04A00661B12 /* mz_strm_os.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EF4DCF73618C2E4F121D9ADD216F13BA /* MoyaProvider+Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B380449C18B07E4916F4A3722F13E0 /* MoyaProvider+Decoder.swift */; };
 		F066ABCB7A4941546BE8F3D5D47690B7 /* KeysMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF67AE2A0D2D7DC4C032CD6BDA90180 /* KeysMapper.swift */; };
 		F10EAFC8D9571610DCEDD7A2B1FB6300 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD67AFEEAA7BCEA871A52E283445E5D5 /* Dictionary+Extension.swift */; };
 		F137E50819DFC6F51780EB8277BDE802 /* mz_strm_wzaes.c in Sources */ = {isa = PBXBuildFile; fileRef = 24D059811959B662FF33020CA1A4E260 /* mz_strm_wzaes.c */; };
 		F1865A3DF0953FBDD99A7F48FE4835CA /* UserDefaults+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171EEA68E3A8D7A7C8D85B4FB8CAC607 /* UserDefaults+Cache.swift */; };
+		F30CB89530F55E9419387E37C930A017 /* GXDownloadConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D73F32AD56465DA348175EE3D41248 /* GXDownloadConstants.swift */; };
 		F4DD0AD58DDD5641BDEAEA6CF44FF0ED /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1286CBD046F6AF13AEB455644C3FD3E /* Protected.swift */; };
 		F57388D8C7B15FA7ADE2816F0A8E5E26 /* WindowRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A860F4390F358A96CF549119ED4B4352 /* WindowRootViewController.swift */; };
 		F57AFCD894727D071D954DC0CFB37793 /* mz_strm_wzaes.h in Headers */ = {isa = PBXBuildFile; fileRef = DD5D720B601CD8FC15D70C0FB071AF03 /* mz_strm_wzaes.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F67DEC357C37E9624C2AB29C500333AE /* Patcher+Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAB887CD9E4D19F0DB52FF06C97F9A /* Patcher+Transformer.swift */; };
 		F6D2BE16FBB6B3B2EB6E6F68BDC24442 /* PKHUDRotatingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5518A6A1C7EB32B3239A1E43681C0FD /* PKHUDRotatingImageView.swift */; };
 		F7771BB62A34C430FB8A1F59132A81C8 /* MultiTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9ADE94C6997D7D44234CA0D84DC8F8 /* MultiTarget.swift */; };
+		F77EA79EF3147F106419EEA14C589D23 /* GXDownloadingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE894903BFAB7A8F736FC6E7AB08DE /* GXDownloadingError.swift */; };
 		F7E576E007A81E0EFD2E0849CB17878D /* WebSocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89145CDC17277912FFEE5ECA19C5D56F /* WebSocketRequest.swift */; };
 		FA686C3F91EB681D7A9E275B09BDF707 /* UIAlertViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B27C7733F50B5BA89D447BFA46B593 /* UIAlertViewController+Extension.swift */; };
 		FAD2A2AA108FD05CF5E04F8BF31D325C /* JSONDecoderImpl+Unwrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1918FB1A0595CCBC17C8D253BFB9A35F /* JSONDecoderImpl+Unwrap.swift */; };
@@ -460,9 +460,8 @@
 		121799783ECB334CB3E35D49523D41DA /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationBar+Extension.swift"; path = "GGXSwiftExtension/Classes/UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		1283A2006CBFB43C539E2200F4AE66AE /* mz_zip_rw.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_zip_rw.h; path = SSZipArchive/minizip/mz_zip_rw.h; sourceTree = "<group>"; };
 		129207F9D4702532CE87B0EAD3BD1734 /* MSB+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MSB+Extension.swift"; path = "GXSwiftNetwork/Classes/MSB+Extension.swift"; sourceTree = "<group>"; };
-		12B57ECFDCE7A9CF3B74D437D1738FE7 /* String+OffLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+OffLine.swift"; path = "GXTaskDownload/Classes/String+OffLine.swift"; sourceTree = "<group>"; };
 		12DB26759360614EE6F838EC046B71BB /* SmartCodable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SmartCodable.debug.xcconfig; sourceTree = "<group>"; };
-		151690E81FFEAE5430033C122E703CF9 /* GXDownloadingDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadingDelegate.swift; path = GXTaskDownload/Classes/download/GXDownloadingDelegate.swift; sourceTree = "<group>"; };
+		136CC1504EDC8AA5FB473A9E1CF6A3C3 /* GXDownloadURLModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadURLModel.swift; path = GXTaskDownload/Classes/downloadTask/GXDownloadURLModel.swift; sourceTree = "<group>"; };
 		157B40C25BF695A7EE49B5C76C0A2EE9 /* Pods-GGXOfflineWebCache_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GGXOfflineWebCache_Tests-umbrella.h"; sourceTree = "<group>"; };
 		15FF39B7205F521F059C4FBC8C48CF2A /* mz_strm_os_posix.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_os_posix.c; path = SSZipArchive/minizip/mz_strm_os_posix.c; sourceTree = "<group>"; };
 		1636685BB4D023B8411499D1D2E28B5E /* Result+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Result+Alamofire.swift"; path = "Source/Extensions/Result+Alamofire.swift"; sourceTree = "<group>"; };
@@ -473,15 +472,12 @@
 		19D32E333221907AE4D8492148379877 /* Bundle+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Bundle+Extension.swift"; path = "GGXSwiftExtension/Classes/Bundle+Extension.swift"; sourceTree = "<group>"; };
 		1A3F0EEE299676E8659328652AFC3A25 /* GXURLSchemeHander.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GXURLSchemeHander.swift; sourceTree = "<group>"; };
 		1C4E820E552D5435C80F5D96B0355372 /* RequestTypeWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestTypeWrapper.swift; path = Sources/Moya/RequestTypeWrapper.swift; sourceTree = "<group>"; };
-		1D26A0A58F1C0A2834DE2EBBB344963A /* GXCheckTaskSize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXCheckTaskSize.swift; path = GXTaskDownload/Classes/GXCheckTaskSize.swift; sourceTree = "<group>"; };
 		1D90F6C8109D58D65FF7F25D88C9EC06 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Core/Notifications.swift; sourceTree = "<group>"; };
 		1EA1A6E8BF16EFADAAC3CE9CB08C7F5A /* GXWebOfflineAssetsModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GXWebOfflineAssetsModel.swift; sourceTree = "<group>"; };
 		1EDF4F3257FA8C0B2146FB7E07C69370 /* URL+Moya.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URL+Moya.swift"; path = "Sources/Moya/URL+Moya.swift"; sourceTree = "<group>"; };
-		1F77B02DD9183D57E6D77FB2E70118C8 /* GXTaskDownload.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GXTaskDownload.modulemap; sourceTree = "<group>"; };
 		20CF1131D60BF338EC9DF4BF55E9FC24 /* SSZipCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSZipCommon.h; path = SSZipArchive/SSZipCommon.h; sourceTree = "<group>"; };
 		2119907DC5098BE61FC5AC3B618CBB63 /* PKHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKHUD.h; path = PKHUD/PKHUD.h; sourceTree = "<group>"; };
 		2241CF819AEFAA4AA6772161CA094874 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		22624E12E182E0E6E8044AA12344D804 /* GXDownloadingState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadingState.swift; path = GXTaskDownload/Classes/GXDownloadingState.swift; sourceTree = "<group>"; };
 		2288D95AC719A0C445E5087BF00E92BE /* PKHUDErrorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDErrorView.swift; path = PKHUD/PKHUDErrorView.swift; sourceTree = "<group>"; };
 		236D05C5E0D259CAFB471E4996243A17 /* GXSwiftNetwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXSwiftNetwork.debug.xcconfig; sourceTree = "<group>"; };
 		24CB98F5677D75CEB6770E88B2A9DDEB /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/Core/ParameterEncoding.swift; sourceTree = "<group>"; };
@@ -506,6 +502,7 @@
 		2F9CBA7EA35D39FE65F37B8F824D8AFA /* GGXSwiftExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GGXSwiftExtension.debug.xcconfig; sourceTree = "<group>"; };
 		308ED99DA5195865D13D9CB12CE25969 /* Pods-GGXOfflineWebCache_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-GGXOfflineWebCache_Example"; path = Pods_GGXOfflineWebCache_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3162381E57DB8E6137B98FEF688AC181 /* Pods-GGXOfflineWebCache_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GGXOfflineWebCache_Example-dummy.m"; sourceTree = "<group>"; };
+		31DC1BE1DE824785074F0CED20A04E5A /* GXTaskDownload.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GXTaskDownload.modulemap; sourceTree = "<group>"; };
 		31F8AFF881CB37818B7AF54750681100 /* MSBApi.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MSBApi.swift; path = GXSwiftNetwork/Classes/MSBApi.swift; sourceTree = "<group>"; };
 		325293663B2FEF64C213DDE1AC775DB6 /* Alamofire-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Alamofire-Info.plist"; sourceTree = "<group>"; };
 		3288E2CC92EA918CD0F1F594828C3054 /* Moya-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Moya-umbrella.h"; sourceTree = "<group>"; };
@@ -519,19 +516,22 @@
 		38C22D36DA95FE3883F1F2396FF6FB0D /* GXSwiftNetwork.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GXSwiftNetwork.modulemap; sourceTree = "<group>"; };
 		38F1FA2FAEB99276403232A5AE6697C2 /* SmartCodable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SmartCodable.release.xcconfig; sourceTree = "<group>"; };
 		391EDEA5844C24799E4FEC6957AA36E2 /* SmartJSONEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SmartJSONEncoder.swift; path = SmartCodable/Classes/JSONEncoder/SmartJSONEncoder.swift; sourceTree = "<group>"; };
+		397E8DA02CBF554058A061DF36779B45 /* GXTaskDownload-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GXTaskDownload-Info.plist"; sourceTree = "<group>"; };
 		3A8AADF5798FBCE21140B7720B9C1179 /* SSZipArchive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SSZipArchive.release.xcconfig; sourceTree = "<group>"; };
 		3B4B15CCA92ED05ABFA820A09EE1F855 /* CredentialsPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CredentialsPlugin.swift; path = Sources/Moya/Plugins/CredentialsPlugin.swift; sourceTree = "<group>"; };
 		3C0CACCB54243FF2FA36D4D9762BF846 /* GXHybridRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GXHybridRequest.swift; sourceTree = "<group>"; };
+		3D59A8A38065F95E7B0445F0D0641395 /* GXCheckTaskSize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXCheckTaskSize.swift; path = GXTaskDownload/Classes/GXCheckTaskSize.swift; sourceTree = "<group>"; };
 		3E623AAE662B463FDDE8B268BDEA3E7B /* SmartCodable */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SmartCodable; path = SmartCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB0BC4C13BB55F0D8BBA4FB7D913F2B /* Date+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Extension.swift"; path = "GGXSwiftExtension/Classes/Date+Extension.swift"; sourceTree = "<group>"; };
 		3EE38CA2427D9EC2625A602835C4B281 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/Extensions/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		3F45993E294800DB78164D4DDE8935CC /* GXDownloadManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadManager.swift; path = GXTaskDownload/Classes/GXDownloadManager.swift; sourceTree = "<group>"; };
 		3F5B10D1E3CAB213871E4F02DE3E93B0 /* Pods-GGXOfflineWebCache_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GGXOfflineWebCache_Example.modulemap"; sourceTree = "<group>"; };
 		41A9E19D5983670193E215E442C094A9 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/Core/AFError.swift; sourceTree = "<group>"; };
 		41BD12ACA7F7AFABBBFFDB064620D47A /* PKHUDAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDAnimation.swift; path = PKHUD/PKHUDAnimation.swift; sourceTree = "<group>"; };
 		42963AA315615F7AB20DB6B13E90997A /* SmartUpdater.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SmartUpdater.swift; path = SmartCodable/Classes/SmartCodable/SmartUpdater.swift; sourceTree = "<group>"; };
-		45AFA3BCAF251BB7EE33BA74D9448163 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GXTaskDownload/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		45E44760074E0CC6A793F78BBE94B354 /* UIColor+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "GGXSwiftExtension/Classes/UIColor+Extension.swift"; sourceTree = "<group>"; };
 		46683BE9021091AD1D9855AB1221ADE2 /* UploadRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UploadRequest.swift; path = Source/Core/UploadRequest.swift; sourceTree = "<group>"; };
+		4849E5DB5E03CFA456525AA5FFC74245 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GXTaskDownload/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		499C0576DDBC636617530C6336CBC88E /* LogContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogContainer.swift; path = SmartCodable/Classes/Log/LogContainer.swift; sourceTree = "<group>"; };
 		4A30ADB2A29D2681A25207EE8FCA2CB0 /* MSBDataResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MSBDataResponse.swift; path = GXSwiftNetwork/Classes/MSBDataResponse.swift; sourceTree = "<group>"; };
 		4A362D1B8F57F131506FA945105BB224 /* URL+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URL+Extension.swift"; path = "GGXSwiftExtension/Classes/URL+Extension.swift"; sourceTree = "<group>"; };
@@ -545,6 +545,7 @@
 		52CA5FEB639F8FC6FB4FBB11EE712AE9 /* FrameView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FrameView.swift; path = PKHUD/FrameView.swift; sourceTree = "<group>"; };
 		53835D5DC1315E2C7ACBB50AF3B228F7 /* GGXOfflineWebCache-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GGXOfflineWebCache-prefix.pch"; sourceTree = "<group>"; };
 		54F9EB00CA9EC381A824EFCA32049F7E /* Alamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.release.xcconfig; sourceTree = "<group>"; };
+		552D9F968038829FD9562DEDE02DDF4C /* GXDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloader.swift; path = GXTaskDownload/Classes/download/GXDownloader.swift; sourceTree = "<group>"; };
 		55F1957A27AA227BB2703CDF1EDEE6F1 /* PKHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PKHUD-umbrella.h"; sourceTree = "<group>"; };
 		5602FC8B5A5D8B6E922ED3CB7A51E70C /* mz_zip_rw.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_zip_rw.c; path = SSZipArchive/minizip/mz_zip_rw.c; sourceTree = "<group>"; };
 		568DA448FA1D3BC05AAAF359FB8A7780 /* GXWebOfflineManifestModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GXWebOfflineManifestModel.swift; sourceTree = "<group>"; };
@@ -556,8 +557,10 @@
 		5BE8112166B07E4CFBC4FFD9D607C709 /* Moya-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Moya-Info.plist"; sourceTree = "<group>"; };
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D8DA238C87653932099613A3A7D9BF5 /* EncodingCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EncodingCache.swift; path = SmartCodable/Classes/JSONEncoder/EncodingCache.swift; sourceTree = "<group>"; };
+		5DDE894903BFAB7A8F736FC6E7AB08DE /* GXDownloadingError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadingError.swift; path = GXTaskDownload/Classes/download/GXDownloadingError.swift; sourceTree = "<group>"; };
 		5E17BC7F1071D2CB7D072665775A41EF /* MoyaProvider+Defaults.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MoyaProvider+Defaults.swift"; path = "Sources/Moya/MoyaProvider+Defaults.swift"; sourceTree = "<group>"; };
 		5ECDC88DE9EBE80B550F95BE0A32D5BC /* SmartCaseDefaultable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SmartCaseDefaultable.swift; path = SmartCodable/Classes/SmartType/SmartCaseDefaultable.swift; sourceTree = "<group>"; };
+		5FA0FD63E8A8F014E418DA8C2C5DF21F /* GXDownloading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloading.swift; path = GXTaskDownload/Classes/download/GXDownloading.swift; sourceTree = "<group>"; };
 		60225F088A8C2E3B535F582B565A18C9 /* Pods-GGXOfflineWebCache_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GGXOfflineWebCache_Example-frameworks.sh"; sourceTree = "<group>"; };
 		607E1AE85374AD5AF6953AE2B0415B55 /* GGXSwiftExtension */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GGXSwiftExtension; path = GGXSwiftExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60A499A98120B4A4B004A7BDBCA9B51D /* RedirectHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RedirectHandler.swift; path = Source/Features/RedirectHandler.swift; sourceTree = "<group>"; };
@@ -578,6 +581,7 @@
 		67A1D4BCC16637EE1D15C7EF228E2657 /* LogSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogSwift.swift; path = GGXSwiftExtension/Classes/LogSwift.swift; sourceTree = "<group>"; };
 		67F70CA4CC31402EA311B91F67F0659D /* SmartCodable-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SmartCodable-prefix.pch"; sourceTree = "<group>"; };
 		68B3334D4DFD5C7C825F8CEF58F57DDF /* GXHybridPresetManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXHybridPresetManager.swift; path = GGXOfflineWebCache/Classes/GXHybridPresetManager.swift; sourceTree = "<group>"; };
+		690443E07DB9E9898BE57C5049A7CC41 /* String+OffLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+OffLine.swift"; path = "GXTaskDownload/Classes/String+OffLine.swift"; sourceTree = "<group>"; };
 		69F622A4BE8E2DB29BBF59023A75C2A7 /* Pods-GGXOfflineWebCache_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-GGXOfflineWebCache_Tests"; path = Pods_GGXOfflineWebCache_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A0D4731C886528721F0DE02641BD7AE /* TargetType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TargetType.swift; path = Sources/Moya/TargetType.swift; sourceTree = "<group>"; };
 		6A23E3D5C0FA6069F5B26A5843966E87 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIDevice+Extension.swift"; path = "GGXSwiftExtension/Classes/UIDevice+Extension.swift"; sourceTree = "<group>"; };
@@ -598,10 +602,10 @@
 		74D76C47D2D127B736083574EE57A0D9 /* mz_crypt_apple.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_crypt_apple.c; path = SSZipArchive/minizip/mz_crypt_apple.c; sourceTree = "<group>"; };
 		74E4CA6032D076F325467DA645B20587 /* mz_zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_zip.h; path = SSZipArchive/minizip/mz_zip.h; sourceTree = "<group>"; };
 		75215FFDF7B6DCD7FB9B3D3BAAA3F8B4 /* Session.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Source/Core/Session.swift; sourceTree = "<group>"; };
-		76A7C8DDA9A41F5FB2CCF7C76CA9DAF3 /* GXTaskDownloadDisk+DownloadingDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "GXTaskDownloadDisk+DownloadingDelegate.swift"; path = "GXTaskDownload/Classes/GXTaskDownloadDisk+DownloadingDelegate.swift"; sourceTree = "<group>"; };
 		76CAB887CD9E4D19F0DB52FF06C97F9A /* Patcher+Transformer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Patcher+Transformer.swift"; path = "SmartCodable/Classes/JSONDecoder/Patcher/Patcher+Transformer.swift"; sourceTree = "<group>"; };
 		783D0A886ABF8EF7E4FBE40E1A6EBC94 /* GGXOfflineWebCache-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GGXOfflineWebCache-Info.plist"; sourceTree = "<group>"; };
 		78BC7CDA38F8D4903D1754AFDCBF7033 /* PKHUDSuccessView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDSuccessView.swift; path = PKHUD/PKHUDSuccessView.swift; sourceTree = "<group>"; };
+		794C5A2DAE23C3361BB53A9BE52E7411 /* GXDownloadingDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadingDelegate.swift; path = GXTaskDownload/Classes/download/GXDownloadingDelegate.swift; sourceTree = "<group>"; };
 		7A3691435FD047C1C76D12A55C9D0C3E /* AuthenticationInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthenticationInterceptor.swift; path = Source/Features/AuthenticationInterceptor.swift; sourceTree = "<group>"; };
 		7A371D8DD6FD51144359AD38EBCCDA80 /* Cancellable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cancellable.swift; path = Sources/Moya/Cancellable.swift; sourceTree = "<group>"; };
 		7ABAB7562D0623DFC2D01E0A09448472 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -627,7 +631,6 @@
 		8877D64C8FB8CEDAE617B019B42810F2 /* mz_strm_buf.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_strm_buf.c; path = SSZipArchive/minizip/mz_strm_buf.c; sourceTree = "<group>"; };
 		88B9B39A844D1CB29AFC0B46ADE8429A /* Pods-GGXOfflineWebCache_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GGXOfflineWebCache_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		89145CDC17277912FFEE5ECA19C5D56F /* WebSocketRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocketRequest.swift; path = Source/Core/WebSocketRequest.swift; sourceTree = "<group>"; };
-		8A1C97797F67F64A82A73822C4EC3647 /* GXDownloader+URLSessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "GXDownloader+URLSessionDelegate.swift"; path = "GXTaskDownload/Classes/download/GXDownloader+URLSessionDelegate.swift"; sourceTree = "<group>"; };
 		8AE91538B7339243957F9C11C50723F7 /* JSONKeyedEncodingContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONKeyedEncodingContainer.swift; path = SmartCodable/Classes/JSONEncoder/Container/JSONKeyedEncodingContainer.swift; sourceTree = "<group>"; };
 		8B5BAA6E9812E97CD44119C65BF64282 /* GXSwiftNetwork */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GXSwiftNetwork; path = GXSwiftNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B6627C84F3046535B9CBE2168C4ABD1 /* GXHybridDownload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXHybridDownload.swift; path = GGXOfflineWebCache/Classes/GXHybridDownload.swift; sourceTree = "<group>"; };
@@ -636,30 +639,30 @@
 		8F4EA2BE3134D895CF92DBABEA5BF68E /* UIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "GGXSwiftExtension/Classes/UIView+Extension.swift"; sourceTree = "<group>"; };
 		8F9ADE94C6997D7D44234CA0D84DC8F8 /* MultiTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultiTarget.swift; path = Sources/Moya/MultiTarget.swift; sourceTree = "<group>"; };
 		910FE27D5C5AA2A7A7E13BC0769E9D2C /* EventMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventMonitor.swift; path = Source/Features/EventMonitor.swift; sourceTree = "<group>"; };
-		914DAB98268DB0E1F136BDEF97CA0D75 /* GXTaskDownload-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXTaskDownload-prefix.pch"; sourceTree = "<group>"; };
 		91B23470DEB9A986332BEB5034234BC7 /* SSZipArchive */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SSZipArchive; path = SSZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91F6EC21207734AD3C6D2AEFA48AD452 /* LogItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogItem.swift; path = SmartCodable/Classes/Log/LogItem.swift; sourceTree = "<group>"; };
-		9289EBBF47A0DE1A02586A774A7568C3 /* GXTaskDownloadDisk.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXTaskDownloadDisk.swift; path = GXTaskDownload/Classes/GXTaskDownloadDisk.swift; sourceTree = "<group>"; };
 		93B8748240F92CC5A9F4B43C6AEF94B1 /* Pods-GGXOfflineWebCache_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GGXOfflineWebCache_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		952BAAB550BE377ACE31059FE3FF661E /* SSZipArchive.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SSZipArchive.m; path = SSZipArchive/SSZipArchive.m; sourceTree = "<group>"; };
 		97C4F9E9157AB47B4AEEF1F846445788 /* AlamofireExtended.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlamofireExtended.swift; path = Source/Features/AlamofireExtended.swift; sourceTree = "<group>"; };
 		97EC111A1340E1FB51D99C82AB6848AA /* SSZipArchive-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SSZipArchive-dummy.m"; sourceTree = "<group>"; };
 		98F30B5E97466984D5CBA59DA940ADD4 /* ResourceBundle-Alamofire-Alamofire-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Alamofire-Alamofire-Info.plist"; sourceTree = "<group>"; };
+		99B7D0F003D4607B4937F3D3EA22A501 /* GXTaskDiskFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXTaskDiskFile.swift; path = GXTaskDownload/Classes/downloadTask/GXTaskDiskFile.swift; sourceTree = "<group>"; };
+		9A369628D001CCA1FC2B71E5635F5CDD /* GXDownloader+URLSessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "GXDownloader+URLSessionDelegate.swift"; path = "GXTaskDownload/Classes/download/GXDownloader+URLSessionDelegate.swift"; sourceTree = "<group>"; };
 		9A9AE1A81F63FB4732ADC19E2B890E11 /* SmartCodable-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SmartCodable-dummy.m"; sourceTree = "<group>"; };
 		9B606CEE61CC5B27228F08067930741D /* JSONDecoderImpl+KeyedContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JSONDecoderImpl+KeyedContainer.swift"; path = "SmartCodable/Classes/JSONDecoder/Decoder/Impl/JSONDecoderImpl+KeyedContainer.swift"; sourceTree = "<group>"; };
 		9D0939063CE50EE8711C1308352B02EA /* SSZipArchive.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSZipArchive.h; path = SSZipArchive/SSZipArchive.h; sourceTree = "<group>"; };
-		9D85E6A3FAA996CCD0BC82146D4641D0 /* GXTaskDownload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXTaskDownload.release.xcconfig; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9EB7A7045E595EEA12FB16A207B1827D /* mz_strm_zlib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_zlib.h; path = SSZipArchive/minizip/mz_strm_zlib.h; sourceTree = "<group>"; };
 		9F7067FB36486BF87BD7CB28C32AD5A8 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DateFormatter+Extension.swift"; path = "GGXSwiftExtension/Classes/DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		9F8876BA9C524BE73142F1DBD9A0FA04 /* AVAudioSession+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AVAudioSession+Extension.swift"; path = "GGXSwiftExtension/Classes/AVAudioSession+Extension.swift"; sourceTree = "<group>"; };
 		9FBFB8A2476C497D09A2D017EE3D3BA5 /* URLEncodedFormEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLEncodedFormEncoder.swift; path = Source/Features/URLEncodedFormEncoder.swift; sourceTree = "<group>"; };
+		A1186CE51C1FB2A0228CB36C6840A5B8 /* GXTaskDownload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXTaskDownload.release.xcconfig; sourceTree = "<group>"; };
 		A11A74E16631CDF572FD1061E6D56DB7 /* MoyaProvider+Internal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MoyaProvider+Internal.swift"; path = "Sources/Moya/MoyaProvider+Internal.swift"; sourceTree = "<group>"; };
 		A12C626E16F28F65B3745AF47E1FFB1D /* ParameterEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoder.swift; path = Source/Core/ParameterEncoder.swift; sourceTree = "<group>"; };
 		A1A37225697F9E20841607EE46A43864 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GXSwiftNetwork/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
+		A1CF49B629A1135AE7823966C6092D46 /* GXTaskDownload-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXTaskDownload-prefix.pch"; sourceTree = "<group>"; };
 		A1D25D127F7AD07520B40A975CC553DE /* mz.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz.h; path = SSZipArchive/minizip/mz.h; sourceTree = "<group>"; };
 		A2089E92673458CAC401356A8655F15B /* CGSize+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CGSize+Extension.swift"; path = "GGXSwiftExtension/Classes/CGSize+Extension.swift"; sourceTree = "<group>"; };
-		A23AB1547CCCC68A3E9E9F8972A08BF3 /* GXTaskDownload-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GXTaskDownload-Info.plist"; sourceTree = "<group>"; };
 		A2E8A3CAB7E8FD1EA8E1339853BCC098 /* URLConvertible+URLRequestConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLConvertible+URLRequestConvertible.swift"; path = "Source/Core/URLConvertible+URLRequestConvertible.swift"; sourceTree = "<group>"; };
 		A3F8CF36062EB87E51E1F36C20F18EE4 /* Pods-GGXOfflineWebCache_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GGXOfflineWebCache_Tests-Info.plist"; sourceTree = "<group>"; };
 		A435305B6712965BE9C3085483F3A37A /* Moya.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Moya.modulemap; sourceTree = "<group>"; };
@@ -669,7 +672,6 @@
 		A6A6F41C17CA9585E0838E7B788DF760 /* URLRequest+Encoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLRequest+Encoding.swift"; path = "Sources/Moya/URLRequest+Encoding.swift"; sourceTree = "<group>"; };
 		A6BE90665B4A1053C5FF26D5289CBC83 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		A74AEB9F89B72B69AE8632924AF3F242 /* Cachable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cachable.swift; path = SmartCodable/Classes/Cache/Cachable.swift; sourceTree = "<group>"; };
-		A7E25277AB59926830562484B72CA629 /* GXDownloadingError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadingError.swift; path = GXTaskDownload/Classes/GXDownloadingError.swift; sourceTree = "<group>"; };
 		A82B9F969E3FCE5A2075A77F70B6680E /* PKHUD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PKHUD.release.xcconfig; sourceTree = "<group>"; };
 		A860F4390F358A96CF549119ED4B4352 /* WindowRootViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WindowRootViewController.swift; path = PKHUD/WindowRootViewController.swift; sourceTree = "<group>"; };
 		ABDD1956C7EE5034796CA2ACFD2F5E55 /* Pods-GGXOfflineWebCache_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GGXOfflineWebCache_Example-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -691,28 +693,27 @@
 		BAE4E4942A9B432D04AECCAFA9C0C764 /* mz_strm_pkcrypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_pkcrypt.h; path = SSZipArchive/minizip/mz_strm_pkcrypt.h; sourceTree = "<group>"; };
 		BAFFEB4F7C4186B959992C8AAE2ECB7D /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Core/Request.swift; sourceTree = "<group>"; };
 		BC43012C0FB7CA2C0BFE8FA16DDCCC1B /* SmartJSONDecoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SmartJSONDecoder.swift; path = SmartCodable/Classes/JSONDecoder/Decoder/SmartJSONDecoder.swift; sourceTree = "<group>"; };
-		BC7F3D16877872A647BFDA53B5B68E40 /* GXTaskDownload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXTaskDownload.debug.xcconfig; sourceTree = "<group>"; };
 		BC97B8F98209011F89EA7577B42D0B34 /* AccessTokenPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessTokenPlugin.swift; path = Sources/Moya/Plugins/AccessTokenPlugin.swift; sourceTree = "<group>"; };
 		BD395C75831CAD473833CD30A8BED474 /* MSBApiConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MSBApiConfig.swift; path = GXSwiftNetwork/Classes/MSBApiConfig.swift; sourceTree = "<group>"; };
 		BD671B7C77BFA698EC3A40249D0788A3 /* UIResponder+ Extension.swift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIResponder+ Extension.swift.swift"; path = "GGXSwiftExtension/Classes/UIResponder+ Extension.swift.swift"; sourceTree = "<group>"; };
 		BD67AFEEAA7BCEA871A52E283445E5D5 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+Extension.swift"; path = "GGXSwiftExtension/Classes/Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		BE83EEE633A86A95B1ACB0D22F9B6B49 /* Endpoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = Sources/Moya/Endpoint.swift; sourceTree = "<group>"; };
+		BF41F007FBC9815C89CCA249D4826462 /* GXTaskDownload-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXTaskDownload-umbrella.h"; sourceTree = "<group>"; };
 		BFBB7EC0EE2CDE9386D369778D60AF34 /* MultipartUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartUpload.swift; path = Source/Features/MultipartUpload.swift; sourceTree = "<group>"; };
 		BFCB2D5C605270A32522299AED3B5AE6 /* PKHUD-PKHUDResources */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "PKHUD-PKHUDResources"; path = PKHUDResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1E4B8F3B7B7174F060FFA3983ED39FE /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
-		C2A36F9A9315A624DBF69C8907E96F5E /* GXDownloading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloading.swift; path = GXTaskDownload/Classes/download/GXDownloading.swift; sourceTree = "<group>"; };
 		C373E6DE052170F2E4B2853048BAAF9F /* DateTransformer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateTransformer.swift; path = SmartCodable/Classes/Transformer/DateTransformer.swift; sourceTree = "<group>"; };
-		C38534C1F73DEE139FDF3FA60CBF50DD /* GXTaskDownload-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GXTaskDownload-dummy.m"; sourceTree = "<group>"; };
 		C3B5E349ED5C22AB1566ABC971479783 /* mz_crypt.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_crypt.c; path = SSZipArchive/minizip/mz_crypt.c; sourceTree = "<group>"; };
 		C44A22365EFBE8980D984F0DE8A480A7 /* SmartCodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SmartCodable.swift; path = SmartCodable/Classes/SmartCodable/SmartCodable.swift; sourceTree = "<group>"; };
 		C625CBA7A986AB230DE9816F8E181FE3 /* LogCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogCache.swift; path = SmartCodable/Classes/Log/LogCache.swift; sourceTree = "<group>"; };
 		C727FEF23A7AB5FB209D171C39C42DF0 /* GGXSwiftExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GGXSwiftExtension.release.xcconfig; sourceTree = "<group>"; };
 		C789086F72EFD3D4937458053D5676DC /* Task.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Task.swift; path = Sources/Moya/Task.swift; sourceTree = "<group>"; };
-		C80899871B3A428B6F3BB9868223448C /* GXDownloadManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadManager.swift; path = GXTaskDownload/Classes/GXDownloadManager.swift; sourceTree = "<group>"; };
 		C8557BF2E04835CCA8862BDA8FB4A66C /* SmartCodable-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SmartCodable-Info.plist"; sourceTree = "<group>"; };
 		C8D2D2A6A4A2A8377082D05E9F8A2A74 /* GXSwiftNetwork-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXSwiftNetwork-umbrella.h"; sourceTree = "<group>"; };
+		C9BB1B2BB09B046C36454689D7A488EB /* GXTaskDownloadDisk.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXTaskDownloadDisk.swift; path = GXTaskDownload/Classes/downloadTask/GXTaskDownloadDisk.swift; sourceTree = "<group>"; };
 		C9C0BE4D0C8B88694BBC4EDEE6FB0452 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		CA4510CDBC6307019D6797D8B286F848 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+Extension.swift"; path = "GGXSwiftExtension/Classes/UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		CA9E0F30B47B0C3B90A1311F17FBACF3 /* GXCheckTaskManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXCheckTaskManager.swift; path = GXTaskDownload/Classes/GXCheckTaskManager.swift; sourceTree = "<group>"; };
 		CB267747B742D30777632BD2D8F6F8FB /* mz_os_posix.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_os_posix.c; path = SSZipArchive/minizip/mz_os_posix.c; sourceTree = "<group>"; };
 		CBA05A9A217692FE064EF1C1ED34E38F /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GGXOfflineWebCache/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		CBF85E3D1B419F249ABD4F20AEC822C4 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/Core/SessionDelegate.swift; sourceTree = "<group>"; };
@@ -720,13 +721,11 @@
 		CCDA367BA2648D525FCA5569392548D3 /* Moya.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Moya.release.xcconfig; sourceTree = "<group>"; };
 		CD0DBD687C21CEB39EC48967110F3D37 /* SSZipArchive-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SSZipArchive-prefix.pch"; sourceTree = "<group>"; };
 		CD127AFB8D803D7AC1E9F5F7016304F1 /* mz_os.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_os.c; path = SSZipArchive/minizip/mz_os.c; sourceTree = "<group>"; };
-		CD3652EAAEC8C9ED2286B82CA36D917A /* GXDownloadConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadConstants.swift; path = GXTaskDownload/Classes/download/GXDownloadConstants.swift; sourceTree = "<group>"; };
-		D104366B52BD22ADDA060156CC00A765 /* GXDownloadURLModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadURLModel.swift; path = GXTaskDownload/Classes/GXDownloadURLModel.swift; sourceTree = "<group>"; };
+		CDE15E02D1D26F2883D0675880F0D183 /* GXTaskDownload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXTaskDownload.debug.xcconfig; sourceTree = "<group>"; };
 		D14889CAC88D45551D3736CF730387C1 /* DataRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataRequest.swift; path = Source/Core/DataRequest.swift; sourceTree = "<group>"; };
 		D22CC00ACB757A3E58D0CF1BA1F759F1 /* _SpecialTreatmentEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = _SpecialTreatmentEncoder.swift; path = SmartCodable/Classes/JSONEncoder/Impl/_SpecialTreatmentEncoder.swift; sourceTree = "<group>"; };
 		D39E42556E3062E50205D33500300637 /* Pods-GGXOfflineWebCache_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GGXOfflineWebCache_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D5AD30209C267E9DD57402E89EA3A24A /* GXTaskDownload */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GXTaskDownload; path = GXTaskDownload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D66D1D7883611E9E2CEA233C2966A5C3 /* GXTaskDownload-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXTaskDownload-umbrella.h"; sourceTree = "<group>"; };
 		D6907A4E5262B06A0AEE9DBE70B5CE53 /* GGXOfflineWebCache.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GGXOfflineWebCache.modulemap; sourceTree = "<group>"; };
 		D6D4004C42AFA0A33B82C80A44D8676C /* PKHUD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUD.swift; path = PKHUD/PKHUD.swift; sourceTree = "<group>"; };
 		D7DB23DF852E61B9EA6E3A4D8247CB1B /* Pods-GGXOfflineWebCache_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GGXOfflineWebCache_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -736,17 +735,17 @@
 		DA4863126B274BC040EED55871DF0015 /* Plugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Plugin.swift; path = Sources/Moya/Plugin.swift; sourceTree = "<group>"; };
 		DAEDF270F5418BD2A21ECB7AC80AEAF4 /* GGXOfflineWebCache-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GGXOfflineWebCache-umbrella.h"; sourceTree = "<group>"; };
 		DBB736465B82978006F0D1F071A7484A /* Moya.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Moya.debug.xcconfig; sourceTree = "<group>"; };
+		DCD5E2D99F1FD6719CCEC112149F692D /* GXTaskDownloadDisk+DownloadingDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "GXTaskDownloadDisk+DownloadingDelegate.swift"; path = "GXTaskDownload/Classes/downloadTask/GXTaskDownloadDisk+DownloadingDelegate.swift"; sourceTree = "<group>"; };
 		DD5D720B601CD8FC15D70C0FB071AF03 /* mz_strm_wzaes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_wzaes.h; path = SSZipArchive/minizip/mz_strm_wzaes.h; sourceTree = "<group>"; };
 		DD8FD0A854A3990BC5261E8EAB4C8805 /* SSZipArchive.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SSZipArchive.modulemap; sourceTree = "<group>"; };
-		DE86BCA2FBEB624271E88858670B2CB2 /* GXDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloader.swift; path = GXTaskDownload/Classes/download/GXDownloader.swift; sourceTree = "<group>"; };
 		DEF389F083E3847484C7CD78A05EADBC /* HTTPMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = Source/Core/HTTPMethod.swift; sourceTree = "<group>"; };
 		DFBD3ECF73AC342ED61F2F9E5BCD767D /* PKHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PKHUD-dummy.m"; sourceTree = "<group>"; };
 		E1286CBD046F6AF13AEB455644C3FD3E /* Protected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Protected.swift; path = Source/Core/Protected.swift; sourceTree = "<group>"; };
 		E3D3D831D8A8338FDB068E04EFAED66F /* Pods-GGXOfflineWebCache_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GGXOfflineWebCache_Tests-dummy.m"; sourceTree = "<group>"; };
 		E4F810C2BE014820127C4F9C116782F3 /* String+OffLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+OffLine.swift"; sourceTree = "<group>"; };
 		E5E1A615F8D3A80F5CF9806E9EF2F9CF /* UIApplication+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIApplication+Extension.swift"; path = "GGXSwiftExtension/Classes/UIApplication+Extension.swift"; sourceTree = "<group>"; };
-		E61193C793A29043D474192A18A90DBD /* GXTaskDiskFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXTaskDiskFile.swift; path = GXTaskDownload/Classes/GXTaskDiskFile.swift; sourceTree = "<group>"; };
 		E643AD6227B5C0AF20D6CA12707D057A /* JSONValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONValue.swift; path = SmartCodable/Classes/JSONValue/JSONValue.swift; sourceTree = "<group>"; };
+		E6475652C8C6A31B261AFAE48DC20070 /* GXTaskDownload-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GXTaskDownload-dummy.m"; sourceTree = "<group>"; };
 		E782C477D85F56A79B72835CF5E6DF43 /* mz_compat.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mz_compat.c; path = SSZipArchive/minizip/mz_compat.c; sourceTree = "<group>"; };
 		E79286A51D8E3AF6B2AA50160EE64E24 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkLoggerPlugin.swift; path = Sources/Moya/Plugins/NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		E7D41FB56254BD2D8248A52541EC23F9 /* SmartCodable-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SmartCodable-umbrella.h"; sourceTree = "<group>"; };
@@ -758,9 +757,11 @@
 		ED2F365BBAC81207B7E6376C1A321D9F /* JSONUnkeyedEncodingContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONUnkeyedEncodingContainer.swift; path = SmartCodable/Classes/JSONEncoder/Container/JSONUnkeyedEncodingContainer.swift; sourceTree = "<group>"; };
 		ED6BF792F79A220A64A9EC6949CEE963 /* ResourceBundle-PKHUDResources-PKHUD-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-PKHUDResources-PKHUD-Info.plist"; sourceTree = "<group>"; };
 		EE319525BF208091A96A4675CD323147 /* SSZipArchive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SSZipArchive.debug.xcconfig; sourceTree = "<group>"; };
+		F0D73F32AD56465DA348175EE3D41248 /* GXDownloadConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadConstants.swift; path = GXTaskDownload/Classes/download/GXDownloadConstants.swift; sourceTree = "<group>"; };
 		F1DAB71F3BD06A1AA12450A3FC993EDE /* GGXOfflineWebCache.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GGXOfflineWebCache.release.xcconfig; sourceTree = "<group>"; };
 		F313FB23A8CC29C505A293161E075612 /* MSBRespApiModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MSBRespApiModel.swift; path = GXSwiftNetwork/Classes/MSBRespApiModel.swift; sourceTree = "<group>"; };
 		F36BD687E222815FC6D890848F3F442D /* RequestInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestInterceptor.swift; path = Source/Features/RequestInterceptor.swift; sourceTree = "<group>"; };
+		F3DCB272A6B12513FE23854218132FDC /* GXDownloadingState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXDownloadingState.swift; path = GXTaskDownload/Classes/download/GXDownloadingState.swift; sourceTree = "<group>"; };
 		F4C4C60209516AD06E0CF9743F0B7CFC /* mz_strm_buf.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mz_strm_buf.h; path = SSZipArchive/minizip/mz_strm_buf.h; sourceTree = "<group>"; };
 		F5518A6A1C7EB32B3239A1E43681C0FD /* PKHUDRotatingImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDRotatingImageView.swift; path = PKHUD/PKHUDRotatingImageView.swift; sourceTree = "<group>"; };
 		F5775A33897E7214B84EAF7302149B2E /* Moya-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Moya-prefix.pch"; sourceTree = "<group>"; };
@@ -773,7 +774,6 @@
 		F8E32A1341554B313316B327D92EAEEB /* RequestCompression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestCompression.swift; path = Source/Features/RequestCompression.swift; sourceTree = "<group>"; };
 		FA7DD4EEEED13163D1A0A4EE7AAAEF18 /* MSBApiModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MSBApiModel.swift; path = GXSwiftNetwork/Classes/MSBApiModel.swift; sourceTree = "<group>"; };
 		FD1F03658DD541AB8A3C06A251DD12B6 /* TimerInterval+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TimerInterval+Extension.swift"; path = "GGXSwiftExtension/Classes/TimerInterval+Extension.swift"; sourceTree = "<group>"; };
-		FD580748B65EA731971189C959DCE8A4 /* GXCheckTaskManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXCheckTaskManager.swift; path = GXTaskDownload/Classes/GXCheckTaskManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -980,7 +980,7 @@
 				23C0F9A60A792B8B7CDE2F8D8EDC512C /* Alamofire */,
 				440BECB0BE9256E3105548238C8DA3F1 /* GGXSwiftExtension */,
 				8DC92905494F60B37B4CFE4C7B5E59A6 /* GXSwiftNetwork */,
-				7B2121F408ABA573FD716A689F61DA30 /* GXTaskDownload */,
+				581F5FF5E7210BE7732F042CB92456A3 /* GXTaskDownload */,
 				87B126ADE7F7236FB26CFE2FE244F64D /* Moya */,
 				D10E07F9316E967EF48548E118C6CD2B /* PKHUD */,
 				87C508FB080EFC549721116D009C665D /* SmartCodable */,
@@ -1071,19 +1071,29 @@
 			path = GGXOfflineWebCache/Classes/Core;
 			sourceTree = "<group>";
 		};
-		4EF891EC56BACFF33750C0E7FA22F9C3 /* Support Files */ = {
+		581F5FF5E7210BE7732F042CB92456A3 /* GXTaskDownload */ = {
 			isa = PBXGroup;
 			children = (
-				1F77B02DD9183D57E6D77FB2E70118C8 /* GXTaskDownload.modulemap */,
-				C38534C1F73DEE139FDF3FA60CBF50DD /* GXTaskDownload-dummy.m */,
-				A23AB1547CCCC68A3E9E9F8972A08BF3 /* GXTaskDownload-Info.plist */,
-				914DAB98268DB0E1F136BDEF97CA0D75 /* GXTaskDownload-prefix.pch */,
-				D66D1D7883611E9E2CEA233C2966A5C3 /* GXTaskDownload-umbrella.h */,
-				BC7F3D16877872A647BFDA53B5B68E40 /* GXTaskDownload.debug.xcconfig */,
-				9D85E6A3FAA996CCD0BC82146D4641D0 /* GXTaskDownload.release.xcconfig */,
+				CA9E0F30B47B0C3B90A1311F17FBACF3 /* GXCheckTaskManager.swift */,
+				3D59A8A38065F95E7B0445F0D0641395 /* GXCheckTaskSize.swift */,
+				F0D73F32AD56465DA348175EE3D41248 /* GXDownloadConstants.swift */,
+				552D9F968038829FD9562DEDE02DDF4C /* GXDownloader.swift */,
+				9A369628D001CCA1FC2B71E5635F5CDD /* GXDownloader+URLSessionDelegate.swift */,
+				5FA0FD63E8A8F014E418DA8C2C5DF21F /* GXDownloading.swift */,
+				794C5A2DAE23C3361BB53A9BE52E7411 /* GXDownloadingDelegate.swift */,
+				5DDE894903BFAB7A8F736FC6E7AB08DE /* GXDownloadingError.swift */,
+				F3DCB272A6B12513FE23854218132FDC /* GXDownloadingState.swift */,
+				3F45993E294800DB78164D4DDE8935CC /* GXDownloadManager.swift */,
+				136CC1504EDC8AA5FB473A9E1CF6A3C3 /* GXDownloadURLModel.swift */,
+				99B7D0F003D4607B4937F3D3EA22A501 /* GXTaskDiskFile.swift */,
+				C9BB1B2BB09B046C36454689D7A488EB /* GXTaskDownloadDisk.swift */,
+				DCD5E2D99F1FD6719CCEC112149F692D /* GXTaskDownloadDisk+DownloadingDelegate.swift */,
+				4849E5DB5E03CFA456525AA5FFC74245 /* ReplaceMe.swift */,
+				690443E07DB9E9898BE57C5049A7CC41 /* String+OffLine.swift */,
+				FC0B88DEFFE5A2AD7D92773C260220E9 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/GXTaskDownload";
+			name = GXTaskDownload;
+			path = GXTaskDownload;
 			sourceTree = "<group>";
 		};
 		61D70A69D2B3396D3D470715CC68E287 /* Pod */ = {
@@ -1154,31 +1164,6 @@
 				9556E734FF4A6171F7F46F63DCB2E363 /* Pods-GGXOfflineWebCache_Tests */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		7B2121F408ABA573FD716A689F61DA30 /* GXTaskDownload */ = {
-			isa = PBXGroup;
-			children = (
-				FD580748B65EA731971189C959DCE8A4 /* GXCheckTaskManager.swift */,
-				1D26A0A58F1C0A2834DE2EBBB344963A /* GXCheckTaskSize.swift */,
-				CD3652EAAEC8C9ED2286B82CA36D917A /* GXDownloadConstants.swift */,
-				DE86BCA2FBEB624271E88858670B2CB2 /* GXDownloader.swift */,
-				8A1C97797F67F64A82A73822C4EC3647 /* GXDownloader+URLSessionDelegate.swift */,
-				C2A36F9A9315A624DBF69C8907E96F5E /* GXDownloading.swift */,
-				151690E81FFEAE5430033C122E703CF9 /* GXDownloadingDelegate.swift */,
-				A7E25277AB59926830562484B72CA629 /* GXDownloadingError.swift */,
-				22624E12E182E0E6E8044AA12344D804 /* GXDownloadingState.swift */,
-				C80899871B3A428B6F3BB9868223448C /* GXDownloadManager.swift */,
-				D104366B52BD22ADDA060156CC00A765 /* GXDownloadURLModel.swift */,
-				E61193C793A29043D474192A18A90DBD /* GXTaskDiskFile.swift */,
-				9289EBBF47A0DE1A02586A774A7568C3 /* GXTaskDownloadDisk.swift */,
-				76A7C8DDA9A41F5FB2CCF7C76CA9DAF3 /* GXTaskDownloadDisk+DownloadingDelegate.swift */,
-				45AFA3BCAF251BB7EE33BA74D9448163 /* ReplaceMe.swift */,
-				12B57ECFDCE7A9CF3B74D437D1738FE7 /* String+OffLine.swift */,
-				4EF891EC56BACFF33750C0E7FA22F9C3 /* Support Files */,
-			);
-			name = GXTaskDownload;
-			path = GXTaskDownload;
 			sourceTree = "<group>";
 		};
 		87B126ADE7F7236FB26CFE2FE244F64D /* Moya */ = {
@@ -1495,6 +1480,21 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		FC0B88DEFFE5A2AD7D92773C260220E9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				31DC1BE1DE824785074F0CED20A04E5A /* GXTaskDownload.modulemap */,
+				E6475652C8C6A31B261AFAE48DC20070 /* GXTaskDownload-dummy.m */,
+				397E8DA02CBF554058A061DF36779B45 /* GXTaskDownload-Info.plist */,
+				A1CF49B629A1135AE7823966C6092D46 /* GXTaskDownload-prefix.pch */,
+				BF41F007FBC9815C89CCA249D4826462 /* GXTaskDownload-umbrella.h */,
+				CDE15E02D1D26F2883D0675880F0D183 /* GXTaskDownload.debug.xcconfig */,
+				A1186CE51C1FB2A0228CB36C6840A5B8 /* GXTaskDownload.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GXTaskDownload";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1695,7 +1695,7 @@
 			buildConfigurationList = 2DC03C149ECE5E9814335E2F01DAE67B /* Build configuration list for PBXNativeTarget "GXTaskDownload" */;
 			buildPhases = (
 				B8F77611307D96A0FF1D408A4449CBC8 /* Headers */,
-				374A83A1504803D267BEEC061AFF9DB1 /* Sources */,
+				F27CE92389B72FC966FBD3B0B818EB18 /* Sources */,
 				5254257AEE9CF62F58AEA3E2D6D86D72 /* Frameworks */,
 				C612D9F682767A4488AABA025F6706F7 /* Resources */,
 			);
@@ -2138,30 +2138,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		374A83A1504803D267BEEC061AFF9DB1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4EC1684685E4A4B2CFBEEBBEB7B76A1A /* GXCheckTaskManager.swift in Sources */,
-				2B1CF9064D6E5CA20465A2F8B6D4E7A3 /* GXCheckTaskSize.swift in Sources */,
-				A08D88B32115B243726F747EFF3F1364 /* GXDownloadConstants.swift in Sources */,
-				D81F496B7950904E069F7C5B53B1B083 /* GXDownloader.swift in Sources */,
-				D63503194ECBC4C095222EA0020D07DB /* GXDownloader+URLSessionDelegate.swift in Sources */,
-				EE8E739E6178D5B30338A4EF50FCA9EE /* GXDownloading.swift in Sources */,
-				A8C6D225621422AE8C347711F66EFF42 /* GXDownloadingDelegate.swift in Sources */,
-				810129241BB91026FA88BDD30442FA59 /* GXDownloadingError.swift in Sources */,
-				77BD66A0EC22CFB14AD2E881EFC12BD8 /* GXDownloadingState.swift in Sources */,
-				B7176A978B05A8C3ADC950C8F125D63C /* GXDownloadManager.swift in Sources */,
-				47C9EEC5F69215021E5E3FE9E8EA7E63 /* GXDownloadURLModel.swift in Sources */,
-				8ECDDE4B89D59CD8C6426DA6FFDB18FF /* GXTaskDiskFile.swift in Sources */,
-				501DCE1D20DF5226A7B606D4A3F0575F /* GXTaskDownload-dummy.m in Sources */,
-				D4DE3B1DC196C86627711CCFB4F2B059 /* GXTaskDownloadDisk.swift in Sources */,
-				96FFA3D08501F4A35978CA22487A8D1B /* GXTaskDownloadDisk+DownloadingDelegate.swift in Sources */,
-				BCDD9FF65637561BB062EA79A7E69B13 /* ReplaceMe.swift in Sources */,
-				357615C0CAA0A8697F4B7C024FC32605 /* String+OffLine.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4B8B4F623A703EBB41C372F9570E9E70 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2305,6 +2281,30 @@
 				6CC7E7C00730B1BF42A28B2E23CA01D6 /* URLSessionConfiguration+Alamofire.swift in Sources */,
 				794FC38D15336AB502B73B012005E9BD /* Validation.swift in Sources */,
 				F7E576E007A81E0EFD2E0849CB17878D /* WebSocketRequest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F27CE92389B72FC966FBD3B0B818EB18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				604454E1B756D5F05F4FFED2D84589E5 /* GXCheckTaskManager.swift in Sources */,
+				B0A2328331C55FBE8234AC18E88910E7 /* GXCheckTaskSize.swift in Sources */,
+				F30CB89530F55E9419387E37C930A017 /* GXDownloadConstants.swift in Sources */,
+				D3E212C206E94836B6971BC566A175B5 /* GXDownloader.swift in Sources */,
+				7DA0F318F98539701AABB5EB2E7EB562 /* GXDownloader+URLSessionDelegate.swift in Sources */,
+				33AC83DB1D34EB36391C647020036B03 /* GXDownloading.swift in Sources */,
+				27680C4F2AB7692035885CEE69F28F66 /* GXDownloadingDelegate.swift in Sources */,
+				F77EA79EF3147F106419EEA14C589D23 /* GXDownloadingError.swift in Sources */,
+				9285553BABD35D3A30365C90A615A9BA /* GXDownloadingState.swift in Sources */,
+				42BA78737171722A9EEF6C97FDF0BF64 /* GXDownloadManager.swift in Sources */,
+				10D1FD32A10486BB2FE1693A5E943CB4 /* GXDownloadURLModel.swift in Sources */,
+				91588B732F1BAB0E52D8A8192C7DFE0F /* GXTaskDiskFile.swift in Sources */,
+				9D7AD7EFE5BC5E50F24A47075320BBEE /* GXTaskDownload-dummy.m in Sources */,
+				81C718D57A2CFADB2C912A93D8C4F111 /* GXTaskDownloadDisk.swift in Sources */,
+				E1A99218F15488411E4C227EF537361F /* GXTaskDownloadDisk+DownloadingDelegate.swift in Sources */,
+				5179B195422A658D444D6E5E83810A21 /* ReplaceMe.swift in Sources */,
+				C737E8F421695C87C618F458182CBBAD /* String+OffLine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2505,7 +2505,7 @@
 		};
 		14C1CF803EDA1DAE04C5E9E0EFBC30B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC7F3D16877872A647BFDA53B5B68E40 /* GXTaskDownload.debug.xcconfig */;
+			baseConfigurationReference = CDE15E02D1D26F2883D0675880F0D183 /* GXTaskDownload.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -2775,7 +2775,7 @@
 		};
 		5A47EA1B1EBAB677E0E8F6E8EC86AFF0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D85E6A3FAA996CCD0BC82146D4641D0 /* GXTaskDownload.release.xcconfig */;
+			baseConfigurationReference = A1186CE51C1FB2A0228CB36C6840A5B8 /* GXTaskDownload.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;

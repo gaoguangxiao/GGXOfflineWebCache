@@ -47,7 +47,7 @@ extension GXTaskDownloadDisk: GXDownloadingDelegate {
                         self.saveUrlInfo()
                         downloadBlock?(download.progress, state)
                     } else {
-                        LogInfo("文件有损，可下载\(totalBytesCount)、已下载：\(downloadCount)、urlPath：\(urlPath), 本地存储路径: \(boxPath)")
+                        LogInfo("可下载\(totalBytesCount)、已下载：\(downloadCount)、urlPath：\(urlPath), 本地存储路径: \(boxPath)")
                         downloadBlock?(download.progress, GXDownloadingState.error)
                     }
                 }

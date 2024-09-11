@@ -47,7 +47,7 @@ public class GXTaskDiskFile: NSObject {
     }
     
     //下载的URL
-    var url: URL?
+//    var url: URL?
     
     /// 下载文件路径
     //    var urlStr: String?
