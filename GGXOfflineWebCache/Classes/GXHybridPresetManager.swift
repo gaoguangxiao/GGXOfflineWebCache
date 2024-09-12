@@ -30,6 +30,9 @@ public class GXHybridPresetManager: NSObject {
     
     public weak var delegate: GXHybridPresetManagerDelegate?
     
+    // The maximum number of downloads in downloadable groups in a resource package is preset，defaul：9
+    public var maxDownloadCount: Int = 9
+    
     ///web资源比对
     lazy var webPkgCheckManager: GXHybridCheckManager = {
         let offline = GXHybridCheckManager()
@@ -89,7 +92,9 @@ public class GXHybridPresetManager: NSObject {
                 //LogInfo("\(urlAssets.src ?? "") not contains http")
             }
         }
-        self.oflineDownload.start(forURL: downloadUrls, path: "WebResource") { [weak self] total, loaded, state in
+        self.oflineDownload.start(forURL: downloadUrls, 
+                                  maxDownloadCount: maxDownloadCount,
+                                  path: "WebResource") { [weak self] total, loaded, state in
             guard let self else { return }
             if state == .completed || state == .error {
                updatePresetManifest(manifestUrls: manifestUrls)
