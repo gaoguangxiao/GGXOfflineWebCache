@@ -1,0 +1,6 @@
+framework module PTDebugView {
+  umbrella header "PTDebugView-umbrella.h"
+
+  export *
+  module * { export * }
+}

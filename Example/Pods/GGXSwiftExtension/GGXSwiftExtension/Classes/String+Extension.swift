@@ -209,6 +209,17 @@ public extension String {
         return URL(string: result ?? "")
     }
     
+    var fileUrl: URL? {
+        var url : URL?
+        if #available(iOS 16.0, *) {
+            url = URL(filePath: self)
+        } else {
+            // Fallback on earlier versions
+            url = URL(fileURLWithPath: self)
+        }
+        return url
+    }
+    
     var toFileUrl: URL? {
         var url : URL?
         

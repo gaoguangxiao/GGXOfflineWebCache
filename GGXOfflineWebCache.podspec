@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.4.4'
-  s.summary          = 'fix：下载组最大下载数'
+  s.version          = '0.4.5'
+  s.summary          = 'fix：重复的网络拦截请求无响应'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -43,4 +43,6 @@ TODO: Add long description of the pod here.
     s.dependency 'GXTaskDownload'
     s.dependency 'SSZipArchive'
     s.dependency 'GXSwiftNetwork'
+    s.dependency 'PTDebugView'
+    
 end

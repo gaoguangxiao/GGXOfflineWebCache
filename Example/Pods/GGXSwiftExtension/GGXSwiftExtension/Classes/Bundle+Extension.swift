@@ -17,7 +17,7 @@ public extension Bundle {
     static func jsonfileTojson(_ name:String, type: String?) -> Any? {
         //将JSON文件 读取并输出为字符串
         let filePath = Bundle.main.path(forResource: name, ofType: type)
-        guard let uurl = filePath?.toFileUrl else {
+        guard let uurl = filePath?.fileUrl else {
             print("URL为空")
             return nil
         }

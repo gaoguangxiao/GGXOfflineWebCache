@@ -57,6 +57,9 @@ public class GXDownloader: NSObject, GXDownloading {
     /// A `Int64` representing the total amount of bytes for the entire file
     public var totalBytesCount: Int64 = 0
     
+    /// A ‘`Double`Estimated total download size
+    public var estimatedTotalBytesCount: Double = 0
+    
     // MARK: - Properties (Downloading)
     public weak var delegate: GXDownloadingDelegate?
     public var progress: Float = 0.0

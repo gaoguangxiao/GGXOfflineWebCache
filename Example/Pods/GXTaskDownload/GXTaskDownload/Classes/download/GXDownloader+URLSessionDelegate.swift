@@ -21,7 +21,7 @@ extension GXDownloader: URLSessionDataDelegate {
 //                LogInfo("Content-Length: \(contentLengthValue)")
                 totalBytesCount = Int64(contentLengthValue)
             } else {
-                LogInfo("The \(response.url!.absoluteString) Content-Length is nil")
+//                LogInfo("The \(response.url!.absoluteString) Content-Length is nil")
             }
         }
         state = .downloading

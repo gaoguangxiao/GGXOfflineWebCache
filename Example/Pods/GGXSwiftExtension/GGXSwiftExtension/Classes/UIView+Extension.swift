@@ -190,3 +190,12 @@ public extension UIView {
         //        return gradientLayer
     }
 }
+
+extension UIView {
+    
+    //转换某个坐标
+    public func translate(_ translation: CGPoint) {
+        //朝向移动
+        self.center += translation
+    }
+}

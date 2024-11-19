@@ -1,7 +1,7 @@
 {
   "name": "GGXOfflineWebCache",
-  "version": "0.4.3",
-  "summary": "fix：下载任务的下载速度",
+  "version": "0.4.5",
+  "summary": "fix：重复的网络拦截请求无响应",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GGXOfflineWebCache.git",
-    "tag": "0.4.3"
+    "tag": "0.4.5"
   },
   "platforms": {
     "ios": "12.0"
@@ -31,6 +31,9 @@
 
     ],
     "GXSwiftNetwork": [
+
+    ],
+    "PTDebugView": [
 
     ]
   },

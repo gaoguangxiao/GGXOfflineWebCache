@@ -29,3 +29,6 @@ public typealias GXTaskCheckProgressBlock = (_ progress: Float, _ totalLenth: In
 
 /// 下载完毕
 public typealias GXTaskCompleteBlock = (_ progress: Float, _ str: String?,_ state: GXDownloadingState)->Void
+
+/// 下载完毕
+public typealias GXTaskCompleteV2Block = (_ progress: Float, _ str: String?)->Void

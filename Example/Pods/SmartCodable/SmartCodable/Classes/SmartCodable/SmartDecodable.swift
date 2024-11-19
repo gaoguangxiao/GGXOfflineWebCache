@@ -12,7 +12,8 @@ public protocol SmartDecodable: Decodable {
     /// The callback for when mapping is complete
     mutating func didFinishMapping()
     
-    /// The mapping relationship of decoding keys
+    /// The mapping relationship of decoding keys.
+    /// The first mapping relationship that is not null is preferred
     static func mappingForKey() -> [SmartKeyTransformer]?
     
     /// The strategy for decoding values
@@ -36,7 +37,7 @@ public enum SmartDecodingOption: Hashable {
     /// date的默认策略是ReferenceDate（参考日期是指2001年1月1日 00:00:00 UTC），以秒为单位。
     case date(JSONDecoder.DateDecodingStrategy)
     
-    case data(JSONDecoder.DataDecodingStrategy)
+    case data(JSONDecoder.SmartDataDecodingStrategy)
     
     case float(JSONDecoder.NonConformingFloatDecodingStrategy)
     
@@ -266,7 +267,7 @@ extension Data {
             for _option in _options {
                 switch _option {
                 case .data(let strategy):
-                    _decoder.dataDecodingStrategy = strategy
+                    _decoder.smartDataDecodingStrategy = strategy
                     
                 case .date(let strategy):
                     _decoder.dateDecodingStrategy = strategy

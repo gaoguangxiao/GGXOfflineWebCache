@@ -121,6 +121,11 @@ open class MSBApi: TargetType {
 extension MSBApi {
     
     @available(iOS 13.0, *)
+    public func requestV2<T: SmartCodable>(_ Model: T.Type) async throws {
+        print("requestV2----")
+    }
+    
+    @available(iOS 13.0, *)
     public func request<T: SmartCodable>(_ Model: T.Type) async throws -> T where T: SmartCodable {
         if self.requestShowHUD {
             DispatchQueue.main.async {
