@@ -14,6 +14,9 @@ public protocol GXHybridPresetManagerDelegate: NSObjectProtocol {
     /// 开始比对文件
     func offlineWebComparison()
     
+    /// 开始下载离线资源的数量，仅有离线包更新时才具备
+    func offlineWebStartDownload(urls: Array<GXWebOfflineAssetsModel>)
+    
     /// 下载进度
     func offlineWebProgress(progress: Float)
     
@@ -23,8 +26,22 @@ public protocol GXHybridPresetManagerDelegate: NSObjectProtocol {
     /// 加载完毕
     func offlineWeb(completedWithError error: Error?)
     
+    //离线包加载完毕
+    //error：错误
+    //isUpdateOffline 本地资源是否更新
+    func offlineWeb(completedWithError error: Error?, isUpdateOffline: Bool)
 }
 
+public extension GXHybridPresetManagerDelegate {
+    
+    func offlineWebStartDownload(urls: Array<GXWebOfflineAssetsModel>) {
+        
+    }
+    
+    func offlineWeb(completedWithError error: Error?, isUpdateOffline: Bool){
+        
+    }
+}
 
 public class GXHybridPresetManager: NSObject {
     
@@ -112,6 +129,8 @@ public class GXHybridPresetManager: NSObject {
             guard let `self` = self else { return }
             
             self.delegate?.offlineWeb(completedWithError: nil)
+            
+            delegate?.offlineWeb(completedWithError: nil, isUpdateOffline: true)
         }
     }
     
@@ -129,9 +148,11 @@ extension GXHybridPresetManager: GXHybridCheckManagerDelegate {
     public func finishCheck(urls: Array<GGXOfflineWebCache.GXWebOfflineAssetsModel>, manifestUrls: Array<String>) {
         if urls.count == 0 {
             self.delegate?.offlineWeb(completedWithError: nil)
+            delegate?.offlineWeb(completedWithError: nil, isUpdateOffline: false)
         } else {
             self.downloadPreset(assets: urls, manifestUrls: manifestUrls)
         }
+        delegate?.offlineWebStartDownload(urls: urls)
     }
     
 }
