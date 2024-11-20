@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.4.6'
+  s.version          = '0.4.7'
   s.summary          = 'fix：增加离线包更新代理'
 
 # This description is used to generate tags and improve search results.
