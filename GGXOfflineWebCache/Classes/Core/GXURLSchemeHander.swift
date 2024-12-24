@@ -9,16 +9,30 @@ import Foundation
 import WebKit
 import GGXSwiftExtension
 
-enum GXOfflineError: Error {
-    case invalidServerResponse
+public struct WKURLSchemeWrapper: Hashable {
+    //避免了多个 nil 的 task 被误认为是相等的情况
+    let identifier = UUID()
+    
+    //手动管理移除
+    var task: WKURLSchemeTask?
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+    
+    public static func == (lhs: WKURLSchemeWrapper, rhs: WKURLSchemeWrapper) -> Bool {
+        return lhs.task === rhs.task
+    }
 }
 
 
 open class GXURLSchemeHander: NSObject {
     private var dataTask: URLSessionDataTask?
     private static var session: URLSession?
-    //This task has already been stopped处理
-    private var holdUrlSchemeTasks: Dictionary<String, Bool> = [:]
+    
+    //This task has already been stopped 处理
+    private var holdUrlSchemeTasks: Set<WKURLSchemeWrapper> = []
+    
     public override init() {
         Self.updateSession()
     }
@@ -31,51 +45,61 @@ open class GXURLSchemeHander: NSObject {
         Self.session = URLSession(configuration: config)
     }
     
-    func transformUrlSchemeTasks(urlSchemeTask: WKURLSchemeTask) -> String {
-        return urlSchemeTask.request.url?.absoluteString.md5Value ?? ""
-    }
-    
-    func isExistUrlSchemeTasks(urlSchemeTask: WKURLSchemeTask) -> Bool {
-        return holdUrlSchemeTasks[transformUrlSchemeTasks(urlSchemeTask: urlSchemeTask)] ?? false
+    func getUrlSchemeTasks(urlSchemeTask: WKURLSchemeTask) -> WKURLSchemeWrapper? {
+        return holdUrlSchemeTasks.first{ $0.task === urlSchemeTask }
     }
     
     func addUrlSchemeTasks(urlSchemeTask: WKURLSchemeTask) {
-        if !isExistUrlSchemeTasks(urlSchemeTask: urlSchemeTask) {
-            holdUrlSchemeTasks[transformUrlSchemeTasks(urlSchemeTask: urlSchemeTask)] = true
-        }
+        let wrapper = WKURLSchemeWrapper(task: urlSchemeTask)
+        holdUrlSchemeTasks.insert(wrapper)
     }
     
     func removeUrlSchemeTasks(urlSchemeTask: WKURLSchemeTask) {
-        if isExistUrlSchemeTasks(urlSchemeTask: urlSchemeTask) {
-            holdUrlSchemeTasks.removeValue(forKey: transformUrlSchemeTasks(urlSchemeTask: urlSchemeTask))
+        guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask) else {
+//            LogInfo("Task not found for stop: \(urlSchemeTask)")
+            return
         }
+        holdUrlSchemeTasks.remove(taskWrapper)
     }
 }
 
 @available(iOS 11.0, *)
 extension GXURLSchemeHander: WKURLSchemeHandler{
     open func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
-        dataTask = Self.session?.dataTask(with: urlSchemeTask.request) { data, response, error in
-            if let error = error, error._code != NSURLErrorCancelled {
-                LogInfo("webView(start urlSchemeTask:) - NSURLErrorCancelled")
-                urlSchemeTask.didFailWithError(error)
-            } else {
-                if let response = response {
-                    urlSchemeTask.didReceive(response)
+        //        LogInfo("start urlSchemeTask: \(urlSchemeTask)")
+        //1、标记网络处理任务
+        self.addUrlSchemeTasks(urlSchemeTask: urlSchemeTask)
+        Task {
+            do {
+                let (data, response) = try await URLSession.shared.data(for: urlSchemeTask.request)
+                guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask),
+                      let task = taskWrapper.task else {
+//                    LogInfo("return \(urlSchemeTask)")
+                    return
                 }
-                if let data = data {
-                    urlSchemeTask.didReceive(data)
+                task.didReceive(response)
+                task.didReceive(data)
+                task.didFinish()
+                //2、移除任务
+                self.holdUrlSchemeTasks.remove(taskWrapper)
+                //4、debug数量
+//                LogInfo("After: \(holdUrlSchemeTasks.count)")
+            } catch {
+                guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask),
+                      let task = taskWrapper.task else {
+//                    LogInfo("return \(urlSchemeTask)")
+                    return
                 }
-                urlSchemeTask.didFinish()
+                task.didFailWithError(error)
+                //2、移除任务
+                self.holdUrlSchemeTasks.remove(taskWrapper)
             }
         }
-        dataTask?.resume()
-        //2、标记网络处理任务
-        //self.addUrlSchemeTasks(urlSchemeTask: urlSchemeTask)
     }
     
     open func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
-        //3、处理标记的网络任务
-        //        self.removeUrlSchemeTasks(urlSchemeTask: urlSchemeTask)
+        //3、stop标记的网络任务
+//        LogInfo("stop urlSchemeTask: \(urlSchemeTask)")
+        self.removeUrlSchemeTasks(urlSchemeTask: urlSchemeTask)
     }
 }
