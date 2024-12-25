@@ -1,6 +1,6 @@
 {
   "name": "GGXOfflineWebCache",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "summary": "fix：task stop catch app",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GGXOfflineWebCache.git",
-    "tag": "0.4.8"
+    "tag": "0.4.9"
   },
   "platforms": {
-    "ios": "12.0"
+    "ios": "13.0"
   },
   "swift_versions": "5.0",
   "source_files": "GGXOfflineWebCache/Classes/**/*",
