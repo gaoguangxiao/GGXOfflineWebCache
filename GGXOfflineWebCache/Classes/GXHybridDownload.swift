@@ -57,27 +57,36 @@ public extension GXHybridDownload {
     ///   - urls: <#urls description#>
     ///   - path: <#path description#>
     ///   - block: <#block description#>
-    func download(urls: Array<GXWebOfflineAssetsModel>,
-                  path: String?,
-                  maxDownloadCount: Int = 9,
-                  priority: Int = 3,
-                  block: @escaping GXTaskDownloadTotalBlock) {
-        var downloadToPath = hyDownPath
-        if let path {
-            downloadToPath = hyDownPath + "/\(path)"
-        }
-        var downloadUrls: Array<GXDownloadURLModel> = []
-        for url in urls {
-            let downloadModel = GXDownloadURLModel()
-            downloadModel.src    = url.src
-            downloadModel.policy = url.policy
-            downloadModel.md5    = url.md5
-            downloadModel.match  = url.match
-            downloadModel.priority = priority
-            downloadUrls.append(downloadModel)
-        }
-        taskDownload.start(forURL: downloadUrls,maxDownloadCount: maxDownloadCount, path: downloadToPath, block: block)
-    }
+//    func download(urls: Array<GXDownloadURLModel>,
+//                  path: String?,
+//                  maxDownloadCount: Int = 9,
+//                  priority: Int = 3,
+//                  block: @escaping GXTaskDownloadTotalBlock) {
+//        var downloadToPath = hyDownPath
+//        if let path {
+//            downloadToPath = hyDownPath + "/\(path)"
+//        }
+//        LogInfo("predict total count: \(urls.count)")
+//        var downloadUrls: Array<GXDownloadURLModel> = []
+//        for url in urls {
+//            if !downloadUrls.contains(where: { $0.src == url.src
+//            }) {
+//                let downloadModel = GXDownloadURLModel()
+//                downloadModel.src    = url.src
+//                downloadModel.policy = url.policy
+//                downloadModel.md5    = url.md5
+//                downloadModel.match  = url.match
+//                downloadModel.priority = priority
+//                downloadUrls.append(downloadModel)
+//            } else {
+//                //重复的src
+//                let strMsg = "alike src: \(url.src ?? ""), md5 is \(url.md5 ?? "")"
+//                LogInfo(strMsg)
+//            }
+//        }
+//        LogInfo("actual total count: \(downloadUrls.count)")
+//        taskDownload.start(forURL: urls,maxDownloadCount: maxDownloadCount, path: downloadToPath, block: block)
+//    }
     
     /// 下载URL-
     /// - Parameters:

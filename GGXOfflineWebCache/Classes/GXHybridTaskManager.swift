@@ -16,7 +16,7 @@ public class GXHybridTaskManager: NSObject {
     private var waitingUrlTasks: Array<String> = []
     
     // 待下载的任务
-    private var waitingDownloadTasks: Dictionary<String,GXHybridDownload> = [:]
+    private var waitingDownloadTasks: Dictionary<String,GXDownloadManager> = [:]
     
     /// 任务总量
     private var tasksCount: Int = 0
@@ -57,8 +57,8 @@ public class GXHybridTaskManager: NSObject {
         let maxCurrentCount = 2
         
         for url in urls {
-            let download = GXHybridDownload()
-            download.hyDownPath = "WebResource"
+            let download = GXDownloadManager()
+//            download.hyDownPath = "WebResource"
             waitingDownloadTasks[url.md5Value] = download
         }
         
@@ -109,8 +109,14 @@ extension GXHybridTaskManager {
             return
         }
         
+        let urls = configModel.getNoAlikeAssets(priority: 5)
+        guard !urls.isEmpty else {
+            return
+        }
+        
         let downloadManager = self.waitingDownloadTasks[url.md5Value]
-        downloadManager?.download(urls: assets, path: self.foderPath, priority: 5) { [weak self ]total, loaded, state in
+        
+        downloadManager?.start(forURL: urls, maxDownloadCount: 9, path: "WebResource" + "/\(self.foderPath)", block: { [weak self ] total, loaded, state in
             guard let `self` = self else {return}
             if state == .completed || state == .error {
                 let manifestPath = "\(self.foderPath)" + "/" + url.lastPathComponent
@@ -121,7 +127,7 @@ extension GXHybridTaskManager {
             } else {
                 LogInfo("\(url)的下载进度:\(loaded/total)")
             }
-        }
+        })
     }
     
     func checkFinish() {
