@@ -1,15 +1,16 @@
 PODS:
-  - Alamofire (5.10.1)
+  - Alamofire (5.10.2)
   - GGXOfflineWebCache (0.4.9):
     - GGXSwiftExtension
     - GXSwiftNetwork
     - GXTaskDownload
     - PTDebugView
     - SSZipArchive
-  - GGXSwiftExtension (0.7.2)
-  - GXSwiftNetwork (0.3.3):
+  - GGXSwiftExtension (0.7.4)
+  - GXPKHUD (1.0.0)
+  - GXSwiftNetwork (0.4.1):
+    - GXPKHUD
     - Moya
-    - PKHUD
     - SmartCodable
   - GXTaskDownload (0.4.1):
     - GGXSwiftExtension
@@ -19,9 +20,9 @@ PODS:
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
-  - PKHUD (5.3.0)
-  - PTDebugView (0.1.9):
+  - PTDebugView (0.2.1):
     - GGXSwiftExtension
+    - SnapKit
   - ReachabilitySwift (5.2.4)
   - RxCocoa (6.8.0):
     - RxRelay (= 6.8.0)
@@ -29,13 +30,12 @@ PODS:
   - RxRelay (6.8.0):
     - RxSwift (= 6.8.0)
   - RxSwift (6.8.0)
-  - SmartCodable (4.2.6)
+  - SmartCodable (4.3.2)
   - SnapKit (5.7.1)
   - SSZipArchive (2.4.3)
-  - ZKBaseSwiftProject (1.0.9):
+  - ZKBaseSwiftProject (1.1.8):
     - GGXSwiftExtension
     - KeychainAccess
-    - PKHUD
     - PTDebugView
     - ReachabilitySwift
     - RxCocoa
@@ -50,11 +50,11 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - GGXSwiftExtension
+    - GXPKHUD
     - GXSwiftNetwork
     - GXTaskDownload
     - KeychainAccess
     - Moya
-    - PKHUD
     - PTDebugView
     - ReachabilitySwift
     - RxCocoa
@@ -70,24 +70,24 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 840d2a1ad82355b536ec6ba5f97e5bfa54600ca3
+  Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
   GGXOfflineWebCache: 18c8aaebcb54258eb5eaf55ff6a35d2d3d432012
-  GGXSwiftExtension: ef35cfe3275df105db6d0f320ee413423833ff4c
-  GXSwiftNetwork: 2bce3f07e94f5a6be461493c67f80822bf6ff386
+  GGXSwiftExtension: 438330b80997b69e09968004588ce41d8ff36583
+  GXPKHUD: 3db210320877a88b0c9331e6b4045ba5c07ec2ea
+  GXSwiftNetwork: 200d699991a7bcb9c39076c0ad5aa1cf7b099cbe
   GXTaskDownload: 2ef5fba0d9dea781a967620966ee68d7b95a099b
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
-  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
-  PTDebugView: c719fbcf92bbcad675a9fba8a6206e863d8d021c
+  PTDebugView: 07baae09ba9de990f964cb35a056fd1d3411bb6d
   ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
   RxCocoa: 2d33c1e1e5d66492052ad46b11024ae287572880
   RxRelay: 335c78b926a2aea8d863a6d25f1ed3b5ad8e8705
   RxSwift: 4e28be97cbcfeee614af26d83415febbf2bf6f45
-  SmartCodable: 09bc8e160ecb5fd0a7500cca792eb03e75a06477
+  SmartCodable: 88fbf3d65207c2376fdbce4b080a3d578cb51be8
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
-  ZKBaseSwiftProject: 04cb3fb43a971c6bf0eb4ae718210b114c03daf9
+  ZKBaseSwiftProject: e6970ff6b6f63e343466acdfe0e9557e36ab6c17
 
-PODFILE CHECKSUM: f2d314459d5a5a8f3068d2af118d046beef45e9e
+PODFILE CHECKSUM: 5368212a0421b68da2e217939aefe22e1c10902b
 
 COCOAPODS: 1.16.2

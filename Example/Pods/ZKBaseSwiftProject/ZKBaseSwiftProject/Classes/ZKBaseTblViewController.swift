@@ -11,7 +11,7 @@ open class ZKBaseTblViewController: ZKBaseViewController {
 
     public var dataArray: [Any] = []
     
-    var tableView: UITableView?
+    public var tableView: UITableView?
     
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +32,10 @@ open class ZKBaseTblViewController: ZKBaseViewController {
         view.separatorStyle = .none
         view.delegate = self
         view.dataSource = self
-        view.rowHeight = 40
-        //view.estimatedRowHeight = UITableView.automaticDimension
+        view.rowHeight = UITableView.automaticDimension
+        view.estimatedRowHeight = 50
         view.sectionHeaderHeight = 45
-//        view.estimatedSectionHeaderHeight = UITableView.automaticDimension
+        view.estimatedSectionHeaderHeight = UITableView.automaticDimension
         if #available(iOS 15.0, *) {
             view.sectionHeaderTopPadding = 0
         } else {
@@ -48,15 +48,15 @@ open class ZKBaseTblViewController: ZKBaseViewController {
 
 
 extension ZKBaseTblViewController : UITableViewDelegate,UITableViewDataSource {
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataArray.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

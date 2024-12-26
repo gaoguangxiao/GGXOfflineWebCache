@@ -7,7 +7,7 @@
 import Foundation
 import Moya
 import Alamofire
-import PKHUD
+import GXPKHUD
 import SmartCodable
 
 // MARK: - request MoyaProvider

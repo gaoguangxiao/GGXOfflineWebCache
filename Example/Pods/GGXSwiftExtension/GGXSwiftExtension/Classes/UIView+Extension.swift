@@ -198,4 +198,15 @@ extension UIView {
         //朝向移动
         self.center += translation
     }
+    
+    //
+    public func translateToLeft(_ speed: CGFloat) {
+        //朝向移动
+        self.center += CGPoint(x: -speed, y: 0)
+    }
+    
+    public func toBottom(_ speed: CGFloat) {
+        //朝向移动
+        self.center += CGPoint(x: 0, y: 1)
+    }
 }

@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 import SnapKit
 import GGXSwiftExtension
-import PKHUD
+//import PKHUD
 import RxCocoa
 import PTDebugView
 
@@ -164,7 +164,7 @@ extension ZKBaseWKWebViewController: WKNavigationDelegate, UIScrollViewDelegate 
             return
         }
         view.hideToastActivity()
-        HUD.flash("加载失败，请检查网络")
+//        HUD.flash("加载失败，请检查网络")
         ZKLog("加载失败~error = \(error)")
     }
     
@@ -175,7 +175,7 @@ extension ZKBaseWKWebViewController: WKNavigationDelegate, UIScrollViewDelegate 
             return
         }
         view.hideToastActivity()
-        HUD.flash("加载失败，请检查网络")
+//        HUD.flash("加载失败，请检查网络")
         ZKLog("加载失败 error = \(error)")
     }
     

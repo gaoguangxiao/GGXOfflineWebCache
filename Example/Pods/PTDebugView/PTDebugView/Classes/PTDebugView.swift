@@ -9,7 +9,7 @@
 import Foundation
 import GGXSwiftExtension
 import SnapKit
-import PTDebugView
+//import PTDebugView
 
 public enum PTDebugViewButtonEvent {
     case ChangeUrl(PTDebugView)

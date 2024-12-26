@@ -86,8 +86,18 @@ public struct ZKUtils {
         } else {
             systemName = "iPhone OS"
         }
-        let newUA = "Mozilla/5.0 (\(UIDevice.current.model); CPU \(systemName) \(systemVersion) like Mac OS X; \(UIDevice.modelName)) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+        let newUA = "Mozilla/5.0 (\(UIDevice.current.model); CPU \(systemName) \(systemVersion) like Mac OS X; \(UIDevice.modelName)) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/\(UIDevice.modelName) UUID/\(deviceIdentifier)"
         return newUA
+    }
+    
+    //事件上报属性必带
+    public static var baseDeviceInfo: String {
+        let appVersion = kAppVersion ?? ""
+        let sysVersion = UIDevice.currentSystemVersion
+        let deviceModel = UIDevice.modelName
+//        let date = Date.getCurrentDateStr("yyyy/MM/dd HH:mm:ss")
+        let baseInfo = "\(deviceModel)-\(sysVersion)-V\(appVersion)-udid:\(ZKUtils.deviceIdentifier)"
+        return baseInfo
     }
     
     static func removeWebsiteDataStore() {

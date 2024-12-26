@@ -16,7 +16,7 @@ internal func + (left: [String: String], right: [String: String]) -> [String: St
 ///// 打印日志
 internal func log(_ msg: Any, _ file: String = #file, _ fn: String = #function, _ line: Int = #line) {
     #if DEBUG
-    print("「 DEBUG模式下打印日志： 」****** \((file as NSString).lastPathComponent) >> \(line) >> \(fn) >> \(msg) ******")
+    print("DEBUG模式下打印日志：\((file as NSString).lastPathComponent) >> \(line) >> \(fn) >> \(msg)")
     #endif
 }
 

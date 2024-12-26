@@ -80,17 +80,17 @@ extension JSONValue {
     var debugDataTypeDescription: String {
         switch self {
         case .array:
-            return "an array"
+            return "’Array‘"
         case .bool:
-            return "bool"
+            return "’Bool‘"
         case .number:
-            return "a number"
+            return "’Number‘"
         case .string:
-            return "a string"
+            return "‘String’"
         case .object:
-            return "a dictionary"
+            return "’Dictionary‘"
         case .null:
-            return "null"
+            return "’null‘"
         }
     }
 }
@@ -390,6 +390,11 @@ extension JSONValue {
                     startCopyIndex = nextIndex
                 case UInt8(ascii: "/"):
                     if #available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *), options.contains(.withoutEscapingSlashes) == false {
+                        bytes.append(contentsOf: stringBytes[startCopyIndex ..< nextIndex])
+                        bytes.append(contentsOf: [._backslash, UInt8(ascii: "/")])
+                        nextIndex = stringBytes.index(after: nextIndex)
+                        startCopyIndex = nextIndex
+                    } else {
                         bytes.append(contentsOf: stringBytes[startCopyIndex ..< nextIndex])
                         bytes.append(contentsOf: [._backslash, UInt8(ascii: "/")])
                         nextIndex = stringBytes.index(after: nextIndex)

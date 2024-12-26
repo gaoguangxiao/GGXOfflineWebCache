@@ -482,6 +482,8 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         return Int(UIScreen.main.bounds.size.height)
     }
     
+    static var heightf: CGFloat { UIScreen.main.bounds.size.height }
+    
     @objc static var currentSystemVersion: String {
         return UIDevice.current.systemVersion
     }
