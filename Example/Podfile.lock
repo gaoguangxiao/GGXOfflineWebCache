@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (5.10.2)
-  - GGXOfflineWebCache (0.5.0):
+  - GGXOfflineWebCache (0.5.2):
     - GGXSwiftExtension
     - GXSwiftNetwork
     - GXTaskDownload
@@ -71,7 +71,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
-  GGXOfflineWebCache: 985aaa28748f3686dd382aac5c85b7a1365d91dc
+  GGXOfflineWebCache: e5ba4e8c868e558e6ad08b7dc537f90fe59aa190
   GGXSwiftExtension: 438330b80997b69e09968004588ce41d8ff36583
   GXPKHUD: 3db210320877a88b0c9331e6b4045ba5c07ec2ea
   GXSwiftNetwork: 200d699991a7bcb9c39076c0ad5aa1cf7b099cbe

@@ -1,7 +1,7 @@
 {
   "name": "GGXOfflineWebCache",
-  "version": "0.5.0",
-  "summary": "fix：task stop catch app",
+  "version": "0.5.2",
+  "summary": "feat：check manifest before request",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GGXOfflineWebCache.git",
-    "tag": "0.5.0"
+    "tag": "0.5.2"
   },
   "platforms": {
     "ios": "13.0"

@@ -794,7 +794,7 @@ extension GXHybridCacheManager {
     /// - Parameter url: url description
     /// - Returns: <#description#>
     func getPresetFilePath(fileName: String) -> String? {
-        return self.getBoxLastPathComponentPath(fileName, extendPath: "/\(self.presetName ?? "")/\(self.manifestPathName)")
+        return self.getBoxLastPathComponentPath(fileName, extendPath: "\(self.presetName ?? "")/\(self.manifestPathName)")
     }
 }
 

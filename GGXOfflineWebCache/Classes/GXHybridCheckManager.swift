@@ -20,7 +20,7 @@ public protocol GXHybridCheckManagerDelegate: NSObject {
 
 
 public class GXHybridCheckManager: NSObject {
-        
+    
     public weak var delegate: GXHybridCheckManagerDelegate?
     
     private var waitingUrlTasks: Array<String> = []
@@ -59,18 +59,13 @@ public class GXHybridCheckManager: NSObject {
         let maxCurrentCount = 1
         
         self.waitingUrlTasks.append(contentsOf: urls)
-
+        
         //执行
         self.executeQueue.async {
             for _ in 0 ..< maxCurrentCount {
                 self.execute()
             }
         }
-//        self.tasksCount = 1
-//        let offline = RSWebOfflineManager()
-//        offline.downloadURL = urls.first
-//        self.waitingWebTasks.append(offline)
-//        self.execute(offline.downloadURL ?? "")
     }
     
     /// 通过URL的json获取离线包 ManifestModel-本地资源目录
@@ -87,7 +82,7 @@ public class GXHybridCheckManager: NSObject {
         }
         return nil
     }
-
+    
     deinit {
         LogInfo("\(self)-deinit")
     }
@@ -101,18 +96,20 @@ extension GXHybridCheckManager {
         if let url = gainTask() {
             //获取之后立马删除
             self.removeTask()
-//            print("任务校验：\(url)-:\(Thread.current)")
-            GXManifestApiService.requestManifestJSON(url: url) { [weak self] configModel in
-                
-                guard let self else { return }
-                if let configModel , let assets = configModel.assets {
-                    //1、通过URL获取本地预置，有值代表无需更新
-                    if self.getSandboxPresetModel(url: url) != nil {
-//                        print("无需更新")
-                        self.addFinishTaskCount()
-                        self.checkFinish()
-                    } else {
-//                        print("需要比对的数量：\(assets.count)")
+//            LogInfo("任务校验：\(url)-:\(Thread.current)")
+            if self.getSandboxPresetModel(url: url) != nil {
+                LogInfo("\(url)无需更新")
+                self.addFinishTaskCount()
+                self.checkFinish()
+            } else {
+                GXManifestApiService.requestManifestJSON(url: url) { [weak self] configModel in
+                    guard let self else {
+                        //解决类释放
+                        self?.addFinishTaskCount()
+                        self?.checkFinish()
+                        return
+                    }
+                    if let configModel , let assets = configModel.noAlikeAssets {
                         for asset in assets {
                             if let urlPath = asset.src {
                                 let diskFile = GXTaskDiskFile()
@@ -129,23 +126,24 @@ extension GXHybridCheckManager {
                             }
                         }
                         canUpdateManifestUrls.append(url)
-                        self.addFinishTaskCount()
-                        self.checkFinish()
+                        addFinishTaskCount()
+                        checkFinish()
                     }
-                } else {
-                    self.addFinishTaskCount()
-                    self.checkFinish()
-//                    self.delegate?.finishCheck(urls: canDownloadUrls, manifestUrls: canUpdateManifestUrls)
+                    else {
+                        addFinishTaskCount()
+                        checkFinish()
+                        //                    self.delegate?.finishCheck(urls: canDownloadUrls, manifestUrls: canUpdateManifestUrls)
+                    }
                 }
             }
         } else {
             if self.finishTasksCount == self.tasksCount {
-//                print("没有任务可供校验")
+                //                print("没有任务可供校验")
                 self.delegate?.finishCheck(urls: canDownloadUrls, manifestUrls: canUpdateManifestUrls)
             }
         }
     }
-
+    
     func checkFinish() {
         if self.finishTasksCount == self.tasksCount {
             self.delegate?.finishCheck(urls: canDownloadUrls, manifestUrls: canUpdateManifestUrls)

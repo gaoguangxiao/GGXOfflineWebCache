@@ -39,6 +39,29 @@ extension GXWebOfflineManifestModel {
         return newVersion?.toDouble() ?? 0
     }
     
+    
+    //仅去重`assets`
+    public var noAlikeAssets: [GXWebOfflineAssetsModel]? {
+        var models: [GXWebOfflineAssetsModel] = []
+        var seenSrc: Set<String> = [] // 用于记录已经处理过的 src
+        
+        guard let assets = self.assets else {
+            return nil
+        }
+        LogInfo("predict total count: \(assets.count)")
+        for url in assets {
+            guard let src = url.src, !seenSrc.contains(src) else {
+                let strMsg = "alike src: \(url.src ?? "nil"), md5 is \(url.md5 ?? "nil")"
+                LogInfo(strMsg)
+                continue // 如果 src 已存在于集合中，跳过
+            }
+            seenSrc.insert(src) // 添加当前 src 到集合中
+            models.append(url)
+        }
+        LogInfo("actual total count: \(models.count)")
+        return models
+    }
+    
     //扩展对assets的去重,针对src -> [GXDownloadURLModel] 可下载数据
     public func getNoAlikeAssets(priority: Int) -> [GXDownloadURLModel] {
         var models: [GXDownloadURLModel] = []
