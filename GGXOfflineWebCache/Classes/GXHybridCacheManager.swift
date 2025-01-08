@@ -967,17 +967,18 @@ public extension GXHybridCacheManager {
         case .html: false
         case .js: false
         case .css: false
-        case .png: true
-        case .jpeg: true
         case .json: false
-        case .xml: false
-        case .pdf: true
+        case .xml:  false
         case .webp: false
-        case .gif: true
+        case .atlas: true
+        case .png:  true
+        case .jpeg: true
+        case .gif:  true
+        case .pdf:  true
         case .mpeg: true
-        case .mp3: true
-        case .mp4: true
-        case .wav: true
+        case .mp3:  true
+        case .mp4:  true
+        case .wav:  true
         case .ico: false
         case .svg: false
         case .ttf: true
