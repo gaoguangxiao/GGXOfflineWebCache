@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.5.3'
+  s.version          = '0.6.0'
   s.summary          = 'feat：THe Altas can caches'
 
 # This description is used to generate tags and improve search results.
