@@ -132,8 +132,8 @@ extension GXHybridTaskManager {
     
     func checkFinish() {
         if self.finishTasksCount == self.tasksCount {
-            print("所有任务下载完毕")
-            print("\(self.waitingDownloadTasks)")
+//            print("所有任务下载完毕")
+//            print("\(self.waitingDownloadTasks)")
         } else {
             self.execute()
         }

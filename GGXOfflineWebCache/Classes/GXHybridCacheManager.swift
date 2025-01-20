@@ -159,7 +159,7 @@ public class GXHybridCacheManager: NSObject {
                 }
             }
         } else {
-            print("预置文件不存在")
+//            print("预置文件不存在")
             block(false)
         }
     }
@@ -243,7 +243,7 @@ public class GXHybridCacheManager: NSObject {
         // 查看本地文件是否存在
         let isFileExist = FileManager.isFileExists(atPath: filePath)
         if isFileExist == false {
-            print("文件不存在")
+//            print("文件不存在")
             return nil
         }
         return filePath
@@ -371,7 +371,7 @@ public extension GXHybridCacheManager {
         // 查看本地文件是否存在
         let isFileExist = FileManager.isFileExists(atPath: filePath)
         if isFileExist == false {
-            print("文件不存在")
+//            print("文件不存在")
             return nil
         }
         return filePath
@@ -511,7 +511,7 @@ public extension GXHybridCacheManager {
         // 查看本地文件是否存在
         let isFileExist = FileManager.isFileExists(atPath: filePath)
         if isFileExist == false {
-            print("文件不存在")
+//            print("文件不存在")
             return nil
         }
         return filePath
@@ -523,7 +523,7 @@ public extension GXHybridCacheManager {
     func getOldManifestData(url: String) -> Dictionary<String, Any>? {
         
         guard let oldManifestPath = self.getOldManifestPath(url: url) else {
-            print("文件不存在")
+//            print("文件不存在")
             return nil
         }
         
@@ -672,7 +672,7 @@ extension GXHybridCacheManager {
         
         let isFileExist = FileManager.isFileExists(atPath: manifestPath)
         if isFileExist == false {
-            print("文件不存在")
+//            print("文件不存在")
             return nil
         }
         return manifestPath
