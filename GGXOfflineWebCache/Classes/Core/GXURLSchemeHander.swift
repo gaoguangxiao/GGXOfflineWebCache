@@ -9,6 +9,8 @@ import Foundation
 import WebKit
 import GGXSwiftExtension
 
+public let URLSchemeHanderErrorNotifation = "URLSchemeHanderErrorNotifation"
+
 public struct WKURLSchemeWrapper: Hashable {
     //避免了多个 nil 的 task 被误认为是相等的情况
     let identifier = UUID()
@@ -61,6 +63,12 @@ open class GXURLSchemeHander: NSObject {
         }
         holdUrlSchemeTasks.remove(taskWrapper)
     }
+    
+    public func sendError(urlSchemeTask: WKURLSchemeTask) {
+        let tasknofound = NSError(domain: "ggx.task.nofound", code: -1100,userInfo: [NSLocalizedDescriptionKey:"\(urlSchemeTask.request.url?.absoluteString ?? "")"])
+        NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: tasknofound)
+        urlSchemeTask.didFailWithError(tasknofound)
+    }
 }
 
 @available(iOS 11.0, *)
@@ -74,7 +82,7 @@ extension GXURLSchemeHander: WKURLSchemeHandler{
                 let (data, response) = try await URLSession.shared.data(for: urlSchemeTask.request)
                 guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask),
                       let task = taskWrapper.task else {
-//                    LogInfo("return \(urlSchemeTask)")
+                    sendError(urlSchemeTask: urlSchemeTask)
                     return
                 }
                 task.didReceive(response)
@@ -87,9 +95,10 @@ extension GXURLSchemeHander: WKURLSchemeHandler{
             } catch {
                 guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask),
                       let task = taskWrapper.task else {
-//                    LogInfo("return \(urlSchemeTask)")
+                    sendError(urlSchemeTask: urlSchemeTask)
                     return
                 }
+                NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: error)
                 task.didFailWithError(error)
                 //2、移除任务
                 self.holdUrlSchemeTasks.remove(taskWrapper)
