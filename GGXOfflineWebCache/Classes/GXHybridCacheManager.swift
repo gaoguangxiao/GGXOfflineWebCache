@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import GGXSwiftExtension
 import SSZipArchive
+import GXTaskDownload
 
 public protocol GXHybridCacheManagerDelegate: NSObject {
     
@@ -312,23 +313,23 @@ extension GXHybridCacheManager {
 //MARK: 通过URL获取离线资源
 public extension GXHybridCacheManager {
     
-    func loadOfflineData(_ url: String) -> Data?{
-        // 资源全路径
-        if let fileUrl = self.loadOfflinePath(url)?.toFileUrl , let data = try? Data(contentsOf: fileUrl) {
-            //            let fh = try? FileHandle.init(forReadingFrom: fileUrl)
-            //            var data : Data?
-            //            if #available(iOS 13.4, *) {
-            //                data = try? fh?.readToEnd()
-            //            } else {
-            //                // Fallback on earlier versions
-            //                data = fh?.readDataToEndOfFile()
-            //            }
-            LogInfo("\(fileUrl)找到磁盘缓存")
-            return data
-        }  else {
-            return nil
-        }
-    }
+//    func loadOfflineData(_ url: String) -> Data?{
+//        // 资源全路径
+//        if let fileUrl = self.loadOfflinePath(url)?.toFileUrl , let data = try? Data(contentsOf: fileUrl) {
+//            //            let fh = try? FileHandle.init(forReadingFrom: fileUrl)
+//            //            var data : Data?
+//            //            if #available(iOS 13.4, *) {
+//            //                data = try? fh?.readToEnd()
+//            //            } else {
+//            //                // Fallback on earlier versions
+//            //                data = fh?.readDataToEndOfFile()
+//            //            }
+//            LogInfo("\(fileUrl)找到磁盘缓存")
+//            return data
+//        }  else {
+//            return nil
+//        }
+//    }
     
     func loadOfflineData(_ url: String, extensionFolder: String) -> Data?{
         // 资源全路径
@@ -911,16 +912,32 @@ extension GXHybridCacheManager {
     ///   - block: <#block description#>
     public func updateCurrentManifest(manifestJSONs: Array<String>, block: @escaping (Bool) -> Void) {
         
+        var canDownloadUrls: Array<String> = []
+        
         //删除旧
         for manifestJSON in manifestJSONs {
             //获取当前预置目录下位置
             if let currentManifestPath = self.getOldManifestPath(url: manifestJSON) {
                 FileManager.removefile(atPath: currentManifestPath)
             }
+                    
+            //对`manifestJSON`校验
+            let manifestFolderPath = resourceCachePath + "/\(self.getOfflineManifestFolder(url: manifestJSON))"
+            
+            //对当前manifest校验
+            let diskFile = GXTaskDiskFile()
+            let remoteModel = GXDownloadURLModel.deserialize(from: [:])
+            remoteModel?.md5 = manifestJSON.downloadUrlMD5
+            diskFile.remoteDownloadURLModel = remoteModel
+            diskFile.taskDownloadPath = manifestFolderPath
+            let isExist = diskFile.isExistDiskAndMD5Update(url: manifestJSON)
+            if !isExist {
+                canDownloadUrls.append(manifestJSON)
+            }
         }
         
         /// 以文件后缀存储json
-        self.oflineDownload.download(urls: manifestJSONs,path: self.manifestPathName,priority: 3) { total, loaded, state in
+        self.oflineDownload.download(urls: canDownloadUrls,path: self.manifestPathName,priority: 3) { total, loaded, state in
             //移除md5，并删除
             if state == .completed || state == .error {
                 //移除旧配置,manifest不需要保存json

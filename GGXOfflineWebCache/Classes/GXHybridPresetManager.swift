@@ -109,7 +109,12 @@ public class GXHybridPresetManager: NSObject {
                 //LogInfo("\(urlAssets.src ?? "") not contains http")
             }
         }
-        self.oflineDownload.start(forURL: downloadUrls, 
+        
+        guard downloadUrls.count != 0 else {
+            updatePresetManifest(manifestUrls: manifestUrls)
+            return
+        }
+        self.oflineDownload.start(forURL: downloadUrls,
                                   maxDownloadCount: maxDownloadCount,
                                   path: "WebResource") { [weak self] total, loaded, state in
             guard let self else { return }
