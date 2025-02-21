@@ -67,7 +67,8 @@ open class GXURLSchemeHander: NSObject {
     public func sendError(urlSchemeTask: WKURLSchemeTask) {
         let tasknofound = NSError(domain: "ggx.task.nofound", code: -1100,userInfo: [NSLocalizedDescriptionKey:"\(urlSchemeTask.request.url?.absoluteString ?? "")"])
         NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: tasknofound)
-        urlSchemeTask.didFailWithError(tasknofound)
+//        任务未发现，不可停止
+//        urlSchemeTask.didFailWithError(tasknofound)
     }
 }
 

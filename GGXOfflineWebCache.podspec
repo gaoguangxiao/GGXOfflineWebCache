@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.7.2'
-  s.summary          = 'change：SchemeHanderError异常抛出'
+  s.version          = '0.7.3'
+  s.summary          = 'change：getPresetPaths根据文件夹名称获取内部所有路径'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

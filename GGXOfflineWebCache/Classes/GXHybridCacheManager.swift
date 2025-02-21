@@ -776,6 +776,17 @@ extension GXHybridCacheManager {
         return filePaths
     }
     
+    //获取某文件夹下的所有文件
+    public func getPresetPaths(folder: String) -> Array<String>? {
+        guard let presetPath  else {
+            print("预置路径不存在")
+            return nil
+        }
+        let presetManifestFolderPath = presetPath + "/\(folder)"
+        let filePaths = FileManager.getAllFileNames(atPath:presetManifestFolderPath)
+        return filePaths
+    }
+    
     /// 获取本地预置离线包版本数据
     /// - Parameter url: <#url description#>
     /// - Returns: <#description#>
