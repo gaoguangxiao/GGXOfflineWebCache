@@ -42,7 +42,7 @@ public extension AVAudioSession {
                     .allowAirPlay,
                     .allowBluetoothA2DP
                 ])
-                print("AVAudioSession 类别已设置为 playAndRecord")
+//                print("AVAudioSession 类别已设置为 playAndRecord")
 //            }
             // 激活音频会话
             try audioSession.setActive(true)
@@ -66,7 +66,7 @@ public extension AVAudioSession {
             
             // 激活音频会话
             try audioSession.setActive(true)
-            print("AVAudioSession 已激活为 playback 模式")
+//            print("AVAudioSession 已激活为 playback 模式")
         } catch {
             print("configureAudioSessionForPlayback 配置 AVAudioSession 失败: \(error.localizedDescription)")
             throw error

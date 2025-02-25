@@ -18,10 +18,10 @@ public protocol GXHybridPresetManagerDelegate: NSObjectProtocol {
     func offlineWebStartDownload(urls: Array<GXWebOfflineAssetsModel>)
     
     /// 下载进度
-    func offlineWebProgress(progress: Float)
+    func offlineWebProgress(progress: Double)
     
     /// 下载速度，下载量
-    func offlineWebSpeed(speed: Double, loaded: Double, total: Double)
+    func offlineWebSpeed(speed: Double, loadedSize: Double, totalSize: Double ,total: Double)
     
     /// 加载完毕
     func offlineWeb(completedWithError error: Error?)
@@ -61,9 +61,9 @@ public class GXHybridPresetManager: NSObject {
     lazy var oflineDownload: GXDownloadManager = {
         let download = GXDownloadManager()
         download.isOpenDownloadSpeed = true
-        download.downloadSpeedBlock = { [weak self] speed ,loaded,total in
+        download.downloadSpeedBlock = { [weak self] speed, loadedSize, totalSize, total in
             guard let self else { return }
-            delegate?.offlineWebSpeed(speed: speed,loaded: loaded,total: total)
+            delegate?.offlineWebSpeed(speed: speed,loadedSize: totalSize,totalSize: totalSize, total: total)
         }
         return download
     }()
@@ -91,11 +91,11 @@ public class GXHybridPresetManager: NSObject {
     ///   - assets: <#assets description#>
     ///   - block: <#block description#>
     func downloadPreset(assets: Array<GXWebOfflineAssetsModel>, manifestUrls: Array<String>)  {
-
+        
         var downloadUrls: Array<GXDownloadURLModel> = []
         for urlAssets in assets {
             if let url = urlAssets.src,
-                url.contains("http") {
+               url.contains("http") {
                 let downloadModel = GXDownloadURLModel()
                 downloadModel.src    = urlAssets.src
                 downloadModel.policy = urlAssets.policy
@@ -119,9 +119,9 @@ public class GXHybridPresetManager: NSObject {
                                   path: "WebResource") { [weak self] total, loaded, state in
             guard let self else { return }
             if state == .completed || state == .error {
-               updatePresetManifest(manifestUrls: manifestUrls)
+                updatePresetManifest(manifestUrls: manifestUrls)
             } else {
-               delegate?.offlineWebProgress(progress: loaded/total)
+                delegate?.offlineWebProgress(progress: loaded/total)
             }
         }
         

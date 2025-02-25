@@ -24,6 +24,7 @@ public class GXHybridRequest: NSObject {
             return
         }
         let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 10
         Self.session = URLSession(configuration: config)
     }
 }

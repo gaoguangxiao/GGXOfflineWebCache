@@ -83,17 +83,17 @@ extension ViewController: GXHybridZipManagerDelegate {
 }
 
 extension ViewController: GXHybridPresetManagerDelegate {
-    
-    func offlineWebComparison() {
-        print("开始请求下载文件")
-    }
-    
-    func offlineWebProgress(progress: Float) {
+    func offlineWebProgress(progress: Double) {
         print("下载文件:\(progress)")
     }
     
-    func offlineWebSpeed(speed: Double, loaded: Double, total: Double) {
-        print("下载文件:\(loaded/total)，速度：\(speed)")
+    func offlineWebSpeed(speed: Double, loadedSize: Double, totalSize: Double, total: Double) {
+        print("下载文件:\(loadedSize/totalSize)，速度：\(speed)")
+    }
+    
+    
+    func offlineWebComparison() {
+        print("开始请求下载文件")
     }
     
     func offlineWeb(completedWithError error: (any Error)?) {

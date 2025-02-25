@@ -18,11 +18,13 @@ extension GXDownloader: URLSessionDataDelegate {
         if totalBytesCount == -1 {
             if let contentLengthString = httpURLResponse?.allHeaderFields["Content-Length"] as? String,
             let contentLengthValue = Int(contentLengthString) {
-//                LogInfo("Content-Length: \(contentLengthValue)")
+//                LogInfo("The \(response.url?.absoluteString ?? "nil") Content-Length: \(contentLengthValue)")
                 totalBytesCount = Int64(contentLengthValue)
             } else {
-//                LogInfo("The \(response.url!.absoluteString) Content-Length is nil")
+                LogInfo("The \(response.url?.absoluteString ?? "nil") Content-Length is nil")
             }
+        } else {
+//            LogInfo("The \(response.url?.absoluteString ?? "nil") expectedContentLength: \(totalBytesCount)")
         }
         state = .downloading
         completionHandler(.allow)

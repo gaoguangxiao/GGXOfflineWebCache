@@ -11,10 +11,10 @@ import GGXSwiftExtension
 @objcMembers
 public class GXDownloadManager: NSObject {
     /// URLS总数量
-    private var tasksCount: Float = 0
+    private var tasksCount: Double = 0
     
     /// 已经完成的任务数量
-    private var finishTasksCount: Float = 0
+    private var finishTasksCount: Double = 0
     
     private let executeQueue = DispatchQueue(label:"asyncQueue",
                                              qos: .default,
@@ -51,7 +51,8 @@ public class GXDownloadManager: NSObject {
     // 定时读取文件下载速度
     private var speedTime: Timer?
     
-    private var fileTotalLength: Double = 1
+    //文件总大小
+    private var fileTotalLength: Double = 0
     //已下载
     private var finishBytesReceived: Double = 0
     
@@ -161,6 +162,11 @@ extension GXDownloadManager {
 //        print("等待任务数量:\(self.waitTaskcount)")
 //        print("正在下载任务数量:\(self.downloadingTasks.count)")
         if self.finishTasksCount == self.tasksCount {
+            //最后一个下载完毕时，进行`finishBytesReceived`完毕回调，否则已下载大小会小于`fileTotalLength`
+            let speed = Double(finishBytesReceived - totalBytesReceived)/Double(speedUpdateIntervalTime)
+            if let proSpeed = self.downloadSpeedBlock {
+                proSpeed(speed,finishBytesReceived,fileTotalLength,tasksCount)
+            }
             self.stateCallBack(state: .completed)
             self.destroySpeedTime()
         } else {
@@ -197,7 +203,7 @@ extension GXDownloadManager {
         }
         objc_sync_enter(self)
         //已下载文件的下载量和预估下载量
-        finishBytesReceived += bytesReceivedByDownloader(task.downloader)
+        finishBytesReceived += bytesReceivedByDownloaderFinish(task.downloader)
         self.downloadingTasks.removeAll { _task in
             return _task == task
         }
@@ -235,7 +241,7 @@ extension GXDownloadManager {
         //本次下载量-上次下载量/间隔时间
         let speed = Double(deltaLength - totalBytesReceived)/Double(speedUpdateIntervalTime)
         if let proSpeed = self.downloadSpeedBlock {
-            proSpeed(speed,totalBytesReceived,fileTotalLength)
+            proSpeed(speed,deltaLength,fileTotalLength,tasksCount)
         }
         totalBytesReceived = deltaLength
     }
@@ -245,6 +251,15 @@ extension GXDownloadManager {
         var bytesReceived = Double(downloader.totalBytesReceived)
         if downloader.estimatedTotalBytesCount > 0 {
             bytesReceived = min(downloader.estimatedTotalBytesCount, Double(downloader.totalBytesReceived))
+        }
+        return bytesReceived
+    }
+    
+    //获取下载器的下载量，当下载完毕，但有预估大小时，返回预估大小
+    private func bytesReceivedByDownloaderFinish(_ downloader: GXDownloader) -> Double{
+        var bytesReceived = Double(downloader.totalBytesReceived)
+        if downloader.estimatedTotalBytesCount > 0 {
+            bytesReceived = Double(downloader.estimatedTotalBytesCount)
         }
         return bytesReceived
     }
@@ -313,17 +328,17 @@ extension GXDownloadManager {
     
         self.maxConcurrentCount = maxDownloadCount
         self.downloadTotalBlock = block
+        self.tasksCount = Double(urls.count)
+        finishTasksCount = 0
+        fileTotalLength = 0
+        
         LogInfo("开始下载")
         if isOpenDownloadSpeed {
             DispatchQueue.main.async {
                 self.initSpeedTimer(self.speedUpdateIntervalTime)
             }
         }
-        
-        self.tasksCount = Float(urls.count)
-        finishTasksCount = 0
-        fileTotalLength = 1
-        
+    
         //入队
         for url in urls {
             fileTotalLength += url.size
@@ -352,9 +367,9 @@ extension GXDownloadManager {
         self.downloadTotalBlock = block
         LogInfo("startByURL开始下载")
         
-        tasksCount = Float(urls.count)
+        tasksCount = Double(urls.count)
         finishTasksCount = 0
-        fileTotalLength = 1
+        fileTotalLength = 0
         //入队
         for url in urls {
             fileTotalLength += url.size

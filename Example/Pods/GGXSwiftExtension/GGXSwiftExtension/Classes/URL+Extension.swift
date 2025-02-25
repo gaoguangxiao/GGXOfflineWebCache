@@ -29,6 +29,7 @@ public enum WebMIMEType: String {
     case ttf
     case woff
     case woff2
+    case atlas //Content-Type application/octet-stream
 }
 
 public extension URL {

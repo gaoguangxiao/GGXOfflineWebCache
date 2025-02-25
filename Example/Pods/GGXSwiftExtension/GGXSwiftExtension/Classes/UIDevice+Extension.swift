@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-public let IS_55INCH_SCREEN = UIDevice.is55InchScreen
-public let IS_47INCH_SCREEN = UIDevice.is47InchScreen
-public let IS_40INCH_SCREEN = UIDevice.is40InchScreen
-public let IS_35INCH_SCREEN = UIDevice.is35InchScreen
+//public let IS_55INCH_SCREEN = UIDevice.is55InchScreen
+//public let IS_47INCH_SCREEN = UIDevice.is47InchScreen
+//public let IS_40INCH_SCREEN = UIDevice.is40InchScreen
+//public let IS_35INCH_SCREEN = UIDevice.is35InchScreen
 
 /// navigationBar相关frame
 /// https://www.jianshu.com/p/d7b8f831c1f1
@@ -21,8 +21,6 @@ public let NavigationBarHeight: CGFloat = {
         return 44
     } else {
         if #available(iOS 12.0, *) {
-            return 50
-        } else if UIDevice.isNoHomeIpad {
             return 50
         } else {
             return 44
@@ -323,9 +321,13 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         } else if (width == 428 && height == 926) || (width == 926 && height == 428) {
             return "Simulator iPhone 12 Pro Max/13 Pro Max/14 Plus"
         } else if (width == 393 && height == 852) || (width == 852 && height == 393){
-            return "Simulator iPhone 14 Pro/15/15 Pro"
+            return "Simulator iPhone 14 Pro/15/15 Pro/16"
+        } else if (width == 402 && height == 874) || (width == 874 && height == 402){
+            return "Simulator iPhone 16 Pro"
         } else if (width == 430 && height == 932) || (width == 932 && height == 430){
-            return "Simulator iPhone 14 Pro Max/15 Plus/15 Pro Max"
+            return "Simulator iPhone 14 Pro Max/15 Plus/16 Plus/15 Pro Max"
+        } else if (width == 440 && height == 956) || (width == 956 && height == 440){
+            return "Simulator iPhone 16 Pro Max"
         }
         
         // iPad
@@ -396,20 +398,30 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         return true
     }
     
-    @objc static var isIPhoneX: Bool {
-        return UIDevice.modelName.contains("iPhone X") ||
-        UIDevice.modelName.contains("iPhone 11") ||
-        UIDevice.modelName.contains("iPhone 12") ||
-        UIDevice.modelName.contains("iPhone 13")
+//    @objc static var isIPhoneX: Bool {
+//        return UIDevice.modelName.contains("iPhone X") ||
+//        UIDevice.modelName.contains("iPhone 11") ||
+//        UIDevice.modelName.contains("iPhone 12") ||
+//        UIDevice.modelName.contains("iPhone 13")
+//    }
+    
+    @available(iOS 11.0, *)
+    @objc static var isNotch: Bool {
+        guard let window = UIApplication.rootWindow else {
+            return false
+        }
+        
+        let safeArea = window.safeAreaInsets
+        return safeArea.top > 20
     }
     
     @objc static var isIPad: Bool {
         return UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad
     }
     
-    @objc static var isNoHomeIpad: Bool {
-        return systemModelName.contains("iPad8,") || systemModelName.contains("iPad13,")
-    }
+//    @objc static var isNoHomeIpad: Bool {
+//        return systemModelName.contains("iPad8,") || systemModelName.contains("iPad13,")
+//    }
     
     //    @objc static var isIPadPro: Bool {
     //        return isIPad && (width == 1024 && height == 1366)
@@ -420,7 +432,7 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
     }
     
     @objc static var isIPhone: Bool {
-        return UIDevice.current.model.contains("iPhone")
+        return UIDevice.current.userInterfaceIdiom == .phone
     }
     
     @objc static var isSimulator: Bool {
@@ -431,44 +443,44 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         return false
     }
     
-    @objc static var is55InchScreen: Bool {
-        return CGSize(width: width, height: height) == screenSizeFor55Inch
-    }
-    
-    @objc static var is47InchScreen: Bool {
-        return CGSize(width: width, height: height) == screenSizeFor47Inch
-    }
-    
-    @objc static var is40InchScreen: Bool {
-        return CGSize(width: width, height: height) == screenSizeFor40Inch
-    }
-    
-    @objc static var is35InchScreen: Bool {
-        return CGSize(width: width, height: height) == screenSizeFor35Inch
-    }
+//    @objc static var is55InchScreen: Bool {
+//        return CGSize(width: width, height: height) == screenSizeFor55Inch
+//    }
+//    
+//    @objc static var is47InchScreen: Bool {
+//        return CGSize(width: width, height: height) == screenSizeFor47Inch
+//    }
+//    
+//    @objc static var is40InchScreen: Bool {
+//        return CGSize(width: width, height: height) == screenSizeFor40Inch
+//    }
+//    
+//    @objc static var is35InchScreen: Bool {
+//        return CGSize(width: width, height: height) == screenSizeFor35Inch
+//    }
     
     static let like4to3Screen = UIScreen.main.bounds.size.height / UIScreen.main.bounds.size.width <= 1.5
     static let isNarrowScreen = UIScreen.main.bounds.size.width < 375 ? true : false
     
-    @objc static var isPlus: Bool {
-        return width == 414 || width == 428
-    }
+//    @objc static var isPlus: Bool {
+//        return width == 414 || width == 428
+//    }
     
-    @objc static var screenSizeFor55Inch: CGSize {
-        return CGSize(width: 414, height: 736)
-    }
-    
-    @objc static var screenSizeFor47Inch: CGSize {
-        return CGSize(width: 375, height: 667)
-    }
-    
-    @objc static var screenSizeFor40Inch: CGSize {
-        return CGSize(width: 320, height: 568)
-    }
-    
-    @objc static var screenSizeFor35Inch: CGSize {
-        return CGSize(width: 320, height: 480)
-    }
+//    @objc static var screenSizeFor55Inch: CGSize {
+//        return CGSize(width: 414, height: 736)
+//    }
+//    
+//    @objc static var screenSizeFor47Inch: CGSize {
+//        return CGSize(width: 375, height: 667)
+//    }
+//    
+//    @objc static var screenSizeFor40Inch: CGSize {
+//        return CGSize(width: 320, height: 568)
+//    }
+//    
+//    @objc static var screenSizeFor35Inch: CGSize {
+//        return CGSize(width: 320, height: 480)
+//    }
     
     static var width: Int {
         return Int(UIScreen.main.bounds.width)

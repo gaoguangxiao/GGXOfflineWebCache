@@ -1,7 +1,7 @@
 {
   "name": "GGXOfflineWebCache",
-  "version": "0.5.2",
-  "summary": "feat：check manifest before request",
+  "version": "0.8.0",
+  "summary": "change：改变下载总大小数据类型",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GGXOfflineWebCache.git",
-    "tag": "0.5.2"
+    "tag": "0.8.0"
   },
   "platforms": {
     "ios": "13.0"
@@ -21,21 +21,11 @@
   "swift_versions": "5.0",
   "source_files": "GGXOfflineWebCache/Classes/**/*",
   "dependencies": {
-    "GGXSwiftExtension": [
-
-    ],
-    "GXTaskDownload": [
-
-    ],
-    "SSZipArchive": [
-
-    ],
-    "GXSwiftNetwork": [
-
-    ],
-    "PTDebugView": [
-
-    ]
+    "GGXSwiftExtension": [],
+    "GXTaskDownload": [],
+    "SSZipArchive": [],
+    "GXSwiftNetwork": [],
+    "PTDebugView": []
   },
   "swift_version": "5.0"
 }

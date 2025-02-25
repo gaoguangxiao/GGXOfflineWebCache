@@ -7,6 +7,7 @@
 
 import Foundation
 import os.log
+import GGXSwiftExtension
 
 public class GXDownloader: NSObject, GXDownloading {
     
@@ -44,8 +45,11 @@ public class GXDownloader: NSObject, GXDownloading {
         } else  {
             queue.qualityOfService = .background
         }
+        let configuration = URLSessionConfiguration.default
+        //设置请求超时时间
+        configuration.timeoutIntervalForRequest = 10
 //        print("当前优先级:\(priority)")
-        return URLSession(configuration: .default, delegate: self, delegateQueue: queue)
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
     }()
     
     /// A `URLSessionDataTask` representing the data operation for the current `URL`.
@@ -114,6 +118,7 @@ public class GXDownloader: NSObject, GXDownloading {
             return
         }
         
+        LogInfo("开始下载文件：urlPath：\(task.originalRequest?.url?.absoluteString ?? "")")
         switch state {
         case .completed, .started:
             return
