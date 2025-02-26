@@ -63,7 +63,7 @@ public class GXHybridPresetManager: NSObject {
         download.isOpenDownloadSpeed = true
         download.downloadSpeedBlock = { [weak self] speed, loadedSize, totalSize, total in
             guard let self else { return }
-            delegate?.offlineWebSpeed(speed: speed,loadedSize: totalSize,totalSize: totalSize, total: total)
+            delegate?.offlineWebSpeed(speed: speed,loadedSize: loadedSize,totalSize: totalSize, total: total)
         }
         return download
     }()
