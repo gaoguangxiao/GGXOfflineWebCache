@@ -58,7 +58,7 @@ open class GXURLSchemeHander: NSObject {
     
     func removeUrlSchemeTasks(urlSchemeTask: WKURLSchemeTask) {
         guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask) else {
-//            LogInfo("Task not found for stop: \(urlSchemeTask)")
+            //            LogInfo("Task not found for stop: \(urlSchemeTask)")
             return
         }
         holdUrlSchemeTasks.remove(taskWrapper)
@@ -67,8 +67,8 @@ open class GXURLSchemeHander: NSObject {
     public func sendError(urlSchemeTask: WKURLSchemeTask) {
         let tasknofound = NSError(domain: "ggx.task.nofound", code: -1100,userInfo: [NSLocalizedDescriptionKey:"\(urlSchemeTask.request.url?.absoluteString ?? "")"])
         NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: tasknofound)
-//        任务未发现，不可停止
-//        urlSchemeTask.didFailWithError(tasknofound)
+        //        任务未发现，不可停止
+        //        urlSchemeTask.didFailWithError(tasknofound)
     }
 }
 
@@ -78,38 +78,74 @@ extension GXURLSchemeHander: WKURLSchemeHandler{
         //        LogInfo("start urlSchemeTask: \(urlSchemeTask)")
         //1、标记网络处理任务
         self.addUrlSchemeTasks(urlSchemeTask: urlSchemeTask)
-        Task {
-            do {
-                let (data, response) = try await URLSession.shared.data(for: urlSchemeTask.request)
-                guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask),
-                      let task = taskWrapper.task else {
-                    sendError(urlSchemeTask: urlSchemeTask)
+        if #available(iOS 13.0, *) {
+            Task {
+                do {
+                    let (data, response) = try await URLSession.shared.data(for: urlSchemeTask.request)
+                    guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask),
+                          let task = taskWrapper.task else {
+                        sendError(urlSchemeTask: urlSchemeTask)
+                        return
+                    }
+                    task.didReceive(response)
+                    task.didReceive(data)
+                    task.didFinish()
+                    //2、移除任务
+                    self.holdUrlSchemeTasks.remove(taskWrapper)
+                    //4、debug数量
+                    //                LogInfo("After: \(holdUrlSchemeTasks.count)")
+                } catch {
+                    guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask),
+                          let task = taskWrapper.task else {
+                        sendError(urlSchemeTask: urlSchemeTask)
+                        return
+                    }
+                    NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: error)
+                    task.didFailWithError(error)
+                    //2、移除任务
+                    self.holdUrlSchemeTasks.remove(taskWrapper)
+                }
+            }
+        } else {
+            // Fallback on earlier versions
+            let task = URLSession.shared.dataTask(with: urlSchemeTask.request) { [weak self] data, response, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask),
+                          let task = taskWrapper.task else {
+                        self.sendError(urlSchemeTask: urlSchemeTask)
+                        return
+                    }
+                    NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: error)
+                    task.didFailWithError(error)
+                    self.holdUrlSchemeTasks.remove(taskWrapper)
                     return
                 }
+                
+                guard let response = response, let data = data else {
+                    self.sendError(urlSchemeTask: urlSchemeTask)
+                    return
+                }
+                
+                guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask),
+                      let task = taskWrapper.task else {
+                    self.sendError(urlSchemeTask: urlSchemeTask)
+                    return
+                }
+                
                 task.didReceive(response)
                 task.didReceive(data)
                 task.didFinish()
-                //2、移除任务
-                self.holdUrlSchemeTasks.remove(taskWrapper)
-                //4、debug数量
-//                LogInfo("After: \(holdUrlSchemeTasks.count)")
-            } catch {
-                guard let taskWrapper = self.getUrlSchemeTasks(urlSchemeTask: urlSchemeTask),
-                      let task = taskWrapper.task else {
-                    sendError(urlSchemeTask: urlSchemeTask)
-                    return
-                }
-                NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: error)
-                task.didFailWithError(error)
-                //2、移除任务
                 self.holdUrlSchemeTasks.remove(taskWrapper)
             }
+            task.resume()
         }
     }
     
     open func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
         //3、stop标记的网络任务
-//        LogInfo("stop urlSchemeTask: \(urlSchemeTask)")
+        //        LogInfo("stop urlSchemeTask: \(urlSchemeTask)")
         self.removeUrlSchemeTasks(urlSchemeTask: urlSchemeTask)
     }
 }
