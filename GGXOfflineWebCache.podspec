@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.9.0'
+  s.version          = '0.9.1'
   s.summary          = 'change：URL拦截支持12.0'
 
 # This description is used to generate tags and improve search results.
