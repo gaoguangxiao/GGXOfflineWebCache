@@ -65,8 +65,8 @@ open class GXURLSchemeHander: NSObject {
     }
     
     public func sendError(urlSchemeTask: WKURLSchemeTask) {
-        let tasknofound = NSError(domain: "ggx.task.nofound", code: -1100,userInfo: [NSLocalizedDescriptionKey:"\(urlSchemeTask.request.url?.absoluteString ?? "")"])
-        NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: tasknofound)
+//        let tasknofound = NSError(domain: "ggx.task.nofound", code: -1100,userInfo: [NSLocalizedDescriptionKey:"\(urlSchemeTask.request.url?.absoluteString ?? "")"])
+//        NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: tasknofound)
         //        任务未发现，不可停止
         //        urlSchemeTask.didFailWithError(tasknofound)
     }
@@ -100,7 +100,7 @@ extension GXURLSchemeHander: WKURLSchemeHandler{
                         sendError(urlSchemeTask: urlSchemeTask)
                         return
                     }
-                    NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: error)
+//                    NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: error)
                     task.didFailWithError(error)
                     //2、移除任务
                     self.holdUrlSchemeTasks.remove(taskWrapper)
@@ -117,7 +117,7 @@ extension GXURLSchemeHander: WKURLSchemeHandler{
                         self.sendError(urlSchemeTask: urlSchemeTask)
                         return
                     }
-                    NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: error)
+//                    NotificationCenter.default.post(name: NSNotification.Name.init(URLSchemeHanderErrorNotifation), object: error)
                     task.didFailWithError(error)
                     self.holdUrlSchemeTasks.remove(taskWrapper)
                     return
