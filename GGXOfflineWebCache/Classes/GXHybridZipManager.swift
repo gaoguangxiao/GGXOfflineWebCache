@@ -47,7 +47,8 @@ public class GXHybridZipManager: NSObject {
         
         guard let path = Bundle.main.path(forResource: zipName, ofType: nil) else {
             print("本地不存在离线资源:\(zipName)")
-            block(true)//不存在，略过解压
+            block(true)//不存在，略过解压-跳过
+            self.unzipDelegate?.offlineUnzip(completedWithError: true)
             return
         }
         
