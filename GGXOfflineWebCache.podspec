@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GGXOfflineWebCache'
-  s.version          = '0.9.4'
+  s.version          = '0.9.5'
   s.summary          = 'change：不存在dist跳过'
 
 # This description is used to generate tags and improve search results.
