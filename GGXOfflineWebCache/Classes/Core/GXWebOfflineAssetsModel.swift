@@ -13,6 +13,9 @@ public class GXWebOfflineAssetsModel: SmartCodable {
     /// 如果不写域名，默认使用 {www_path}
     public var src: String? //
     
+    /// 补充src，用于二期替换src
+    public var url: String?
+    
     /// 文件内容 md5 的前 8 位
     public var md5: String?
 
