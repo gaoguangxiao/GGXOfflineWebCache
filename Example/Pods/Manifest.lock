@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (5.10.2)
-  - GGXOfflineWebCache (0.9.7):
+  - GGXOfflineWebCache (0.9.8):
     - GGXSwiftExtension
     - GXSwiftNetwork
     - GXTaskDownload
@@ -22,7 +22,7 @@ PODS:
     - GXPKHUD
     - Moya
     - SmartCodable
-  - GXTaskDownload (0.6.2):
+  - GXTaskDownload (0.6.3):
     - GGXSwiftExtension
     - SmartCodable
   - KeychainAccess (4.2.2)
@@ -82,11 +82,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
-  GGXOfflineWebCache: 43cdb79bef83099833c58d3f9ee651283468e087
+  GGXOfflineWebCache: a666437f9f93dab6d97a958c8bd2f3eaa6bfe29a
   GGXSwiftExtension: f67fffbaf518038b7df287b0eaed5a8bea9d68d3
   GXPKHUD: 3db210320877a88b0c9331e6b4045ba5c07ec2ea
   GXSwiftNetwork: 99edffa78828b1d051b971f5e62a5eba39886bff
-  GXTaskDownload: bb64503aec70d629b566a060b806443e7c57fd63
+  GXTaskDownload: 830f6ec128aed7bb1d44d3d20fd49b161b107207
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   PTDebugView: 0d2fa1754062a3cdff8dfba7f29fb061d0b8e95d

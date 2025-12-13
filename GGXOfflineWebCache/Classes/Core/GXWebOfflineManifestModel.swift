@@ -72,11 +72,7 @@ extension GXWebOfflineManifestModel {
         }
         LogInfo("predict total count: \(assets.count)")
         for url in assets {
-            var src = url.src
-            if src == nil {
-                src = url.url
-            }
-            guard let src, !seenSrc.contains(src) else {
+            guard let src = url.src, !seenSrc.contains(src) else {
                 let strMsg = "alike src: \(url.src ?? ""), md5 is \(url.md5 ?? "")"
                 LogInfo(strMsg)
                 continue // 如果 src 已存在于集合中，跳过

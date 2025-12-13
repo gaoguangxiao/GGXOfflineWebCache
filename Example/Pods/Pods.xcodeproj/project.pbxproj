@@ -5482,42 +5482,6 @@
 			};
 			name = Debug;
 		};
-		0D7E41991E2F69D0BCA1A9B611328FAC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8D10F72D404A19855CCDCE99B23A0EC /* GXTaskDownload.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/GXTaskDownload/GXTaskDownload-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/GXTaskDownload/GXTaskDownload-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GXTaskDownload/GXTaskDownload.modulemap";
-				PRODUCT_MODULE_NAME = GXTaskDownload;
-				PRODUCT_NAME = GXTaskDownload;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		0EBE9F2A2695BA9FE18E011808A8838D /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ED8974C0C1AE9205816CA3BE869526DA /* RxRelay.release.xcconfig */;
@@ -5716,6 +5680,43 @@
 			};
 			name = Release;
 		};
+		25FB653FE35CC91CE82A08B02686B995 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7EDFBB27426451C36DF057301F95469 /* GGXOfflineWebCache.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache.modulemap";
+				PRODUCT_MODULE_NAME = GGXOfflineWebCache;
+				PRODUCT_NAME = GGXOfflineWebCache;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		26346375A900D09372A0F54C91EF2FB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 706D770EC8A9225D3A73091EB5674892 /* Pods-GGXOfflineWebCache_Tests.debug.xcconfig */;
@@ -5752,43 +5753,6 @@
 			};
 			name = Debug;
 		};
-		296C6B8E70B6B92F037ED0AF5FD7DA3B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7EDFBB27426451C36DF057301F95469 /* GGXOfflineWebCache.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache.modulemap";
-				PRODUCT_MODULE_NAME = GGXOfflineWebCache;
-				PRODUCT_NAME = GGXOfflineWebCache;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		34006F2F91CDBC0F204D19B51E7C644C /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B72CDA26C2B275F1348F07B609437C63 /* GXPKHUD.release.xcconfig */;
@@ -5824,6 +5788,42 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		3CACC79DFD8DB9F71775332F38FBB78C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8D10F72D404A19855CCDCE99B23A0EC /* GXTaskDownload.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/GXTaskDownload/GXTaskDownload-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/GXTaskDownload/GXTaskDownload-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GXTaskDownload/GXTaskDownload.modulemap";
+				PRODUCT_MODULE_NAME = GXTaskDownload;
+				PRODUCT_NAME = GXTaskDownload;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		41DC756A929945F3F708A677C9E50677 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -6373,6 +6373,42 @@
 			};
 			name = Release;
 		};
+		92252C4D50295765751BBB3D599B6E9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3658DC99D6984394D480155EF1DC5FF2 /* GGXOfflineWebCache.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache.modulemap";
+				PRODUCT_MODULE_NAME = GGXOfflineWebCache;
+				PRODUCT_NAME = GGXOfflineWebCache;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		99D704509DA6F91C07948B189603B95D /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B19BCE10231FA134FA24212AA151B8A6 /* ReachabilitySwift.release.xcconfig */;
@@ -6575,43 +6611,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5.1;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A6E732F5FDF7257BD4B5BF882A196BB5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B89D98B04B4BD2E09F5E7D5E79E4827 /* GXTaskDownload.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/GXTaskDownload/GXTaskDownload-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/GXTaskDownload/GXTaskDownload-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GXTaskDownload/GXTaskDownload.modulemap";
-				PRODUCT_MODULE_NAME = GXTaskDownload;
-				PRODUCT_NAME = GXTaskDownload;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -6831,6 +6830,43 @@
 			};
 			name = Debug;
 		};
+		E24A010C186CD4D6BEA5DA11396E673B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B89D98B04B4BD2E09F5E7D5E79E4827 /* GXTaskDownload.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/GXTaskDownload/GXTaskDownload-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/GXTaskDownload/GXTaskDownload-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GXTaskDownload/GXTaskDownload.modulemap";
+				PRODUCT_MODULE_NAME = GXTaskDownload;
+				PRODUCT_NAME = GXTaskDownload;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		E30CB19B990DF43701043D1A7D27A565 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6DB4E8DD6D150FE3BCA0BE5E3E229D71 /* Alamofire.release.xcconfig */;
@@ -6847,42 +6883,6 @@
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
-		};
-		E865D71D69D7F88C7475BECE786A509F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3658DC99D6984394D480155EF1DC5FF2 /* GGXOfflineWebCache.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GGXOfflineWebCache/GGXOfflineWebCache.modulemap";
-				PRODUCT_MODULE_NAME = GGXOfflineWebCache;
-				PRODUCT_NAME = GGXOfflineWebCache;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		E9E33BF0FEB7FD0518E0B421845D6C0B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -7265,8 +7265,8 @@
 		8311E881236BDF25BE5AE28913D385CB /* Build configuration list for PBXNativeTarget "GXTaskDownload" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0D7E41991E2F69D0BCA1A9B611328FAC /* Debug */,
-				A6E732F5FDF7257BD4B5BF882A196BB5 /* Release */,
+				3CACC79DFD8DB9F71775332F38FBB78C /* Debug */,
+				E24A010C186CD4D6BEA5DA11396E673B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -7301,8 +7301,8 @@
 		E7651C725662E2590FADB5D999DCB97C /* Build configuration list for PBXNativeTarget "GGXOfflineWebCache" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E865D71D69D7F88C7475BECE786A509F /* Debug */,
-				296C6B8E70B6B92F037ED0AF5FD7DA3B /* Release */,
+				92252C4D50295765751BBB3D599B6E9E /* Debug */,
+				25FB653FE35CC91CE82A08B02686B995 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

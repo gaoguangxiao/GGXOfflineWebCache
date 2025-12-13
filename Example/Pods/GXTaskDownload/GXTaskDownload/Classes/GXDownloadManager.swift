@@ -42,6 +42,9 @@ public class GXDownloadManager: NSObject {
     // Whether to enable the download speed
     public var isOpenDownloadSpeed = false
     
+    /// 默认下载文件进行md5校验
+    public var isUserMD5CheckFile: Bool = true
+    
     /// File size update interval
     public var speedUpdateIntervalTime = 1.0
     
@@ -102,6 +105,7 @@ extension GXDownloadManager {
     func enqueue(urlModel: GXDownloadURLModel, path: String) {
         /// 创建一个任务
         let downloader = GXTaskDownloadDisk()
+        downloader.diskFile.isUserMD5CheckFile = isUserMD5CheckFile
         downloader.diskFile.taskDownloadPath = path + (urlModel.src?.toPath.stringByDeletingLastPathComponent ?? "")
         downloader.prepare(urlModel: urlModel)
         downloader.downloader.estimatedTotalBytesCount = urlModel.size

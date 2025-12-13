@@ -1,6 +1,6 @@
 {
   "name": "GGXOfflineWebCache",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "summary": "change：isUserMD5CheckFile默认true",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GGXOfflineWebCache.git",
-    "tag": "0.9.7"
+    "tag": "0.9.8"
   },
   "platforms": {
-    "ios": "12.0"
+    "ios": "13.0"
   },
   "swift_versions": "5.0",
   "source_files": "GGXOfflineWebCache/Classes/**/*",

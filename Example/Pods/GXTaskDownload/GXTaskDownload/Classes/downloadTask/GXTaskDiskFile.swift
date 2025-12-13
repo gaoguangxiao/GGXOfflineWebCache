@@ -55,8 +55,8 @@ public class GXTaskDiskFile: NSObject {
     /// URL下载信息
     public var remoteDownloadURLModel: GXDownloadURLModel?
     
-    /// 默认忽略md5校验 下载文件对比
-    public var isUserMD5CheckFile = false
+    /// 是否进行md5校验 下载文件对比
+    public var isUserMD5CheckFile = true
     
     func getUrlInfoLaseComponent(_ url: String) -> String {
         return url.md5Value + ".json"
