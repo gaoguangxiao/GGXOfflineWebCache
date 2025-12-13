@@ -50,10 +50,14 @@ public class GXHybridPresetManager: NSObject {
     // The maximum number of downloads in downloadable groups in a resource package is preset，defaul：9
     public var maxDownloadCount: Int = 9
     
+    /// Is the preset resource subject to MD5 verification?
+    public var isUserMD5CheckFile: Bool = true
+    
     ///web资源比对
     lazy var webPkgCheckManager: GXHybridCheckManager = {
         let offline = GXHybridCheckManager()
         offline.delegate = self
+        offline.isUserMD5CheckFile = isUserMD5CheckFile
         return offline
     }()
     
@@ -61,6 +65,7 @@ public class GXHybridPresetManager: NSObject {
     lazy var oflineDownload: GXDownloadManager = {
         let download = GXDownloadManager()
         download.isOpenDownloadSpeed = true
+        download.isUserMD5CheckFile = isUserMD5CheckFile
         download.downloadSpeedBlock = { [weak self] speed, loadedSize, totalSize, total in
             guard let self else { return }
             delegate?.offlineWebSpeed(speed: speed,loadedSize: loadedSize,totalSize: totalSize, total: total)

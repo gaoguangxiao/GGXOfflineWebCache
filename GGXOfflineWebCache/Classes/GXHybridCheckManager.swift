@@ -23,6 +23,9 @@ public class GXHybridCheckManager: NSObject {
     
     public weak var delegate: GXHybridCheckManagerDelegate?
     
+    /// 预置资源是否进行md5校验
+    public var isUserMD5CheckFile: Bool?
+    
     private var waitingUrlTasks: Array<String> = []
     
     /// 任务总量
@@ -113,6 +116,7 @@ extension GXHybridCheckManager {
                         for asset in assets {
                             if let urlPath = asset.src {
                                 let diskFile = GXTaskDiskFile()
+                                diskFile.isUserMD5CheckFile = isUserMD5CheckFile ?? true
                                 let folderPath =                            GXHybridCacheManager.share.resourceCachePath + (urlPath.toPath.stringByDeletingLastPathComponent)
                                 /// 下载的URL信息
                                 if let remoteModel = GXDownloadURLModel.deserialize(from: asset.toDictionary()) {
