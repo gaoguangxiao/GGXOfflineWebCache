@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import PTDebugView
 
 public class GXTaskDownTimer: NSObject {
     
@@ -67,6 +66,6 @@ public class GXTaskDownTimer: NSObject {
     }
     
     deinit {
-        ZKLog("\(self)deinit")
+
     }
 }

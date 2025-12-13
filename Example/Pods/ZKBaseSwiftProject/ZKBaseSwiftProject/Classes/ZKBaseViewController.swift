@@ -16,9 +16,19 @@ open class ZKBaseViewController: UIViewController  {
     /// 进入之前的屏幕方向
     public var isBeferOrientationMask: UIInterfaceOrientationMask = .landscape
     
+    //顶部导航栏
+    public var topNavView: ZKNavigationView?
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
-        makeNavigationBar()
+        
+        topNavView = makeNavigationBar()
+        
+        topNavView?.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(navigationHeight())
+        }
+
     }
 }
 

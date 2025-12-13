@@ -6,19 +6,19 @@
 //
 /**
  请主项目实现一下方法
-         if let app = UIApplication.shared.delegate as? AppDelegate {
-             switch orientation {
-             case .portrait:
-                 app.orientationMask = .portrait
-             case .landscapeRight:
-                 app.orientationMask = .landscapeRight
-             case .landscapeLeft:
-                 app.orientationMask = .landscapeLeft
-             case .portraitUpsideDown:
-                 app.orientationMask = .portraitUpsideDown
-             default:
-                 break
-             }
+ if let app = UIApplication.shared.delegate as? AppDelegate {
+ switch orientation {
+ case .portrait:
+ app.orientationMask = .portrait
+ case .landscapeRight:
+ app.orientationMask = .landscapeRight
+ case .landscapeLeft:
+ app.orientationMask = .landscapeLeft
+ case .portraitUpsideDown:
+ app.orientationMask = .portraitUpsideDown
+ default:
+ break
+ }
  //
  */
 
@@ -35,7 +35,7 @@ public extension UIViewController{
         }
         self.hidesBottomBarWhenPushed = true
     }
-
+    
     //隐藏键盘
     func hideKeyBoard()  {
         UIApplication.shared.sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
@@ -45,7 +45,7 @@ public extension UIViewController{
         if let url = URL.init(string: "tel://\(tel)"),UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.openURL(url)
         } else {
-//            self.showHint("设备不支持")
+            //            self.showHint("设备不支持")
         }
     }
     
@@ -80,7 +80,7 @@ public extension UIViewController{
             print("NavigationController is nil")
         }
     }
-
+    
 }
 
 //横竖屏
@@ -96,7 +96,7 @@ extension UIViewController {
                     self.setNeedsUpdateOfSupportedInterfaceOrientations()
                     let geometryPreferencesIOS = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: orientation)
                     scene.requestGeometryUpdate(geometryPreferencesIOS) { error in
-//                        print("横屏结果\(error)")
+                        //                        print("横屏结果\(error)")
                     }
                 } else {
                     // Fallback on earlier versions
@@ -113,6 +113,12 @@ extension UIViewController {
         var deviceInt: UIDeviceOrientation = .portrait
         if orientation == .landscape {
             deviceInt = .landscapeLeft
+        } else if orientation == .landscapeLeft {
+            deviceInt = .landscapeLeft
+        } else if orientation == .landscapeRight {
+            deviceInt = .landscapeRight
+        } else if orientation == .portraitUpsideDown {
+            deviceInt = .portraitUpsideDown
         } else {
             deviceInt = .portrait
         }

@@ -243,6 +243,7 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         case "iPad11,6", "iPad11,7":                    return "iPad 8 (2020)"
         case "iPad12,1", "iPad12,2":                    return "iPad 9 (2021)"
         case "iPad13,18", "iPad13,19":                  return "iPad 10 (2022)"
+       
             
             //iPad Mini
         case "iPad2,5", "iPad2,6", "iPad2,7":           return "iPad mini 1 (2012)"
@@ -250,7 +251,7 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         case "iPad4,7", "iPad4,8", "iPad4,9":           return "iPad mini 3"
         case "iPad5,1", "iPad5,2":                      return "iPad mini 4 (2015)"
         case "iPad11,1","iPad11,2":                     return "iPad mini 5 (2019)"
-        case "iPad14,1","iPad14,2":                     return "iPad Mini 6 (2022)"
+        case "iPad14,1","iPad14,2":                     return "iPad Mini 6 (2021)"
             
             //iPad Air
         case "iPad4,1", "iPad4,2", "iPad4,3":           return "iPad Air"
@@ -258,9 +259,7 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         case "iPad11,3", "iPad11,4":                    return "iPad Air 3 (2019)"
         case "iPad13,1", "iPad13,2":                    return "iPad Air 4 (2020)"
         case "iPad13,16", "iPad13,17":                  return "iPad Air 5 (2022)"
-        case "iPad14,8", "iPad14,9":                    return "iPad Air 11-inch (M2) (2024)"
-        case "iPad14,10", "iPad14,11":                  return "iPad Air 13-inch (M2) (2024)"
-            
+                   
             //iPad Pro
         case "iPad6,3", "iPad6,4":                       return "iPad Pro (9.7-inch) (2016)"
         case "iPad7,3", "iPad7,4":                       return "iPad Pro (10.5-inch) (2017)"
@@ -268,16 +267,26 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         case "iPad8,9", "iPad8,10":                      return "iPad Pro (11-inch) 2 (2020)"
         case "iPad13,4","iPad13,5","iPad13,6","iPad13,7":return "iPad Pro (11-inch) 3 (2021)"
         case "iPad14,3","iPad14,4":                      return "iPad Pro (11-inch) 4 (2022)"
-        case "iPad16,3","iPad16,4":                      return "iPad Pro 11-inch (M4) (2024)"
-            
+        
         case "iPad6,7", "iPad6,8":                          return "iPad Pro (12.9-inch) (2016)"
         case "iPad7,1", "iPad7,2":                          return "iPad Pro (12.9-inch) 2 (2017)"
         case "iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8":    return "iPad Pro (12.9-inch) 3 (2018)"
         case "iPad8,11", "iPad8,12":                        return "iPad Pro (12.9-inch) 4 (2020)"
         case "iPad13,8","iPad13,9","iPad13,10","iPad13,11": return "iPad Pro (12.9-inch) 5（2021）"
         case "iPad14,5","iPad14,6"                        : return "iPad Pro (12.9-inch) 6（2022）"
-        case "iPad16,5","iPad16,6"                        : return "iPad Pro 13.0-inch (M4)（2024）"
-            
+        
+        //2024年
+        case "iPad14,8", "iPad14,9":                     return "iPad Air 11-inch (M2) (2024.5)"
+        case "iPad14,10", "iPad14,11":                   return "iPad Air 13-inch (M2) (2024.5)"
+        case "iPad16,1","iPad16,2":                      return "iPad mini (A17 Pro)（2024.10）"
+        case "iPad16,3","iPad16,4":                      return "iPad Pro 11-inch (M4) (2024.5)"
+        case "iPad16,5","iPad16,6":                      return "iPad Pro 13.0-inch (M4)（2024.5）"
+        
+        //2025年
+        case "iPad15,3", "iPad15,4": return "iPad Air 11-inch (M3) (2025.3)"
+        case "iPad15,5", "iPad15,6": return "iPad Air 13-inch (M3) (2025.3)"
+        case "iPad15,7", "iPad15,8": return "iPad（A16）(2025.3)"
+                
         case "i386", "x86_64","arm64":                      return UIDevice.simulatorIdentiferViaSize()
         default:                                        return identifier
         }

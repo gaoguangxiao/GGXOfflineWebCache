@@ -82,9 +82,9 @@ public extension UIView {
     ///
     /// - Parameter afterUpdates: 是否要在界面更新完成后才截图
     /// - Returns: `UIView` 的截图
-    func getViewScreenShot(_ afterUpdates: Bool = false, scale: CGFloat = 0) -> UIImage? {
+    func getViewScreenShot(_ afterUpdates: Bool = false, opaque: Bool = false, scale: CGFloat = 0) -> UIImage? {
         var resultImage: UIImage?
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, scale)
+        UIGraphicsBeginImageContextWithOptions(bounds.size, opaque, scale)
         self.drawHierarchy(in: bounds.size.rect, afterScreenUpdates: afterUpdates)
         guard let currentCntext = UIGraphicsGetCurrentContext() else {
             return nil

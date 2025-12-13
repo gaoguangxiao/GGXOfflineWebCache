@@ -8,7 +8,7 @@
 import UIKit
 
 
-class SwiftMVCSViewController<SwiftView: ZKBaseView, SwiftViewModel: ZKBaseModel, SwiftService: ZKBaseService> : ZKBaseViewController  {
+open class SwiftMVCSViewController<SwiftView: ZKBaseView, SwiftViewModel: ZKBaseModel, SwiftService: ZKBaseService>: ZKBaseViewController  {
 
     lazy var rootView: SwiftView = {
         let view = SwiftView()
@@ -25,7 +25,7 @@ class SwiftMVCSViewController<SwiftView: ZKBaseView, SwiftViewModel: ZKBaseModel
         return service
     }()
     
-    override func loadView() {
+    open override func loadView() {
         view = rootView
         viewModel.bind(rootView)
     }

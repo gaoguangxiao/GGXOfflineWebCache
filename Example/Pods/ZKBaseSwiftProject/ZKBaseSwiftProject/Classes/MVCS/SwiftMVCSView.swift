@@ -8,11 +8,11 @@
 import UIKit
 
 
-class SwiftMVCSView<SwiftViewModel: ZKBaseModel>: ZKBaseView {
+open class SwiftMVCSView<SwiftViewModel: ZKBaseModel>: ZKBaseView {
     
     weak var eventDelegate: AnyObject?
     
-    weak var viewModel: SwiftViewModel? {
+    open weak var viewModel: SwiftViewModel? {
         bindModel as? SwiftViewModel
     }
 }

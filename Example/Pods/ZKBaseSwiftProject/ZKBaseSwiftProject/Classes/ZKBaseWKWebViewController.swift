@@ -11,9 +11,12 @@ import SnapKit
 import GGXSwiftExtension
 //import PKHUD
 import RxCocoa
-import PTDebugView
+import RxSwift
+//import PTDebugView
 
 public let kWebviewEstimatedProgressValue = "kWebviewEstimatedProgressValue"
+
+public let kInitialUrlChangeNotifation = "kInitialUrlChangeNotifation"
 
 public protocol WKWebScriptMessageDelegate: NSObjectProtocol {
     
@@ -30,6 +33,12 @@ open class ZKBaseWKWebViewController: ZKBaseViewController {
     public weak var scriptMessageDelegate: WKWebScriptMessageDelegate?
     
     public var webViewFinished: Bool = false
+    
+//    public override var nav: ZKNavigationView {
+//        get {
+//            navView
+//        }
+//    }
     
     open override func viewDidLoad() {
         self.view.addSubview(webView)
@@ -62,7 +71,8 @@ open class ZKBaseWKWebViewController: ZKBaseViewController {
     }
     
     deinit {
-        print("\(self)dealloc")
+//        print("\(self)dealloc")
+        self.disposeBag = DisposeBag()
     }
     
     open var schemeHandler: Any?
@@ -72,7 +82,7 @@ open class ZKBaseWKWebViewController: ZKBaseViewController {
     public lazy var webView: WKWebView = {
         let conf = WKWebViewConfiguration()
         let preferences = WKPreferences.init()
-        preferences.javaScriptCanOpenWindowsAutomatically = true
+        preferences.javaScriptCanOpenWindowsAutomatically = false
         if #available(iOS 13.0, *) {
             let pagePreferences = WKWebpagePreferences()
             if #available(iOS 14.0, *) {
@@ -129,7 +139,7 @@ open class ZKBaseWKWebViewController: ZKBaseViewController {
             }
             
             if let url = URL.init(string: urlString) {
-                ZKLog("web url is: \(urlString)")
+//                ZKLog("web url is: \(urlString)")
                 let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 8)
                 webView.load(request)
             }
@@ -148,13 +158,13 @@ extension ZKBaseWKWebViewController: WKNavigationDelegate, UIScrollViewDelegate 
     }
     
     open func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        ZKLog("web view begin loading main fram ...")
+//        ZKLog("web view begin loading main fram ...")
         
     }
     
     open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         view.hideToastActivity()
-        ZKLog("web view did finish navigation ...\(Date.milliStamp)")
+//        ZKLog("web view did finish navigation ...\(Date.milliStamp)")
     }
     
 //    Invoked when an error occurs while starting to load data for
@@ -165,7 +175,7 @@ extension ZKBaseWKWebViewController: WKNavigationDelegate, UIScrollViewDelegate 
         }
         view.hideToastActivity()
 //        HUD.flash("加载失败，请检查网络")
-        ZKLog("加载失败~error = \(error)")
+//        ZKLog("加载失败~error = \(error)")
     }
     
     open func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
@@ -176,7 +186,7 @@ extension ZKBaseWKWebViewController: WKNavigationDelegate, UIScrollViewDelegate 
         }
         view.hideToastActivity()
 //        HUD.flash("加载失败，请检查网络")
-        ZKLog("加载失败 error = \(error)")
+//        ZKLog("加载失败 error = \(error)")
     }
     
     //    public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {

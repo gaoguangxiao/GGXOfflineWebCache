@@ -29,9 +29,11 @@ import GGXSwiftExtension
 
 public extension ZKNavigationViewProtocol {
     
-    func makeNavigationBar() {
+    func makeNavigationBar() -> ZKNavigationView {
         view.backgroundColor = .zkF7F8FA
-        view.addSubview(navView)
+        let na = navView
+        view.addSubview(na)
+        return na
     }
     
     func hiddenNavigationBar(_ isHidden: Bool) {

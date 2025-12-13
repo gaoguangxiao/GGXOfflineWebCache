@@ -29,22 +29,32 @@ extension GXTaskDownloadDisk: GXDownloadingDelegate {
                 let downloadCount = downloadedSize * 1024 * 1024
                 let totalBytesCount = Double(download.totalBytesCount)
                 //对比文件的MD5和模型是否一致
-                if let urlMD5 = diskFile.remoteDownloadURLModel?.md5, !urlMD5.isEmpty {
-                    //`boxPath`不携带md5，但模型数据具备
-                    let r = boxFileMd5.has(urlMD5,option: .caseInsensitive)
-                    if r == true {
+                if diskFile.isUserMD5CheckFile {
+                    if let urlMD5 = diskFile.remoteDownloadURLModel?.md5, !urlMD5.isEmpty{
+                        //`boxPath`不携带md5，但模型数据具备
+                        let r = boxFileMd5.has(urlMD5,option: .caseInsensitive)
+                        if r == true {
+                            self.saveUrlInfo()
+                            downloadBlock?(download.progress, state)
+                        } else {
+                            handleMD5Mismatch(urlPath: urlPath, boxFileMd5: boxFileMd5, expectedMD5: urlMD5, boxPath: boxPath)
+                        }
+                    } else if boxPath.isDownloadSuccess() { //`boxPath`携带md5的情况
+                        LogInfo("The \(urlPath) has md5 check is Success")
                         self.saveUrlInfo()
                         downloadBlock?(download.progress, state)
                     } else {
-                        handleMD5Mismatch(urlPath: urlPath, boxFileMd5: boxFileMd5, expectedMD5: urlMD5, boxPath: boxPath)
+                        LogInfo("可下载\(totalBytesCount)、已下载：\(downloadCount)、urlPath：\(urlPath), 本地存储路径: \(boxPath)")
+                        if totalBytesCount == downloadCount {
+                            self.saveUrlInfo()
+                            downloadBlock?(download.progress, state)
+                        } else {
+                            LogInfo("no save \(urlPath) info and clearFile \(urlPath)")
+                            diskFile.clearFile(forUrl: urlPath)
+                            downloadBlock?(download.progress, GXDownloadingState.error)
+                        }
                     }
-                }
-                else if boxPath.isDownloadSuccess() { //`boxPath`携带md5的情况
-                    LogInfo("The \(urlPath) has md5 check is Success")
-                    self.saveUrlInfo()
-                    downloadBlock?(download.progress, state)
-                }
-                else {
+                } else {
                     LogInfo("可下载\(totalBytesCount)、已下载：\(downloadCount)、urlPath：\(urlPath), 本地存储路径: \(boxPath)")
                     if totalBytesCount == downloadCount {
                         self.saveUrlInfo()

@@ -55,6 +55,9 @@ public class GXTaskDiskFile: NSObject {
     /// URL下载信息
     public var remoteDownloadURLModel: GXDownloadURLModel?
     
+    /// 默认忽略md5校验 下载文件对比
+    public var isUserMD5CheckFile = false
+    
     func getUrlInfoLaseComponent(_ url: String) -> String {
         return url.md5Value + ".json"
     }
@@ -95,7 +98,7 @@ public class GXTaskDiskFile: NSObject {
     
     public func isExistDiskAndMD5Update(url: String) -> Bool {
         let isExist = isExistDiskDataWith(url: url)
-        if isExist {
+        if isExist, self.isUserMD5CheckFile {
             let filePath = getFilePath(url: url)
 //            LogInfo("文件地址：\(filePath)")
             //获取其URL信息的MD5信息和磁盘的是否一致。

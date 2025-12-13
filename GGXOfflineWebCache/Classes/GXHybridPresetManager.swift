@@ -65,7 +65,7 @@ public class GXHybridPresetManager: NSObject {
     lazy var oflineDownload: GXDownloadManager = {
         let download = GXDownloadManager()
         download.isOpenDownloadSpeed = true
-        download.isUserMD5CheckFile = isUserMD5CheckFile
+        download.巴布isUserMD5CheckFile = isUserMD5CheckFile
         download.downloadSpeedBlock = { [weak self] speed, loadedSize, totalSize, total in
             guard let self else { return }
             delegate?.offlineWebSpeed(speed: speed,loadedSize: loadedSize,totalSize: totalSize, total: total)

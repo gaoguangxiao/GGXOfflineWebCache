@@ -1,18 +1,28 @@
 PODS:
   - Alamofire (5.10.2)
-  - GGXOfflineWebCache (0.9.0):
+  - GGXOfflineWebCache (0.9.7):
     - GGXSwiftExtension
     - GXSwiftNetwork
     - GXTaskDownload
     - PTDebugView
     - SSZipArchive
-  - GGXSwiftExtension (0.8.1)
+  - GGXSwiftExtension (0.9.6)
   - GXPKHUD (1.0.0)
-  - GXSwiftNetwork (0.4.1):
+  - GXSwiftNetwork (0.5.4):
+    - GXPKHUD
+    - GXSwiftNetwork/EvenSource (= 0.5.4)
+    - GXSwiftNetwork/MSB (= 0.5.4)
+    - Moya
+    - SmartCodable
+  - GXSwiftNetwork/EvenSource (0.5.4):
     - GXPKHUD
     - Moya
     - SmartCodable
-  - GXTaskDownload (0.6.1):
+  - GXSwiftNetwork/MSB (0.5.4):
+    - GXPKHUD
+    - Moya
+    - SmartCodable
+  - GXTaskDownload (0.6.2):
     - GGXSwiftExtension
     - SmartCodable
   - KeychainAccess (4.2.2)
@@ -20,7 +30,7 @@ PODS:
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
-  - PTDebugView (0.2.4):
+  - PTDebugView (0.3.2):
     - GGXSwiftExtension
     - SnapKit
   - ReachabilitySwift (5.2.4)
@@ -30,13 +40,14 @@ PODS:
   - RxRelay (6.9.0):
     - RxSwift (= 6.9.0)
   - RxSwift (6.9.0)
-  - SmartCodable (4.3.3)
+  - SmartCodable (5.1.7):
+    - SmartCodable/Core (= 5.1.7)
+  - SmartCodable/Core (5.1.7)
   - SnapKit (5.7.1)
   - SSZipArchive (2.4.3)
-  - ZKBaseSwiftProject (1.1.8):
+  - ZKBaseSwiftProject (1.5.3):
     - GGXSwiftExtension
     - KeychainAccess
-    - PTDebugView
     - ReachabilitySwift
     - RxCocoa
     - RxSwift
@@ -71,22 +82,22 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
-  GGXOfflineWebCache: 1f4b71fb0c0e28361f48414c0c621df1f105a082
-  GGXSwiftExtension: 38e8e4f91a389c599c4336bb545132d8b56d1573
+  GGXOfflineWebCache: 43cdb79bef83099833c58d3f9ee651283468e087
+  GGXSwiftExtension: f67fffbaf518038b7df287b0eaed5a8bea9d68d3
   GXPKHUD: 3db210320877a88b0c9331e6b4045ba5c07ec2ea
-  GXSwiftNetwork: 200d699991a7bcb9c39076c0ad5aa1cf7b099cbe
-  GXTaskDownload: 3cb16b6dfd08858278a585fbf3a0d4374ab3c77c
+  GXSwiftNetwork: 99edffa78828b1d051b971f5e62a5eba39886bff
+  GXTaskDownload: bb64503aec70d629b566a060b806443e7c57fd63
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
-  PTDebugView: b5f48812230522e82447589bd6d4dd9e38ad6733
+  PTDebugView: 0d2fa1754062a3cdff8dfba7f29fb061d0b8e95d
   ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
   RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
   RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
   RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
-  SmartCodable: 202da1f0deb4f493eda21263a5388c6694c344b4
+  SmartCodable: e4d5004b5454867978041818a86c648150f30575
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
-  ZKBaseSwiftProject: e6970ff6b6f63e343466acdfe0e9557e36ab6c17
+  ZKBaseSwiftProject: c4f26539ec5859ce94f4cc52660c2fd5ff75260a
 
 PODFILE CHECKSUM: 5368212a0421b68da2e217939aefe22e1c10902b
 

@@ -178,7 +178,10 @@ import UIKit
         }
     }
     
-    
-    
+    class var zk6D6B92: UIColor {
+        get {
+            return .zkColor("#6D6B92")
+        }
+    }
 }
 

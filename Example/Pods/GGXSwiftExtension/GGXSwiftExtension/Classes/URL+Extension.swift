@@ -32,6 +32,36 @@ public enum WebMIMEType: String {
     case atlas //Content-Type application/octet-stream
 }
 
+//内容的MIME类型
+public enum ContentMIMEType: String {
+    case html = "text/html"
+    case js
+    case css
+    case png  = "image/png"
+    case jpeg = "image/jpeg"
+    case json
+    case xml = "text/xml"
+    case pdf = "application/pdf"
+    case webp
+    case gif = "image/gif"
+    case mpeg
+    case mp3
+    case mp4 = "video/mpeg4"
+    case mp4_1 = "video/mp4"
+    case wav
+    case ico
+    case svg
+    case ttf
+    case woff
+    case woff2
+    case atlas
+    
+    //以下为自定义的
+    case images = "image/*"
+    case videos = "video/*"
+}
+
+
 public extension URL {
     /// 取出Get请求中的参数，结果是一个大字典
     func getParameters() -> [String: String] {

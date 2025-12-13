@@ -10,7 +10,10 @@ import UIKit
 
 @objc public extension UIApplication {
     @objc class var visibleViewController: UIViewController? {
-        return UIApplication.getVisibleViewController(from: UIApplication.shared.keyWindow?.rootViewController)
+        if let rootWindow {
+            return UIApplication.getVisibleViewController(from: rootWindow.rootViewController)
+        }
+        return nil
     }
 
     @objc class func getVisibleViewController(from vc: UIViewController?) -> UIViewController? {

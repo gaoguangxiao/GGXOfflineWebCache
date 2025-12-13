@@ -7,10 +7,10 @@
 
 import UIKit
 
-class SwiftMVCSService<SwiftViewModel: ZKBaseModel>: ZKBaseService {
+open class SwiftMVCSService<SwiftViewModel: ZKBaseModel>: ZKBaseService {
 
-    weak var controller: UIViewController?
+    public weak var controller: UIViewController?
     
-    weak var viewModel: SwiftViewModel?
+    public weak var viewModel: SwiftViewModel?
     
 }

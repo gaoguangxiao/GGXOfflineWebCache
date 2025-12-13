@@ -9,7 +9,7 @@
 import Foundation
 import GGXSwiftExtension
 import SnapKit
-//import PTDebugView
+import UIKit
 
 public enum PTDebugViewButtonEvent {
     case ChangeUrl(PTDebugView)
@@ -26,11 +26,8 @@ public enum TapShowCorner {
 
 public typealias DebugButtonEvent = (_ event: PTDebugViewButtonEvent) -> Void
 
-var web_log = ""
-
 var mAttributedString :NSMutableAttributedString = NSMutableAttributedString(string: "")//日志富文本
 
-public var onceEnterApp_log = "" //记录
 public class PTDebugView: UIView {
     
     private var debugTextView =  UITextView.init()
@@ -50,16 +47,10 @@ public class PTDebugView: UIView {
     var actionBtnTag = 0
     
     public static func addLog(_ log : String, color: UIColor = .black) {
-        onceEnterApp_log = log + onceEnterApp_log
 #if DEBUG
         let wStr = "\n-------\(Date.getCurrentDateStr("yyyy-MM-dd HH:mm:ss SSS"))日志-------\n" + log
-        web_log = wStr + web_log
-//        let color = UIColor.red
-//        let range = NSRange(location: mAttributedString?.length ?? 0, length: log.length)
-//        mAttributedString?.addAttribute(.foregroundColor, value: color, range: range)
         let att = NSAttributedString(string: wStr, attributes: [.foregroundColor: color])
         mAttributedString.insert(att, at: 0)
-//        mAttributedString?.append(att)
         ZKWLog.Log(wStr)
 #endif
     }
@@ -109,14 +100,13 @@ public class PTDebugView: UIView {
         if self.isHidden {
             self.isHidden = false
             if let info = self.headInfoLog {
-//                self.debugTextView.text = info + web_log)
                 let natt = NSMutableAttributedString(string: info,
                                                      attributes: [.foregroundColor: UIColor.black])
                 natt.append(mAttributedString)
 
                 self.debugTextView.attributedText = natt
             } else {
-//                self.debugTextView.text = web_log
+
                 self.debugTextView.attributedText = mAttributedString
             }
         }
@@ -245,7 +235,6 @@ public class PTDebugView: UIView {
     }
     
     @objc func clearLog (){
-        web_log = ""
         mAttributedString = NSMutableAttributedString(string: "")//日志富文本
         self.debugTextView.text = ""
         //        ZKWLog.clear()

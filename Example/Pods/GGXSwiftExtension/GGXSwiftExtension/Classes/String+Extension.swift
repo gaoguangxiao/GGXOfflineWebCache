@@ -185,6 +185,8 @@ public extension String {
 
     static let random_str_characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     
+    static let random_Int_characters = "0123456789"
+    
     static func randomString(length : Int) -> String{
         var ranStr = ""
         for _ in 0..<length {
@@ -193,11 +195,42 @@ public extension String {
         }
         return ranStr
     }
+    
+    static func randomInt(length : Int) -> String{
+        var ranStr = ""
+        for _ in 0..<length {
+            let index = Int(arc4random_uniform(UInt32(random_Int_characters.count)))
+            ranStr.append(random_str_characters[random_Int_characters.index(random_Int_characters.startIndex, offsetBy: index)])
+        }
+        return ranStr
+    }
 }
 
 // MARK: - URL Encode & Decode
 public extension String {
         
+    
+    var encodeLocalOrRemoteForUrl: URL? {
+        let canUseCache = FileManager.default.fileExists(atPath: self)
+        var audioUrl: URL?
+        if canUseCache {
+            var fileUrl : URL?
+            if #available(iOS 16.0, *) {
+                fileUrl = URL(filePath: self)
+            } else {
+                // Fallback on earlier versions
+                fileUrl = URL(fileURLWithPath: self)
+            }
+            audioUrl = fileUrl
+        } else {
+            guard let escapedURLString = self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
+                return nil
+            }
+            audioUrl = URL(string: escapedURLString)
+        }
+        return audioUrl
+    }
+    
     var toUrl: URL? {
         if let url = URL.init(string: self) {
             return url
@@ -349,6 +382,20 @@ public extension String {
             MIMEType = "font/woff2"
         }
         return MIMEType;
+    }
+    
+    //解析path路径
+    func parsePushUrl() -> [String : String] {
+        var result : [String : String] = [:]
+        let comps = self.components(separatedBy: "&")
+        for subUrl in comps {
+            let subComps = subUrl.components(separatedBy: "=")
+            if subComps.count == 2 {
+                let key = subComps[0]
+                result[key] = subComps[1].removingPercentEncoding
+            }
+        }
+        return result
     }
 }
 

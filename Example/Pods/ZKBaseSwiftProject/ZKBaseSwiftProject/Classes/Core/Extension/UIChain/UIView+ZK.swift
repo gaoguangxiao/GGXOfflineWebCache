@@ -289,10 +289,14 @@ extension UIView {
 
 extension UIView {
     
-    
     /// 此方法是用来规范更新视图方法
     /// - Parameter model: 数据源
-    @objc func updateUI(_ model: ZKBaseModel?) {
+    @objc open func updateUI(_ model: ZKBaseModel?) {
+        
+    }
+    
+    /// 初始化视图需要，可UIView()
+    @objc open func initViewUI(_ model: ZKBaseModel?) {
         
     }
 }

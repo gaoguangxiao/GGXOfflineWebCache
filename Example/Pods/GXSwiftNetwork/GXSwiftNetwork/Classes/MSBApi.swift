@@ -115,12 +115,23 @@ open class MSBApi: TargetType {
     }
 }
 
-//MARK:
+//MARK: await request
 extension MSBApi {
     
     @available(iOS 13.0, *)
-    public func requestV2<T: SmartCodable>(_ Model: T.Type) async throws {
-        print("requestV2----")
+    public func dataTask<T: SmartCodable>(with model: T.Type) async throws -> MSBBaseModel<T> where T: SmartCodable {
+        do {
+            let model = try await self.request(MSBBaseModel<T>.self)
+            if self.requestShowErrorMsg, let msg = model.msg, msg.count > 0 {
+                await MainActor.run { HUD.flash(.label(msg), delay: 2.5) }
+            }
+            return model
+        } catch {
+            if self.requestShowErrorMsg {
+                await MainActor.run { HUD.flash(.label(error.localizedDescription), delay: 2.5) }
+            }
+            throw error
+        }
     }
     
     @available(iOS 13.0, *)
@@ -144,6 +155,11 @@ extension MSBApi {
                         let model = Model.deserialize(from: jsonObject, designatedPath: "")
                         guard let model else {
                             continuation.resume(throwing: NSError(domain: "network", code: response.statusCode,userInfo: ["msg": "数据解析失败"]))
+                            guard let model else {
+                                let apiError = MSBRespApiModel(code: response.statusCode, msg: "数据解析失败")
+                                self.check401Fail(apiError)
+                                return
+                            }
                             return
                         }
                         continuation.resume(returning: model)
@@ -152,6 +168,10 @@ extension MSBApi {
                         if self.requestShowErrorMsg {
                             HUD.flash(.label(error.localizedDescription), delay: 1.5)
                         }
+                        let nsError = error as NSError
+                        let apiError = MSBRespApiModel(code: nsError.code, msg: nsError.localizedDescription)
+                        self.check401Fail(apiError)
+                        
                         continuation.resume(throwing: error)
                     }
                 case let .failure(error):
@@ -163,21 +183,7 @@ extension MSBApi {
             }
         }
     }
-    @available(iOS 13.0, *)
-    public func dataTask<T: SmartCodable>(with model: T.Type) async throws -> MSBBaseModel<T> where T: SmartCodable {
-        do {
-            let model = try await self.request(MSBBaseModel<T>.self)
-            if self.requestShowErrorMsg, let msg = model.msg, msg.count > 0 {
-                await MainActor.run { HUD.flash(.label(msg), delay: 2.5) }
-            }
-            return model
-        } catch {
-            if self.requestShowErrorMsg {
-                await MainActor.run { HUD.flash(.label(error.localizedDescription), delay: 2.5) }
-            }
-            throw error
-        }
-    }
+    
 }
 
 // MARK: ==== Closure
@@ -309,6 +315,13 @@ extension MSBApi {
     }
     
     public func reportError(error: MSBApiError) -> Bool { true }
+    
+    public func check401Fail(_ error: MSBRespApiModel) {
+        if error.code == 401 || error.code == 403 || error.code == 501 || error.code == 1022 ||
+            error.code == 40001 || error.code == 40003  {
+            MSBApiConfig.shared.tokenInvalidateCallBack?()
+        }
+    }
     
 }
 
