@@ -86,7 +86,7 @@ extension MoyaProvider {
     }
     
     /// 解析遵循`SmartCodable`的协议的结构体或者类
-    internal func request<T: SmartCodable>( _ target: Target,
+    internal func request<T: SmartCodableX>( _ target: Target,
                                          _ rTarget:MSBApi,
                                            onFailure: @escaping (MSBRespApiModel) -> Void,
                                            onSuccess: @escaping (T) -> Void,

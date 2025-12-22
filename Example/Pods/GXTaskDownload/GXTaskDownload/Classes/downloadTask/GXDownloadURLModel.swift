@@ -8,7 +8,7 @@
 import Foundation
 import SmartCodable
 
-public class GXDownloadURLModel: NSObject ,SmartCodable {
+public class GXDownloadURLModel: NSObject ,SmartCodableX {
     
     required public override init() {
         super.init()

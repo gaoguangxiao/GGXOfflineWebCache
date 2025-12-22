@@ -102,7 +102,7 @@ open class MSBApi: TargetType {
         useProvider.request(self, self, onFailure: onFailure, onSuccess: onSuccess)
     }
     
-    open func request<T: SmartCodable>(onSuccess: @escaping (T) -> Void,
+    open func request<T: SmartCodableX>(onSuccess: @escaping (T) -> Void,
                                       onFailure: @escaping (MSBRespApiModel) -> Void,
                                       provider: MoyaProvider<MSBApi>? = nil,
                                       fullResponse: ((Moya.Response) -> Void)? = nil) {
@@ -119,7 +119,7 @@ open class MSBApi: TargetType {
 extension MSBApi {
     
     @available(iOS 13.0, *)
-    public func dataTask<T: SmartCodable>(with model: T.Type) async throws -> MSBBaseModel<T> where T: SmartCodable {
+    public func dataTask<T: SmartCodableX>(with model: T.Type) async throws -> MSBBaseModel<T> where T: SmartCodableX {
         do {
             let model = try await self.request(MSBBaseModel<T>.self)
             if self.requestShowErrorMsg, let msg = model.msg, msg.count > 0 {
@@ -135,7 +135,7 @@ extension MSBApi {
     }
     
     @available(iOS 13.0, *)
-    public func request<T: SmartCodable>(_ Model: T.Type) async throws -> T where T: SmartCodable {
+    public func request<T: SmartCodableX>(_ Model: T.Type) async throws -> T where T: SmartCodableX {
         if self.requestShowHUD {
             DispatchQueue.main.async {
                 HUD.show(.label("加载中..."))

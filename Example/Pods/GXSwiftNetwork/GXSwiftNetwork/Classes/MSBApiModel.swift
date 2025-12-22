@@ -8,7 +8,10 @@
 import Foundation
 import SmartCodable
 
-open class MSBApiModel: SmartCodable {
+//重新名称-网络修改
+public typealias SmartCodable = SmartCodableX
+
+open class MSBApiModel: SmartCodableX {
     required public init() { }
     
     @SmartAny
@@ -19,7 +22,7 @@ open class MSBApiModel: SmartCodable {
     open var code : Int = 0 //业务端代码
 }
 
-public struct MSBBaseModel<T: SmartCodable>: SmartCodable {
+public struct MSBBaseModel<T: SmartCodableX>: SmartCodableX {
     public init() { }
     
     public var data: T?

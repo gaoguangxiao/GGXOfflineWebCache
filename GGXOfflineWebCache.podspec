@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'GGXOfflineWebCache'
-    s.version          = '0.9.9'
+    s.version          = '1.0.0'
     s.summary          = '默认下载离线策略为3'
     
     s.description      = <<-DESC

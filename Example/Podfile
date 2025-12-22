@@ -1,3 +1,6 @@
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+#source 'https://github.com/cocoapods/specs.git'
+
 use_frameworks!
 
 platform :ios, '13.0'

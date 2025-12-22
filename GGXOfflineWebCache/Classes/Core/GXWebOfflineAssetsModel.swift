@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GXSwiftNetwork
 import SmartCodable
 
 public class GXWebOfflineAssetsModel: SmartCodable {

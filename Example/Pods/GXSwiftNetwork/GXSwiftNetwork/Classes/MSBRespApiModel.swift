@@ -8,7 +8,7 @@
 import Foundation
 import SmartCodable
 
-open class MSBRespApiModel: NSObject, SmartCodable {
+open class MSBRespApiModel: NSObject, SmartCodableX {
     
     open var code : Int = 0 //业务端代码
     open var msg: String?
